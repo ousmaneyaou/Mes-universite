@@ -1,0 +1,288 @@
+<div>
+  <h2 id="page-heading" data-cy="DepotHeading">
+    <span>Depots</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-depot"
+        [routerLink]="['/depot/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Depot </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="depots?.length === 0">
+    <span>No Depots found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="depots && depots.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nom">
+            <div class="d-flex">
+              <span>Nom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prenom">
+            <div class="d-flex">
+              <span>Prenom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateNaissance">
+            <div class="d-flex">
+              <span>Date Naissance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lieuDeNaissance">
+            <div class="d-flex">
+              <span>Lieu De Naissance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <div class="d-flex">
+              <span>Email</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nationalite">
+            <div class="d-flex">
+              <span>Nationalite</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="telephone">
+            <div class="d-flex">
+              <span>Telephone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sexe">
+            <div class="d-flex">
+              <span>Sexe</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateDepot">
+            <div class="d-flex">
+              <span>Date Depot</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="numeroDeTable">
+            <div class="d-flex">
+              <span>Numero De Table</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="serie">
+            <div class="d-flex">
+              <span>Serie</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="diplome">
+            <div class="d-flex">
+              <span>Diplome</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="releveDeNote">
+            <div class="d-flex">
+              <span>Releve De Note</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="anneeObtention">
+            <div class="d-flex">
+              <span>Annee Obtention</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lieuObtention">
+            <div class="d-flex">
+              <span>Lieu Obtention</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="mention">
+            <div class="d-flex">
+              <span>Mention</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lettreDeMotivation">
+            <div class="d-flex">
+              <span>Lettre De Motivation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="choix1">
+            <div class="d-flex">
+              <span>Choix 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="choix2">
+            <div class="d-flex">
+              <span>Choix 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="choix3">
+            <div class="d-flex">
+              <span>Choix 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photo">
+            <div class="d-flex">
+              <span>Photo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="bachelier.id">
+            <div class="d-flex">
+              <span>Bachelier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dossier.id">
+            <div class="d-flex">
+              <span>Dossier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let depot of depots; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/depot', depot.id, 'view']">{{ depot.id }}</a>
+          </td>
+          <td>{{ depot.nom }}</td>
+          <td>{{ depot.prenom }}</td>
+          <td>{{ depot.dateNaissance | formatMediumDatetime }}</td>
+          <td>{{ depot.lieuDeNaissance }}</td>
+          <td>{{ depot.email }}</td>
+          <td>{{ depot.nationalite }}</td>
+          <td>{{ depot.telephone }}</td>
+          <td>{{ depot.sexe }}</td>
+          <td>{{ depot.dateDepot | formatMediumDatetime }}</td>
+          <td>{{ depot.numeroDeTable }}</td>
+          <td>{{ depot.serie }}</td>
+          <td>
+            <a *ngIf="depot.diplome" (click)="openFile(depot.diplome, depot.diplomeContentType)">
+              <img [src]="'data:' + depot.diplomeContentType + ';base64,' + depot.diplome" style="max-height: 30px" alt="depot image" />
+            </a>
+            <span *ngIf="depot.diplome">{{ depot.diplomeContentType }}, {{ byteSize(depot.diplome) }}</span>
+          </td>
+          <td>
+            <a *ngIf="depot.releveDeNote" (click)="openFile(depot.releveDeNote, depot.releveDeNoteContentType)">
+              <img
+                [src]="'data:' + depot.releveDeNoteContentType + ';base64,' + depot.releveDeNote"
+                style="max-height: 30px"
+                alt="depot image"
+              />
+            </a>
+            <span *ngIf="depot.releveDeNote">{{ depot.releveDeNoteContentType }}, {{ byteSize(depot.releveDeNote) }}</span>
+          </td>
+          <td>{{ depot.anneeObtention }}</td>
+          <td>{{ depot.lieuObtention }}</td>
+          <td>{{ depot.mention }}</td>
+          <td>
+            <a *ngIf="depot.lettreDeMotivation" (click)="openFile(depot.lettreDeMotivation, depot.lettreDeMotivationContentType)">
+              <img
+                [src]="'data:' + depot.lettreDeMotivationContentType + ';base64,' + depot.lettreDeMotivation"
+                style="max-height: 30px"
+                alt="depot image"
+              />
+            </a>
+            <span *ngIf="depot.lettreDeMotivation"
+              >{{ depot.lettreDeMotivationContentType }}, {{ byteSize(depot.lettreDeMotivation) }}</span
+            >
+          </td>
+          <td>{{ depot.choix1 }}</td>
+          <td>{{ depot.choix2 }}</td>
+          <td>{{ depot.choix3 }}</td>
+          <td>
+            <a *ngIf="depot.photo" (click)="openFile(depot.photo, depot.photoContentType)">
+              <img [src]="'data:' + depot.photoContentType + ';base64,' + depot.photo" style="max-height: 30px" alt="depot image" />
+            </a>
+            <span *ngIf="depot.photo">{{ depot.photoContentType }}, {{ byteSize(depot.photo) }}</span>
+          </td>
+          <td>
+            <div *ngIf="depot.bachelier">
+              <a [routerLink]="['/bachelier', depot.bachelier.id, 'view']">{{ depot.bachelier.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="depot.dossier">
+              <a [routerLink]="['/dossier', depot.dossier.id, 'view']">{{ depot.dossier.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/depot', depot.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/depot', depot.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(depot)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="depots && depots.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

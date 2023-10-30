@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="bachelier">
+      <h2 data-cy="bachelierDetailsHeading"><span>Bachelier</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ bachelier.id }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <span>{{ bachelier.sexe }}</span>
+        </dd>
+        <dt><span>Date Naissance</span></dt>
+        <dd>
+          <span>{{ bachelier.dateNaissance | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Lieu Naissance</span></dt>
+        <dd>
+          <span>{{ bachelier.lieuNaissance }}</span>
+        </dd>
+        <dt><span>Nationalite</span></dt>
+        <dd>
+          <span>{{ bachelier.nationalite }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ bachelier.telephone }}</span>
+        </dd>
+        <dt><span>Utilisateur</span></dt>
+        <dd>
+          <span>{{ bachelier.utilisateur?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/bachelier', bachelier.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dossier">
+      <h2 data-cy="dossierDetailsHeading"><span>Dossier</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ dossier.id }}</span>
+        </dd>
+        <dt><span>Valider</span></dt>
+        <dd>
+          <span>{{ dossier.valider }}</span>
+        </dd>
+        <dt><span>Niveau</span></dt>
+        <dd>
+          <div *ngIf="dossier.niveau">
+            <a [routerLink]="['/niveau', dossier.niveau.id, 'view']">{{ dossier.niveau.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Campagne</span></dt>
+        <dd>
+          <div *ngIf="dossier.campagne">
+            <a [routerLink]="['/campagne', dossier.campagne.id, 'view']">{{ dossier.campagne.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dossier', dossier.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

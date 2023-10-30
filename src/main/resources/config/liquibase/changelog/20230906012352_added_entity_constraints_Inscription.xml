@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Inscription.
+    -->
+    <changeSet id="20230906012352-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="paiement_id"
+                                 baseTableName="inscription"
+                                 constraintName="fk_inscription__paiement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="paiement"/>
+
+        <addForeignKeyConstraint baseColumnNames="inscription_id"
+                                 baseTableName="rel_inscription__dossiers"
+                                 constraintName="fk_rel_inscription__dossiers__inscription_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="inscription"/>
+
+        <addForeignKeyConstraint baseColumnNames="dossiers_id"
+                                 baseTableName="rel_inscription__dossiers"
+                                 constraintName="fk_rel_inscription__dossiers__dossiers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dossier"/>
+    </changeSet>
+</databaseChangeLog>

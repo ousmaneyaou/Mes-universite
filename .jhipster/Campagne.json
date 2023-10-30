@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20230906012345",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "campagne",
+  "fields": [
+    {
+      "fieldName": "intitule",
+      "fieldType": "String",
+      "javadoc": "The firstname attribute."
+    },
+    {
+      "fieldName": "dateDebut",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dateFin",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Campagne",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

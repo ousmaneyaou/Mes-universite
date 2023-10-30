@@ -1,0 +1,152 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="depot">
+      <h2 data-cy="depotDetailsHeading"><span>Depot</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ depot.id }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ depot.nom }}</span>
+        </dd>
+        <dt><span>Prenom</span></dt>
+        <dd>
+          <span>{{ depot.prenom }}</span>
+        </dd>
+        <dt><span>Date Naissance</span></dt>
+        <dd>
+          <span>{{ depot.dateNaissance | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Lieu De Naissance</span></dt>
+        <dd>
+          <span>{{ depot.lieuDeNaissance }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ depot.email }}</span>
+        </dd>
+        <dt><span>Nationalite</span></dt>
+        <dd>
+          <span>{{ depot.nationalite }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ depot.telephone }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <span>{{ depot.sexe }}</span>
+        </dd>
+        <dt><span>Date Depot</span></dt>
+        <dd>
+          <span>{{ depot.dateDepot | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Numero De Table</span></dt>
+        <dd>
+          <span>{{ depot.numeroDeTable }}</span>
+        </dd>
+        <dt><span>Serie</span></dt>
+        <dd>
+          <span>{{ depot.serie }}</span>
+        </dd>
+        <dt><span>Diplome</span></dt>
+        <dd>
+          <div *ngIf="depot.diplome">
+            <a (click)="openFile(depot.diplome, depot.diplomeContentType)">
+              <img [src]="'data:' + depot.diplomeContentType + ';base64,' + depot.diplome" style="max-width: 100%" alt="depot image" />
+            </a>
+            {{ depot.diplomeContentType }}, {{ byteSize(depot.diplome) }}
+          </div>
+        </dd>
+        <dt><span>Releve De Note</span></dt>
+        <dd>
+          <div *ngIf="depot.releveDeNote">
+            <a (click)="openFile(depot.releveDeNote, depot.releveDeNoteContentType)">
+              <img
+                [src]="'data:' + depot.releveDeNoteContentType + ';base64,' + depot.releveDeNote"
+                style="max-width: 100%"
+                alt="depot image"
+              />
+            </a>
+            {{ depot.releveDeNoteContentType }}, {{ byteSize(depot.releveDeNote) }}
+          </div>
+        </dd>
+        <dt><span>Annee Obtention</span></dt>
+        <dd>
+          <span>{{ depot.anneeObtention }}</span>
+        </dd>
+        <dt><span>Lieu Obtention</span></dt>
+        <dd>
+          <span>{{ depot.lieuObtention }}</span>
+        </dd>
+        <dt><span>Mention</span></dt>
+        <dd>
+          <span>{{ depot.mention }}</span>
+        </dd>
+        <dt><span>Lettre De Motivation</span></dt>
+        <dd>
+          <div *ngIf="depot.lettreDeMotivation">
+            <a (click)="openFile(depot.lettreDeMotivation, depot.lettreDeMotivationContentType)">
+              <img
+                [src]="'data:' + depot.lettreDeMotivationContentType + ';base64,' + depot.lettreDeMotivation"
+                style="max-width: 100%"
+                alt="depot image"
+              />
+            </a>
+            {{ depot.lettreDeMotivationContentType }}, {{ byteSize(depot.lettreDeMotivation) }}
+          </div>
+        </dd>
+        <dt><span>Choix 1</span></dt>
+        <dd>
+          <span>{{ depot.choix1 }}</span>
+        </dd>
+        <dt><span>Choix 2</span></dt>
+        <dd>
+          <span>{{ depot.choix2 }}</span>
+        </dd>
+        <dt><span>Choix 3</span></dt>
+        <dd>
+          <span>{{ depot.choix3 }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <div *ngIf="depot.photo">
+            <a (click)="openFile(depot.photo, depot.photoContentType)">
+              <img [src]="'data:' + depot.photoContentType + ';base64,' + depot.photo" style="max-width: 100%" alt="depot image" />
+            </a>
+            {{ depot.photoContentType }}, {{ byteSize(depot.photo) }}
+          </div>
+        </dd>
+        <dt><span>Bachelier</span></dt>
+        <dd>
+          <div *ngIf="depot.bachelier">
+            <a [routerLink]="['/bachelier', depot.bachelier.id, 'view']">{{ depot.bachelier.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Dossier</span></dt>
+        <dd>
+          <div *ngIf="depot.dossier">
+            <a [routerLink]="['/dossier', depot.dossier.id, 'view']">{{ depot.dossier.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/depot', depot.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

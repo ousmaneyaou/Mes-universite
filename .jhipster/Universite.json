@@ -1,0 +1,20 @@
+{
+  "applications": "*",
+  "changelogDate": "20230906012350",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "universite",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Universite",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

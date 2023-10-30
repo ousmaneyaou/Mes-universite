@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20230906012343",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "bachelier",
+  "fields": [
+    {
+      "fieldName": "sexe",
+      "fieldType": "EnumSexe",
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lieuNaissance",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationalite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Bachelier",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "utilisateur",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,26 @@
+{
+  "applications": "*",
+  "changelogDate": "20230906012347",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "niveau",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Niveau",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "departement",
+      "relationshipName": "departement",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

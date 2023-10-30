@@ -1,0 +1,138 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-4">
+        <addColumn tableName="depot">
+            <column name="bachelier_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-5">
+        <addColumn tableName="annee_scolaire">
+            <column name="campagne_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-6">
+        <addColumn tableName="dossier">
+            <column name="campagne_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-7">
+        <addColumn tableName="niveau">
+            <column name="departement_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-8">
+        <addColumn tableName="depot">
+            <column name="dossier_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-9">
+        <addColumn tableName="departement">
+            <column name="faculte_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-10">
+        <addColumn tableName="dossier">
+            <column name="niveau_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-11">
+        <addColumn tableName="inscription">
+            <column name="paiement_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-12">
+        <addColumn tableName="faculte">
+            <column name="universite_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-13">
+        <addForeignKeyConstraint baseColumnNames="campagne_id" baseTableName="annee_scolaire" constraintName="FK1mg5aqt3ut3579soo9xf15rdi" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="campagne" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-14">
+        <addForeignKeyConstraint baseColumnNames="niveau_id" baseTableName="dossier" constraintName="FK5k533ghb728y98la51jixom32" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="niveau" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-15">
+        <addForeignKeyConstraint baseColumnNames="departement_id" baseTableName="niveau" constraintName="FK6fh4lypc1ntr2ap0ax4ltgx5o" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="departement" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-16">
+        <addForeignKeyConstraint baseColumnNames="faculte_id" baseTableName="departement" constraintName="FKauxdv6k4q2plipxksl352xquc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="faculte" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-17">
+        <addForeignKeyConstraint baseColumnNames="dossier_id" baseTableName="depot" constraintName="FKeiqxnqku9t55ry8o9k80lah1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="dossier" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-18">
+        <addForeignKeyConstraint baseColumnNames="campagne_id" baseTableName="dossier" constraintName="FKf82hddqfd14g1unqhhi5y2wkq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="campagne" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-19">
+        <addForeignKeyConstraint baseColumnNames="paiement_id" baseTableName="inscription" constraintName="FKfcww64dudvq9pgawbc7myrblr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="paiement" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-20">
+        <addForeignKeyConstraint baseColumnNames="bachelier_id" baseTableName="depot" constraintName="FKl75nb2uqtiq4fb5ot6j1434g6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bachelier" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-21">
+        <addForeignKeyConstraint baseColumnNames="universite_id" baseTableName="faculte" constraintName="FKtcbfo3y997j2y7a4nsdlx1r8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="universite" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-22">
+        <dropForeignKeyConstraint baseTableName="bachelier" constraintName="fk_bachelier__depot_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-23">
+        <dropForeignKeyConstraint baseTableName="campagne" constraintName="fk_campagne__annee_scolaire_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-24">
+        <dropForeignKeyConstraint baseTableName="campagne" constraintName="fk_campagne__dossier_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-25">
+        <dropForeignKeyConstraint baseTableName="departement" constraintName="fk_departement__niveau_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-26">
+        <dropForeignKeyConstraint baseTableName="dossier" constraintName="fk_dossier__depot_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-27">
+        <dropForeignKeyConstraint baseTableName="faculte" constraintName="fk_faculte__departement_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-28">
+        <dropForeignKeyConstraint baseTableName="niveau" constraintName="fk_niveau__dossier_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-29">
+        <dropForeignKeyConstraint baseTableName="paiement" constraintName="fk_paiement__inscription_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-30">
+        <dropForeignKeyConstraint baseTableName="universite" constraintName="fk_universite__faculte_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-31">
+        <dropColumn columnName="annee_scolaire_id" tableName="campagne"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-32">
+        <dropColumn columnName="departement_id" tableName="faculte"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-33">
+        <dropColumn columnName="depot_id" tableName="bachelier"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-34">
+        <dropColumn columnName="depot_id" tableName="dossier"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-35">
+        <dropColumn columnName="dossier_id" tableName="campagne"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-36">
+        <dropColumn columnName="dossier_id" tableName="niveau"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-37">
+        <dropColumn columnName="faculte_id" tableName="universite"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-38">
+        <dropColumn columnName="inscription_id" tableName="paiement"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-39">
+        <dropColumn columnName="niveau_id" tableName="departement"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-1">
+        <setColumnRemarks columnDataType="varchar(255)" columnName="intitule" tableName="campagne"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-2">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1698602467063-3">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

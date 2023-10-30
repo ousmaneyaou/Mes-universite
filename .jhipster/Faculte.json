@@ -1,0 +1,26 @@
+{
+  "applications": "*",
+  "changelogDate": "20230906012349",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "faculte",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Faculte",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "universite",
+      "relationshipName": "universite",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

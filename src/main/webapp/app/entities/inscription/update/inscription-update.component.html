@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-inscription-heading" data-cy="InscriptionCreateUpdateHeading">Create or edit a Inscription</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateInscription">Date Inscription</label>
+          <div class="d-flex">
+            <input
+              id="field_dateInscription"
+              data-cy="dateInscription"
+              type="datetime-local"
+              class="form-control"
+              name="dateInscription"
+              formControlName="dateInscription"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_regime">Regime</label>
+          <input type="checkbox" class="form-check" name="regime" id="field_regime" data-cy="regime" formControlName="regime" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_paiement">Paiement</label>
+          <select
+            class="form-control"
+            id="field_paiement"
+            data-cy="paiement"
+            name="paiement"
+            formControlName="paiement"
+            [compareWith]="comparePaiement"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="paiementOption" *ngFor="let paiementOption of paiementsSharedCollection">{{ paiementOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label for="field_dossiers">Dossiers</label>
+          <select
+            class="form-control"
+            id="field_dossiers"
+            data-cy="dossiers"
+            multiple
+            name="dossiers"
+            formControlName="dossiers"
+            [compareWith]="compareDossier"
+          >
+            <option [ngValue]="dossierOption" *ngFor="let dossierOption of dossiersSharedCollection">{{ dossierOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+{
+  "applications": "*",
+  "changelogDate": "20230906012351",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "depot",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "lieuDeNaissance",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationalite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "EnumSexe",
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "dateDepot",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "numeroDeTable",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "serie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "diplome",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "releveDeNote",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "anneeObtention",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lieuObtention",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mention",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lettreDeMotivation",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "choix1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "choix2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "choix3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Depot",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "bachelier",
+      "relationshipName": "bachelier",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "dossier",
+      "relationshipName": "dossier",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
