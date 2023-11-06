@@ -40,7 +40,10 @@ export class FaculteFormService {
         }
       ),
       libelle: new FormControl(faculteRawValue.libelle),
-      universite: new FormControl(faculteRawValue.universite),
+      universite: new FormControl(faculteRawValue.universite, {
+        nonNullable: true,/* pour les validations*/
+        validators: [Validators.required],
+      }),
     });
   }
 

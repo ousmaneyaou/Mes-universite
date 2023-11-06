@@ -28,7 +28,7 @@
           >
             <option [ngValue]="null"></option>
             <option [ngValue]="universiteOption" *ngFor="let universiteOption of universitesSharedCollection">
-              {{ universiteOption.id }}
+              {{ universiteOption.libelle }}  <!-- pour afficher le libelle -->
             </option>
           </select>
         </div>
@@ -49,6 +49,13 @@
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
         </button>
       </div>
+
+      <!-- <select>
+            <option [ngValue]="null"></option>
+            <option [ngValue]="universite" *ngFor="let universite of universites">
+              {{ universite.libelle }}
+            </option>
+        </select> -->
     </form>
   </div>
 </div>
