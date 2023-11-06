@@ -13,5 +13,11 @@
                                  constraintName="fk_bachelier__utilisateur_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="depot_id"
+                                 baseTableName="bachelier"
+                                 constraintName="fk_bachelier__depot_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="depot"/>
     </changeSet>
 </databaseChangeLog>

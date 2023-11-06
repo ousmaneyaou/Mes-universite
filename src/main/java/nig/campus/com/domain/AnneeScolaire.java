@@ -22,11 +22,11 @@ public class AnneeScolaire implements Serializable {
     @Column(name = "libelle")
     private String libelle;
 
-    @Column(name = "en_cour")
-    private Boolean enCour;
+    @Column(name = "en_cours")
+    private Boolean enCours;
 
     @ManyToOne
-    private Campagne campagne;
+    private Session session;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -56,29 +56,29 @@ public class AnneeScolaire implements Serializable {
         this.libelle = libelle;
     }
 
-    public Boolean getEnCour() {
-        return this.enCour;
+    public Boolean getEnCours() {
+        return this.enCours;
     }
 
-    public AnneeScolaire enCour(Boolean enCour) {
-        this.setEnCour(enCour);
+    public AnneeScolaire enCours(Boolean enCours) {
+        this.setEnCours(enCours);
         return this;
     }
 
-    public void setEnCour(Boolean enCour) {
-        this.enCour = enCour;
+    public void setEnCours(Boolean enCours) {
+        this.enCours = enCours;
     }
 
-    public Campagne getCampagne() {
-        return this.campagne;
+    public Session getSession() {
+        return this.session;
     }
 
-    public void setCampagne(Campagne campagne) {
-        this.campagne = campagne;
+    public void setSession(Session session) {
+        this.session = session;
     }
 
-    public AnneeScolaire campagne(Campagne campagne) {
-        this.setCampagne(campagne);
+    public AnneeScolaire session(Session session) {
+        this.setSession(session);
         return this;
     }
 
@@ -107,7 +107,7 @@ public class AnneeScolaire implements Serializable {
         return "AnneeScolaire{" +
             "id=" + getId() +
             ", libelle='" + getLibelle() + "'" +
-            ", enCour='" + getEnCour() + "'" +
+            ", enCours='" + getEnCours() + "'" +
             "}";
     }
 }

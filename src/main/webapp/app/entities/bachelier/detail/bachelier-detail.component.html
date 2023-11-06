@@ -38,6 +38,12 @@
         <dd>
           <span>{{ bachelier.utilisateur?.id }}</span>
         </dd>
+        <dt><span>Depot</span></dt>
+        <dd>
+          <div *ngIf="bachelier.depot">
+            <a [routerLink]="['/depot', bachelier.depot.id, 'view']">{{ bachelier.depot.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

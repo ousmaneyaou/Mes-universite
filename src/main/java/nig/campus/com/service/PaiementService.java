@@ -64,6 +64,9 @@ public class PaiementService {
                 if (paiement.getEtat() != null) {
                     existingPaiement.setEtat(paiement.getEtat());
                 }
+                if (paiement.getMontant() != null) {
+                    existingPaiement.setMontant(paiement.getMontant());
+                }
 
                 return existingPaiement;
             })

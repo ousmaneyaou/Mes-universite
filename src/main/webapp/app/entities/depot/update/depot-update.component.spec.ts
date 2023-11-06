@@ -9,10 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { DepotFormService } from './depot-form.service';
 import { DepotService } from '../service/depot.service';
 import { IDepot } from '../depot.model';
-import { IBachelier } from 'app/entities/bachelier/bachelier.model';
-import { BachelierService } from 'app/entities/bachelier/service/bachelier.service';
-import { IDossier } from 'app/entities/dossier/dossier.model';
-import { DossierService } from 'app/entities/dossier/service/dossier.service';
+import { ISession } from 'app/entities/session/session.model';
+import { SessionService } from 'app/entities/session/service/session.service';
 
 import { DepotUpdateComponent } from './depot-update.component';
 
@@ -22,8 +20,7 @@ describe('Depot Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let depotFormService: DepotFormService;
   let depotService: DepotService;
-  let bachelierService: BachelierService;
-  let dossierService: DossierService;
+  let sessionService: SessionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,69 +43,43 @@ describe('Depot Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     depotFormService = TestBed.inject(DepotFormService);
     depotService = TestBed.inject(DepotService);
-    bachelierService = TestBed.inject(BachelierService);
-    dossierService = TestBed.inject(DossierService);
+    sessionService = TestBed.inject(SessionService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Bachelier query and add missing value', () => {
+    it('Should call Session query and add missing value', () => {
       const depot: IDepot = { id: 456 };
-      const bachelier: IBachelier = { id: 17856 };
-      depot.bachelier = bachelier;
+      const session: ISession = { id: 1285 };
+      depot.session = session;
 
-      const bachelierCollection: IBachelier[] = [{ id: 89481 }];
-      jest.spyOn(bachelierService, 'query').mockReturnValue(of(new HttpResponse({ body: bachelierCollection })));
-      const additionalBacheliers = [bachelier];
-      const expectedCollection: IBachelier[] = [...additionalBacheliers, ...bachelierCollection];
-      jest.spyOn(bachelierService, 'addBachelierToCollectionIfMissing').mockReturnValue(expectedCollection);
+      const sessionCollection: ISession[] = [{ id: 41801 }];
+      jest.spyOn(sessionService, 'query').mockReturnValue(of(new HttpResponse({ body: sessionCollection })));
+      const additionalSessions = [session];
+      const expectedCollection: ISession[] = [...additionalSessions, ...sessionCollection];
+      jest.spyOn(sessionService, 'addSessionToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ depot });
       comp.ngOnInit();
 
-      expect(bachelierService.query).toHaveBeenCalled();
-      expect(bachelierService.addBachelierToCollectionIfMissing).toHaveBeenCalledWith(
-        bachelierCollection,
-        ...additionalBacheliers.map(expect.objectContaining)
+      expect(sessionService.query).toHaveBeenCalled();
+      expect(sessionService.addSessionToCollectionIfMissing).toHaveBeenCalledWith(
+        sessionCollection,
+        ...additionalSessions.map(expect.objectContaining)
       );
-      expect(comp.bacheliersSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call Dossier query and add missing value', () => {
-      const depot: IDepot = { id: 456 };
-      const dossier: IDossier = { id: 72623 };
-      depot.dossier = dossier;
-
-      const dossierCollection: IDossier[] = [{ id: 25089 }];
-      jest.spyOn(dossierService, 'query').mockReturnValue(of(new HttpResponse({ body: dossierCollection })));
-      const additionalDossiers = [dossier];
-      const expectedCollection: IDossier[] = [...additionalDossiers, ...dossierCollection];
-      jest.spyOn(dossierService, 'addDossierToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ depot });
-      comp.ngOnInit();
-
-      expect(dossierService.query).toHaveBeenCalled();
-      expect(dossierService.addDossierToCollectionIfMissing).toHaveBeenCalledWith(
-        dossierCollection,
-        ...additionalDossiers.map(expect.objectContaining)
-      );
-      expect(comp.dossiersSharedCollection).toEqual(expectedCollection);
+      expect(comp.sessionsSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should update editForm', () => {
       const depot: IDepot = { id: 456 };
-      const bachelier: IBachelier = { id: 77306 };
-      depot.bachelier = bachelier;
-      const dossier: IDossier = { id: 29248 };
-      depot.dossier = dossier;
+      const session: ISession = { id: 80183 };
+      depot.session = session;
 
       activatedRoute.data = of({ depot });
       comp.ngOnInit();
 
-      expect(comp.bacheliersSharedCollection).toContain(bachelier);
-      expect(comp.dossiersSharedCollection).toContain(dossier);
+      expect(comp.sessionsSharedCollection).toContain(session);
       expect(comp.depot).toEqual(depot);
     });
   });
@@ -182,23 +153,13 @@ describe('Depot Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
-    describe('compareBachelier', () => {
-      it('Should forward to bachelierService', () => {
+    describe('compareSession', () => {
+      it('Should forward to sessionService', () => {
         const entity = { id: 123 };
         const entity2 = { id: 456 };
-        jest.spyOn(bachelierService, 'compareBachelier');
-        comp.compareBachelier(entity, entity2);
-        expect(bachelierService.compareBachelier).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
-    describe('compareDossier', () => {
-      it('Should forward to dossierService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(dossierService, 'compareDossier');
-        comp.compareDossier(entity, entity2);
-        expect(dossierService.compareDossier).toHaveBeenCalledWith(entity, entity2);
+        jest.spyOn(sessionService, 'compareSession');
+        comp.compareSession(entity, entity2);
+        expect(sessionService.compareSession).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

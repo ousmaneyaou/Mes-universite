@@ -1,6 +1,5 @@
 package nig.campus.com.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import javax.persistence.*;
@@ -31,8 +30,8 @@ public class Depot implements Serializable {
     @Column(name = "date_naissance")
     private ZonedDateTime dateNaissance;
 
-    @Column(name = "lieu_de_naissance")
-    private String lieuDeNaissance;
+    @Column(name = "lieu_naissance")
+    private String lieuNaissance;
 
     @Column(name = "email")
     private String email;
@@ -103,12 +102,7 @@ public class Depot implements Serializable {
     private String photoContentType;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "utilisateur" }, allowSetters = true)
-    private Bachelier bachelier;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "niveau", "campagne", "inscriptions" }, allowSetters = true)
-    private Dossier dossier;
+    private Session session;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -164,17 +158,17 @@ public class Depot implements Serializable {
         this.dateNaissance = dateNaissance;
     }
 
-    public String getLieuDeNaissance() {
-        return this.lieuDeNaissance;
+    public String getLieuNaissance() {
+        return this.lieuNaissance;
     }
 
-    public Depot lieuDeNaissance(String lieuDeNaissance) {
-        this.setLieuDeNaissance(lieuDeNaissance);
+    public Depot lieuNaissance(String lieuNaissance) {
+        this.setLieuNaissance(lieuNaissance);
         return this;
     }
 
-    public void setLieuDeNaissance(String lieuDeNaissance) {
-        this.lieuDeNaissance = lieuDeNaissance;
+    public void setLieuNaissance(String lieuNaissance) {
+        this.lieuNaissance = lieuNaissance;
     }
 
     public String getEmail() {
@@ -450,29 +444,16 @@ public class Depot implements Serializable {
         this.photoContentType = photoContentType;
     }
 
-    public Bachelier getBachelier() {
-        return this.bachelier;
+    public Session getSession() {
+        return this.session;
     }
 
-    public void setBachelier(Bachelier bachelier) {
-        this.bachelier = bachelier;
+    public void setSession(Session session) {
+        this.session = session;
     }
 
-    public Depot bachelier(Bachelier bachelier) {
-        this.setBachelier(bachelier);
-        return this;
-    }
-
-    public Dossier getDossier() {
-        return this.dossier;
-    }
-
-    public void setDossier(Dossier dossier) {
-        this.dossier = dossier;
-    }
-
-    public Depot dossier(Dossier dossier) {
-        this.setDossier(dossier);
+    public Depot session(Session session) {
+        this.setSession(session);
         return this;
     }
 
@@ -503,7 +484,7 @@ public class Depot implements Serializable {
             ", nom='" + getNom() + "'" +
             ", prenom='" + getPrenom() + "'" +
             ", dateNaissance='" + getDateNaissance() + "'" +
-            ", lieuDeNaissance='" + getLieuDeNaissance() + "'" +
+            ", lieuNaissance='" + getLieuNaissance() + "'" +
             ", email='" + getEmail() + "'" +
             ", nationalite='" + getNationalite() + "'" +
             ", telephone='" + getTelephone() + "'" +

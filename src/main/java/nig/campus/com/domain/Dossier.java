@@ -2,8 +2,6 @@ package nig.campus.com.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -26,15 +24,11 @@ public class Dossier implements Serializable {
     private Boolean valider;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "departement" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "departement", "session" }, allowSetters = true)
     private Niveau niveau;
 
     @ManyToOne
     private Campagne campagne;
-
-    @ManyToMany(mappedBy = "dossiers")
-    @JsonIgnoreProperties(value = { "paiement", "dossiers" }, allowSetters = true)
-    private Set<Inscription> inscriptions = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -87,37 +81,6 @@ public class Dossier implements Serializable {
 
     public Dossier campagne(Campagne campagne) {
         this.setCampagne(campagne);
-        return this;
-    }
-
-    public Set<Inscription> getInscriptions() {
-        return this.inscriptions;
-    }
-
-    public void setInscriptions(Set<Inscription> inscriptions) {
-        if (this.inscriptions != null) {
-            this.inscriptions.forEach(i -> i.removeDossiers(this));
-        }
-        if (inscriptions != null) {
-            inscriptions.forEach(i -> i.addDossiers(this));
-        }
-        this.inscriptions = inscriptions;
-    }
-
-    public Dossier inscriptions(Set<Inscription> inscriptions) {
-        this.setInscriptions(inscriptions);
-        return this;
-    }
-
-    public Dossier addInscriptions(Inscription inscription) {
-        this.inscriptions.add(inscription);
-        inscription.getDossiers().add(this);
-        return this;
-    }
-
-    public Dossier removeInscriptions(Inscription inscription) {
-        this.inscriptions.remove(inscription);
-        inscription.getDossiers().remove(this);
         return this;
     }
 

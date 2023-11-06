@@ -50,6 +50,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="session.id">
+            <div class="d-flex">
+              <span>Session</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -62,6 +68,11 @@
           <td>
             <div *ngIf="niveau.departement">
               <a [routerLink]="['/departement', niveau.departement.id, 'view']">{{ niveau.departement.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="niveau.session">
+              <a [routerLink]="['/session', niveau.session.id, 'view']">{{ niveau.session.id }}</a>
             </div>
           </td>
           <td class="text-end">

@@ -1,10 +1,7 @@
 package nig.campus.com.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -30,16 +27,7 @@ public class Inscription implements Serializable {
     private Boolean regime;
 
     @ManyToOne
-    private Paiement paiement;
-
-    @ManyToMany
-    @JoinTable(
-        name = "rel_inscription__dossiers",
-        joinColumns = @JoinColumn(name = "inscription_id"),
-        inverseJoinColumns = @JoinColumn(name = "dossiers_id")
-    )
-    @JsonIgnoreProperties(value = { "niveau", "campagne", "inscriptions" }, allowSetters = true)
-    private Set<Dossier> dossiers = new HashSet<>();
+    private Session session;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -82,41 +70,16 @@ public class Inscription implements Serializable {
         this.regime = regime;
     }
 
-    public Paiement getPaiement() {
-        return this.paiement;
+    public Session getSession() {
+        return this.session;
     }
 
-    public void setPaiement(Paiement paiement) {
-        this.paiement = paiement;
+    public void setSession(Session session) {
+        this.session = session;
     }
 
-    public Inscription paiement(Paiement paiement) {
-        this.setPaiement(paiement);
-        return this;
-    }
-
-    public Set<Dossier> getDossiers() {
-        return this.dossiers;
-    }
-
-    public void setDossiers(Set<Dossier> dossiers) {
-        this.dossiers = dossiers;
-    }
-
-    public Inscription dossiers(Set<Dossier> dossiers) {
-        this.setDossiers(dossiers);
-        return this;
-    }
-
-    public Inscription addDossiers(Dossier dossier) {
-        this.dossiers.add(dossier);
-        dossier.getInscriptions().add(this);
-        return this;
-    }
-
-    public Inscription removeDossiers(Dossier dossier) {
-        this.dossiers.remove(dossier);
-        dossier.getInscriptions().remove(this);
+    public Inscription session(Session session) {
+        this.setSession(session);
         return this;
     }
 

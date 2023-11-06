@@ -32,8 +32,8 @@ class AnneeScolaireResourceIT {
     private static final String DEFAULT_LIBELLE = "AAAAAAAAAA";
     private static final String UPDATED_LIBELLE = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_EN_COUR = false;
-    private static final Boolean UPDATED_EN_COUR = true;
+    private static final Boolean DEFAULT_EN_COURS = false;
+    private static final Boolean UPDATED_EN_COURS = true;
 
     private static final String ENTITY_API_URL = "/api/annee-scolaires";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -59,7 +59,7 @@ class AnneeScolaireResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static AnneeScolaire createEntity(EntityManager em) {
-        AnneeScolaire anneeScolaire = new AnneeScolaire().libelle(DEFAULT_LIBELLE).enCour(DEFAULT_EN_COUR);
+        AnneeScolaire anneeScolaire = new AnneeScolaire().libelle(DEFAULT_LIBELLE).enCours(DEFAULT_EN_COURS);
         return anneeScolaire;
     }
 
@@ -70,7 +70,7 @@ class AnneeScolaireResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static AnneeScolaire createUpdatedEntity(EntityManager em) {
-        AnneeScolaire anneeScolaire = new AnneeScolaire().libelle(UPDATED_LIBELLE).enCour(UPDATED_EN_COUR);
+        AnneeScolaire anneeScolaire = new AnneeScolaire().libelle(UPDATED_LIBELLE).enCours(UPDATED_EN_COURS);
         return anneeScolaire;
     }
 
@@ -93,7 +93,7 @@ class AnneeScolaireResourceIT {
         assertThat(anneeScolaireList).hasSize(databaseSizeBeforeCreate + 1);
         AnneeScolaire testAnneeScolaire = anneeScolaireList.get(anneeScolaireList.size() - 1);
         assertThat(testAnneeScolaire.getLibelle()).isEqualTo(DEFAULT_LIBELLE);
-        assertThat(testAnneeScolaire.getEnCour()).isEqualTo(DEFAULT_EN_COUR);
+        assertThat(testAnneeScolaire.getEnCours()).isEqualTo(DEFAULT_EN_COURS);
     }
 
     @Test
@@ -127,7 +127,7 @@ class AnneeScolaireResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(anneeScolaire.getId().intValue())))
             .andExpect(jsonPath("$.[*].libelle").value(hasItem(DEFAULT_LIBELLE)))
-            .andExpect(jsonPath("$.[*].enCour").value(hasItem(DEFAULT_EN_COUR.booleanValue())));
+            .andExpect(jsonPath("$.[*].enCours").value(hasItem(DEFAULT_EN_COURS.booleanValue())));
     }
 
     @Test
@@ -143,7 +143,7 @@ class AnneeScolaireResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(anneeScolaire.getId().intValue()))
             .andExpect(jsonPath("$.libelle").value(DEFAULT_LIBELLE))
-            .andExpect(jsonPath("$.enCour").value(DEFAULT_EN_COUR.booleanValue()));
+            .andExpect(jsonPath("$.enCours").value(DEFAULT_EN_COURS.booleanValue()));
     }
 
     @Test
@@ -165,7 +165,7 @@ class AnneeScolaireResourceIT {
         AnneeScolaire updatedAnneeScolaire = anneeScolaireRepository.findById(anneeScolaire.getId()).get();
         // Disconnect from session so that the updates on updatedAnneeScolaire are not directly saved in db
         em.detach(updatedAnneeScolaire);
-        updatedAnneeScolaire.libelle(UPDATED_LIBELLE).enCour(UPDATED_EN_COUR);
+        updatedAnneeScolaire.libelle(UPDATED_LIBELLE).enCours(UPDATED_EN_COURS);
 
         restAnneeScolaireMockMvc
             .perform(
@@ -180,7 +180,7 @@ class AnneeScolaireResourceIT {
         assertThat(anneeScolaireList).hasSize(databaseSizeBeforeUpdate);
         AnneeScolaire testAnneeScolaire = anneeScolaireList.get(anneeScolaireList.size() - 1);
         assertThat(testAnneeScolaire.getLibelle()).isEqualTo(UPDATED_LIBELLE);
-        assertThat(testAnneeScolaire.getEnCour()).isEqualTo(UPDATED_EN_COUR);
+        assertThat(testAnneeScolaire.getEnCours()).isEqualTo(UPDATED_EN_COURS);
     }
 
     @Test
@@ -266,7 +266,7 @@ class AnneeScolaireResourceIT {
         assertThat(anneeScolaireList).hasSize(databaseSizeBeforeUpdate);
         AnneeScolaire testAnneeScolaire = anneeScolaireList.get(anneeScolaireList.size() - 1);
         assertThat(testAnneeScolaire.getLibelle()).isEqualTo(UPDATED_LIBELLE);
-        assertThat(testAnneeScolaire.getEnCour()).isEqualTo(DEFAULT_EN_COUR);
+        assertThat(testAnneeScolaire.getEnCours()).isEqualTo(DEFAULT_EN_COURS);
     }
 
     @Test
@@ -281,7 +281,7 @@ class AnneeScolaireResourceIT {
         AnneeScolaire partialUpdatedAnneeScolaire = new AnneeScolaire();
         partialUpdatedAnneeScolaire.setId(anneeScolaire.getId());
 
-        partialUpdatedAnneeScolaire.libelle(UPDATED_LIBELLE).enCour(UPDATED_EN_COUR);
+        partialUpdatedAnneeScolaire.libelle(UPDATED_LIBELLE).enCours(UPDATED_EN_COURS);
 
         restAnneeScolaireMockMvc
             .perform(
@@ -296,7 +296,7 @@ class AnneeScolaireResourceIT {
         assertThat(anneeScolaireList).hasSize(databaseSizeBeforeUpdate);
         AnneeScolaire testAnneeScolaire = anneeScolaireList.get(anneeScolaireList.size() - 1);
         assertThat(testAnneeScolaire.getLibelle()).isEqualTo(UPDATED_LIBELLE);
-        assertThat(testAnneeScolaire.getEnCour()).isEqualTo(UPDATED_EN_COUR);
+        assertThat(testAnneeScolaire.getEnCours()).isEqualTo(UPDATED_EN_COURS);
     }
 
     @Test

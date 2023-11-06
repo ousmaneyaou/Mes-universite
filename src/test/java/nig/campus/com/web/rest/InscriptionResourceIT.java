@@ -3,7 +3,6 @@ package nig.campus.com.web.rest;
 import static nig.campus.com.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -11,7 +10,6 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
@@ -19,17 +17,10 @@ import javax.persistence.EntityManager;
 import nig.campus.com.IntegrationTest;
 import nig.campus.com.domain.Inscription;
 import nig.campus.com.repository.InscriptionRepository;
-import nig.campus.com.service.InscriptionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -39,7 +30,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link InscriptionResource} REST controller.
  */
 @IntegrationTest
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class InscriptionResourceIT {
@@ -58,12 +48,6 @@ class InscriptionResourceIT {
 
     @Autowired
     private InscriptionRepository inscriptionRepository;
-
-    @Mock
-    private InscriptionRepository inscriptionRepositoryMock;
-
-    @Mock
-    private InscriptionService inscriptionServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -149,23 +133,6 @@ class InscriptionResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(inscription.getId().intValue())))
             .andExpect(jsonPath("$.[*].dateInscription").value(hasItem(sameInstant(DEFAULT_DATE_INSCRIPTION))))
             .andExpect(jsonPath("$.[*].regime").value(hasItem(DEFAULT_REGIME.booleanValue())));
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllInscriptionsWithEagerRelationshipsIsEnabled() throws Exception {
-        when(inscriptionServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restInscriptionMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(inscriptionServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllInscriptionsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(inscriptionServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restInscriptionMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
-        verify(inscriptionRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

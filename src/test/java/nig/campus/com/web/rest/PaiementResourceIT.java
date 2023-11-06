@@ -40,6 +40,9 @@ class PaiementResourceIT {
     private static final Boolean DEFAULT_ETAT = false;
     private static final Boolean UPDATED_ETAT = true;
 
+    private static final Long DEFAULT_MONTANT = 1L;
+    private static final Long UPDATED_MONTANT = 2L;
+
     private static final String ENTITY_API_URL = "/api/paiements";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -64,7 +67,7 @@ class PaiementResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Paiement createEntity(EntityManager em) {
-        Paiement paiement = new Paiement().datePaie(DEFAULT_DATE_PAIE).etat(DEFAULT_ETAT);
+        Paiement paiement = new Paiement().datePaie(DEFAULT_DATE_PAIE).etat(DEFAULT_ETAT).montant(DEFAULT_MONTANT);
         return paiement;
     }
 
@@ -75,7 +78,7 @@ class PaiementResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Paiement createUpdatedEntity(EntityManager em) {
-        Paiement paiement = new Paiement().datePaie(UPDATED_DATE_PAIE).etat(UPDATED_ETAT);
+        Paiement paiement = new Paiement().datePaie(UPDATED_DATE_PAIE).etat(UPDATED_ETAT).montant(UPDATED_MONTANT);
         return paiement;
     }
 
@@ -99,6 +102,7 @@ class PaiementResourceIT {
         Paiement testPaiement = paiementList.get(paiementList.size() - 1);
         assertThat(testPaiement.getDatePaie()).isEqualTo(DEFAULT_DATE_PAIE);
         assertThat(testPaiement.getEtat()).isEqualTo(DEFAULT_ETAT);
+        assertThat(testPaiement.getMontant()).isEqualTo(DEFAULT_MONTANT);
     }
 
     @Test
@@ -132,7 +136,8 @@ class PaiementResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(paiement.getId().intValue())))
             .andExpect(jsonPath("$.[*].datePaie").value(hasItem(sameInstant(DEFAULT_DATE_PAIE))))
-            .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.booleanValue())));
+            .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.booleanValue())))
+            .andExpect(jsonPath("$.[*].montant").value(hasItem(DEFAULT_MONTANT.intValue())));
     }
 
     @Test
@@ -148,7 +153,8 @@ class PaiementResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(paiement.getId().intValue()))
             .andExpect(jsonPath("$.datePaie").value(sameInstant(DEFAULT_DATE_PAIE)))
-            .andExpect(jsonPath("$.etat").value(DEFAULT_ETAT.booleanValue()));
+            .andExpect(jsonPath("$.etat").value(DEFAULT_ETAT.booleanValue()))
+            .andExpect(jsonPath("$.montant").value(DEFAULT_MONTANT.intValue()));
     }
 
     @Test
@@ -170,7 +176,7 @@ class PaiementResourceIT {
         Paiement updatedPaiement = paiementRepository.findById(paiement.getId()).get();
         // Disconnect from session so that the updates on updatedPaiement are not directly saved in db
         em.detach(updatedPaiement);
-        updatedPaiement.datePaie(UPDATED_DATE_PAIE).etat(UPDATED_ETAT);
+        updatedPaiement.datePaie(UPDATED_DATE_PAIE).etat(UPDATED_ETAT).montant(UPDATED_MONTANT);
 
         restPaiementMockMvc
             .perform(
@@ -186,6 +192,7 @@ class PaiementResourceIT {
         Paiement testPaiement = paiementList.get(paiementList.size() - 1);
         assertThat(testPaiement.getDatePaie()).isEqualTo(UPDATED_DATE_PAIE);
         assertThat(testPaiement.getEtat()).isEqualTo(UPDATED_ETAT);
+        assertThat(testPaiement.getMontant()).isEqualTo(UPDATED_MONTANT);
     }
 
     @Test
@@ -256,7 +263,7 @@ class PaiementResourceIT {
         Paiement partialUpdatedPaiement = new Paiement();
         partialUpdatedPaiement.setId(paiement.getId());
 
-        partialUpdatedPaiement.etat(UPDATED_ETAT);
+        partialUpdatedPaiement.etat(UPDATED_ETAT).montant(UPDATED_MONTANT);
 
         restPaiementMockMvc
             .perform(
@@ -272,6 +279,7 @@ class PaiementResourceIT {
         Paiement testPaiement = paiementList.get(paiementList.size() - 1);
         assertThat(testPaiement.getDatePaie()).isEqualTo(DEFAULT_DATE_PAIE);
         assertThat(testPaiement.getEtat()).isEqualTo(UPDATED_ETAT);
+        assertThat(testPaiement.getMontant()).isEqualTo(UPDATED_MONTANT);
     }
 
     @Test
@@ -286,7 +294,7 @@ class PaiementResourceIT {
         Paiement partialUpdatedPaiement = new Paiement();
         partialUpdatedPaiement.setId(paiement.getId());
 
-        partialUpdatedPaiement.datePaie(UPDATED_DATE_PAIE).etat(UPDATED_ETAT);
+        partialUpdatedPaiement.datePaie(UPDATED_DATE_PAIE).etat(UPDATED_ETAT).montant(UPDATED_MONTANT);
 
         restPaiementMockMvc
             .perform(
@@ -302,6 +310,7 @@ class PaiementResourceIT {
         Paiement testPaiement = paiementList.get(paiementList.size() - 1);
         assertThat(testPaiement.getDatePaie()).isEqualTo(UPDATED_DATE_PAIE);
         assertThat(testPaiement.getEtat()).isEqualTo(UPDATED_ETAT);
+        assertThat(testPaiement.getMontant()).isEqualTo(UPDATED_MONTANT);
     }
 
     @Test

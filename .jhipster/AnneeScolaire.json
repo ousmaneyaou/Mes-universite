@@ -10,7 +10,7 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "enCour",
+      "fieldName": "enCours",
       "fieldType": "Boolean"
     }
   ],
@@ -21,8 +21,8 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "campagne",
-      "relationshipName": "campagne",
+      "otherEntityName": "session",
+      "relationshipName": "session",
       "relationshipType": "many-to-one"
     }
   ],

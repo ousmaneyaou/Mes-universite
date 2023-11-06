@@ -24,6 +24,12 @@
             <a [routerLink]="['/departement', niveau.departement.id, 'view']">{{ niveau.departement.id }}</a>
           </div>
         </dd>
+        <dt><span>Session</span></dt>
+        <dd>
+          <div *ngIf="niveau.session">
+            <a [routerLink]="['/session', niveau.session.id, 'view']">{{ niveau.session.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

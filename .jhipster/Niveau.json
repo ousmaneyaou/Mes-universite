@@ -20,6 +20,11 @@
       "otherEntityName": "departement",
       "relationshipName": "departement",
       "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "session",
+      "relationshipName": "session",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceClass"

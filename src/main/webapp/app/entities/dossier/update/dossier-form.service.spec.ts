@@ -23,7 +23,6 @@ describe('Dossier Form Service', () => {
             valider: expect.any(Object),
             niveau: expect.any(Object),
             campagne: expect.any(Object),
-            inscriptions: expect.any(Object),
           })
         );
       });
@@ -37,7 +36,6 @@ describe('Dossier Form Service', () => {
             valider: expect.any(Object),
             niveau: expect.any(Object),
             campagne: expect.any(Object),
-            inscriptions: expect.any(Object),
           })
         );
       });

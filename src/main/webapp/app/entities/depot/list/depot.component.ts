@@ -15,9 +15,10 @@ import { DataUtils } from 'app/core/util/data-util.service';
 @Component({
   selector: 'jhi-depot',
   templateUrl: './depot.component.html',
+  styleUrls: ['./depot.component.css']
 })
 export class DepotComponent implements OnInit {
-  depots?: IDepot[];
+  depots: IDepot[] | null | undefined; 
   isLoading = false;
 
   predicate = 'id';
@@ -26,6 +27,7 @@ export class DepotComponent implements OnInit {
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems = 0;
   page = 1;
+  searchResults: string= '';
 
   constructor(
     protected depotService: DepotService,
@@ -141,5 +143,15 @@ export class DepotComponent implements OnInit {
     } else {
       return [predicate + ',' + ascendingQueryParam];
     }
+  }
+
+  searchParNom(){
+    
+    this.depotService.findByNom(this.searchResults).subscribe({
+     next: value => {
+        this.depots=value.body;
+        
+      }
+    })
   }
 }

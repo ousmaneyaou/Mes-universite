@@ -1,5 +1,6 @@
 package nig.campus.com.service;
 
+import java.util.List;
 import java.util.Optional;
 import nig.campus.com.domain.Depot;
 import nig.campus.com.repository.DepotRepository;
@@ -68,8 +69,8 @@ public class DepotService {
                 if (depot.getDateNaissance() != null) {
                     existingDepot.setDateNaissance(depot.getDateNaissance());
                 }
-                if (depot.getLieuDeNaissance() != null) {
-                    existingDepot.setLieuDeNaissance(depot.getLieuDeNaissance());
+                if (depot.getLieuNaissance() != null) {
+                    existingDepot.setLieuNaissance(depot.getLieuNaissance());
                 }
                 if (depot.getEmail() != null) {
                     existingDepot.setEmail(depot.getEmail());
@@ -172,5 +173,9 @@ public class DepotService {
     public void delete(Long id) {
         log.debug("Request to delete Depot : {}", id);
         depotRepository.deleteById(id);
+    }
+
+    public List<Depot> searchByNom(String nom) {
+        return depotRepository.findByNom(nom);
     }
 }

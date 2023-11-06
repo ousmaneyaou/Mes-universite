@@ -17,10 +17,12 @@ import { UniversiteService } from 'app/entities/universite/service/universite.se
 export class FaculteUpdateComponent implements OnInit {
   isSaving = false;
   faculte: IFaculte | null = null;
+  universites: IUniversite[] | null = [];
 
   universitesSharedCollection: IUniversite[] = [];
 
-  editForm: FaculteFormGroup = this.faculteFormService.createFaculteFormGroup();
+  editForm: FaculteFormGroup = this.faculteFormService.createFaculteFormGroup(
+  );
 
   constructor(
     protected faculteService: FaculteService,
@@ -40,6 +42,10 @@ export class FaculteUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
+    this.universiteService.query().subscribe(/* la condition */
+      res=>this.universites = res.body,
+    );
+
   }
 
   previousState(): void {
@@ -96,4 +102,6 @@ export class FaculteUpdateComponent implements OnInit {
       )
       .subscribe((universites: IUniversite[]) => (this.universitesSharedCollection = universites));
   }
+
+
 }

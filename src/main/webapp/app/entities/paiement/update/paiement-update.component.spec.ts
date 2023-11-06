@@ -9,6 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { PaiementFormService } from './paiement-form.service';
 import { PaiementService } from '../service/paiement.service';
 import { IPaiement } from '../paiement.model';
+import { IInscription } from 'app/entities/inscription/inscription.model';
+import { InscriptionService } from 'app/entities/inscription/service/inscription.service';
 
 import { PaiementUpdateComponent } from './paiement-update.component';
 
@@ -18,6 +20,7 @@ describe('Paiement Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let paiementFormService: PaiementFormService;
   let paiementService: PaiementService;
+  let inscriptionService: InscriptionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,17 +43,43 @@ describe('Paiement Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     paiementFormService = TestBed.inject(PaiementFormService);
     paiementService = TestBed.inject(PaiementService);
+    inscriptionService = TestBed.inject(InscriptionService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call Inscription query and add missing value', () => {
       const paiement: IPaiement = { id: 456 };
+      const inscription: IInscription = { id: 56071 };
+      paiement.inscription = inscription;
+
+      const inscriptionCollection: IInscription[] = [{ id: 82264 }];
+      jest.spyOn(inscriptionService, 'query').mockReturnValue(of(new HttpResponse({ body: inscriptionCollection })));
+      const additionalInscriptions = [inscription];
+      const expectedCollection: IInscription[] = [...additionalInscriptions, ...inscriptionCollection];
+      jest.spyOn(inscriptionService, 'addInscriptionToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ paiement });
       comp.ngOnInit();
 
+      expect(inscriptionService.query).toHaveBeenCalled();
+      expect(inscriptionService.addInscriptionToCollectionIfMissing).toHaveBeenCalledWith(
+        inscriptionCollection,
+        ...additionalInscriptions.map(expect.objectContaining)
+      );
+      expect(comp.inscriptionsSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const paiement: IPaiement = { id: 456 };
+      const inscription: IInscription = { id: 20985 };
+      paiement.inscription = inscription;
+
+      activatedRoute.data = of({ paiement });
+      comp.ngOnInit();
+
+      expect(comp.inscriptionsSharedCollection).toContain(inscription);
       expect(comp.paiement).toEqual(paiement);
     });
   });
@@ -120,6 +149,18 @@ describe('Paiement Management Update Component', () => {
       expect(paiementService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Compare relationships', () => {
+    describe('compareInscription', () => {
+      it('Should forward to inscriptionService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(inscriptionService, 'compareInscription');
+        comp.compareInscription(entity, entity2);
+        expect(inscriptionService.compareInscription).toHaveBeenCalledWith(entity, entity2);
+      });
     });
   });
 });

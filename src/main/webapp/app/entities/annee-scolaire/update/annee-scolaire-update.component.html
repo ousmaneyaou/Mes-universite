@@ -17,22 +17,22 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_enCour">En Cour</label>
-          <input type="checkbox" class="form-check" name="enCour" id="field_enCour" data-cy="enCour" formControlName="enCour" />
+          <label class="form-label" for="field_enCours">En Cours</label>
+          <input type="checkbox" class="form-check" name="enCours" id="field_enCours" data-cy="enCours" formControlName="enCours" />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_campagne">Campagne</label>
+          <label class="form-label" for="field_session">Session</label>
           <select
             class="form-control"
-            id="field_campagne"
-            data-cy="campagne"
-            name="campagne"
-            formControlName="campagne"
-            [compareWith]="compareCampagne"
+            id="field_session"
+            data-cy="session"
+            name="session"
+            formControlName="session"
+            [compareWith]="compareSession"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="campagneOption" *ngFor="let campagneOption of campagnesSharedCollection">{{ campagneOption.id }}</option>
+            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.id }}</option>
           </select>
         </div>
       </div>

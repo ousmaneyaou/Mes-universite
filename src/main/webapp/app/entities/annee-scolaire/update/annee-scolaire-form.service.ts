@@ -14,13 +14,13 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type AnneeScolaireFormGroupInput = IAnneeScolaire | PartialWithRequiredKeyOf<NewAnneeScolaire>;
 
-type AnneeScolaireFormDefaults = Pick<NewAnneeScolaire, 'id' | 'enCour'>;
+type AnneeScolaireFormDefaults = Pick<NewAnneeScolaire, 'id' | 'enCours'>;
 
 type AnneeScolaireFormGroupContent = {
   id: FormControl<IAnneeScolaire['id'] | NewAnneeScolaire['id']>;
   libelle: FormControl<IAnneeScolaire['libelle']>;
-  enCour: FormControl<IAnneeScolaire['enCour']>;
-  campagne: FormControl<IAnneeScolaire['campagne']>;
+  enCours: FormControl<IAnneeScolaire['enCours']>;
+  session: FormControl<IAnneeScolaire['session']>;
 };
 
 export type AnneeScolaireFormGroup = FormGroup<AnneeScolaireFormGroupContent>;
@@ -41,8 +41,8 @@ export class AnneeScolaireFormService {
         }
       ),
       libelle: new FormControl(anneeScolaireRawValue.libelle),
-      enCour: new FormControl(anneeScolaireRawValue.enCour),
-      campagne: new FormControl(anneeScolaireRawValue.campagne),
+      enCours: new FormControl(anneeScolaireRawValue.enCours),
+      session: new FormControl(anneeScolaireRawValue.session),
     });
   }
 
@@ -63,7 +63,7 @@ export class AnneeScolaireFormService {
   private getFormDefaults(): AnneeScolaireFormDefaults {
     return {
       id: null,
-      enCour: false,
+      enCours: false,
     };
   }
 }

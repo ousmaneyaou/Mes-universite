@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import nig.campus.com.domain.Faculte;
+import nig.campus.com.domain.Universite;
 import nig.campus.com.repository.FaculteRepository;
 import nig.campus.com.service.FaculteService;
 import nig.campus.com.web.rest.errors.BadRequestAlertException;
@@ -159,6 +160,13 @@ public class FaculteResource {
         log.debug("REST request to get Faculte : {}", id);
         Optional<Faculte> faculte = faculteService.findOne(id);
         return ResponseUtil.wrapOrNotFound(faculte);
+    }
+
+    @PostMapping("/facultes/universite")            /**la methode poste mapping*/
+    public ResponseEntity<List<Faculte>> getFaculte(@RequestBody Universite uni) {
+        log.debug("REST request to get Faculte : {}", uni);
+        List<Faculte> faculte = faculteService.findByUniversite(uni);
+        return ResponseEntity.ok().body(faculte);
     }
 
     /**

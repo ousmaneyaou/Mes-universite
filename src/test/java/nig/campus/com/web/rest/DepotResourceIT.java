@@ -45,8 +45,8 @@ class DepotResourceIT {
     private static final ZonedDateTime DEFAULT_DATE_NAISSANCE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_DATE_NAISSANCE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
-    private static final String DEFAULT_LIEU_DE_NAISSANCE = "AAAAAAAAAA";
-    private static final String UPDATED_LIEU_DE_NAISSANCE = "BBBBBBBBBB";
+    private static final String DEFAULT_LIEU_NAISSANCE = "AAAAAAAAAA";
+    private static final String UPDATED_LIEU_NAISSANCE = "BBBBBBBBBB";
 
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
@@ -135,7 +135,7 @@ class DepotResourceIT {
             .nom(DEFAULT_NOM)
             .prenom(DEFAULT_PRENOM)
             .dateNaissance(DEFAULT_DATE_NAISSANCE)
-            .lieuDeNaissance(DEFAULT_LIEU_DE_NAISSANCE)
+            .lieuNaissance(DEFAULT_LIEU_NAISSANCE)
             .email(DEFAULT_EMAIL)
             .nationalite(DEFAULT_NATIONALITE)
             .telephone(DEFAULT_TELEPHONE)
@@ -171,7 +171,7 @@ class DepotResourceIT {
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
-            .lieuDeNaissance(UPDATED_LIEU_DE_NAISSANCE)
+            .lieuNaissance(UPDATED_LIEU_NAISSANCE)
             .email(UPDATED_EMAIL)
             .nationalite(UPDATED_NATIONALITE)
             .telephone(UPDATED_TELEPHONE)
@@ -217,7 +217,7 @@ class DepotResourceIT {
         assertThat(testDepot.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testDepot.getPrenom()).isEqualTo(DEFAULT_PRENOM);
         assertThat(testDepot.getDateNaissance()).isEqualTo(DEFAULT_DATE_NAISSANCE);
-        assertThat(testDepot.getLieuDeNaissance()).isEqualTo(DEFAULT_LIEU_DE_NAISSANCE);
+        assertThat(testDepot.getLieuNaissance()).isEqualTo(DEFAULT_LIEU_NAISSANCE);
         assertThat(testDepot.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testDepot.getNationalite()).isEqualTo(DEFAULT_NATIONALITE);
         assertThat(testDepot.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
@@ -274,7 +274,7 @@ class DepotResourceIT {
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM)))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(sameInstant(DEFAULT_DATE_NAISSANCE))))
-            .andExpect(jsonPath("$.[*].lieuDeNaissance").value(hasItem(DEFAULT_LIEU_DE_NAISSANCE)))
+            .andExpect(jsonPath("$.[*].lieuNaissance").value(hasItem(DEFAULT_LIEU_NAISSANCE)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].nationalite").value(hasItem(DEFAULT_NATIONALITE)))
             .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
@@ -313,7 +313,7 @@ class DepotResourceIT {
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.prenom").value(DEFAULT_PRENOM))
             .andExpect(jsonPath("$.dateNaissance").value(sameInstant(DEFAULT_DATE_NAISSANCE)))
-            .andExpect(jsonPath("$.lieuDeNaissance").value(DEFAULT_LIEU_DE_NAISSANCE))
+            .andExpect(jsonPath("$.lieuNaissance").value(DEFAULT_LIEU_NAISSANCE))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.nationalite").value(DEFAULT_NATIONALITE))
             .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE))
@@ -360,7 +360,7 @@ class DepotResourceIT {
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
-            .lieuDeNaissance(UPDATED_LIEU_DE_NAISSANCE)
+            .lieuNaissance(UPDATED_LIEU_NAISSANCE)
             .email(UPDATED_EMAIL)
             .nationalite(UPDATED_NATIONALITE)
             .telephone(UPDATED_TELEPHONE)
@@ -398,7 +398,7 @@ class DepotResourceIT {
         assertThat(testDepot.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testDepot.getPrenom()).isEqualTo(UPDATED_PRENOM);
         assertThat(testDepot.getDateNaissance()).isEqualTo(UPDATED_DATE_NAISSANCE);
-        assertThat(testDepot.getLieuDeNaissance()).isEqualTo(UPDATED_LIEU_DE_NAISSANCE);
+        assertThat(testDepot.getLieuNaissance()).isEqualTo(UPDATED_LIEU_NAISSANCE);
         assertThat(testDepot.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testDepot.getNationalite()).isEqualTo(UPDATED_NATIONALITE);
         assertThat(testDepot.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
@@ -518,7 +518,7 @@ class DepotResourceIT {
         assertThat(testDepot.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testDepot.getPrenom()).isEqualTo(UPDATED_PRENOM);
         assertThat(testDepot.getDateNaissance()).isEqualTo(UPDATED_DATE_NAISSANCE);
-        assertThat(testDepot.getLieuDeNaissance()).isEqualTo(DEFAULT_LIEU_DE_NAISSANCE);
+        assertThat(testDepot.getLieuNaissance()).isEqualTo(DEFAULT_LIEU_NAISSANCE);
         assertThat(testDepot.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testDepot.getNationalite()).isEqualTo(UPDATED_NATIONALITE);
         assertThat(testDepot.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
@@ -558,7 +558,7 @@ class DepotResourceIT {
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
-            .lieuDeNaissance(UPDATED_LIEU_DE_NAISSANCE)
+            .lieuNaissance(UPDATED_LIEU_NAISSANCE)
             .email(UPDATED_EMAIL)
             .nationalite(UPDATED_NATIONALITE)
             .telephone(UPDATED_TELEPHONE)
@@ -596,7 +596,7 @@ class DepotResourceIT {
         assertThat(testDepot.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testDepot.getPrenom()).isEqualTo(UPDATED_PRENOM);
         assertThat(testDepot.getDateNaissance()).isEqualTo(UPDATED_DATE_NAISSANCE);
-        assertThat(testDepot.getLieuDeNaissance()).isEqualTo(UPDATED_LIEU_DE_NAISSANCE);
+        assertThat(testDepot.getLieuNaissance()).isEqualTo(UPDATED_LIEU_NAISSANCE);
         assertThat(testDepot.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testDepot.getNationalite()).isEqualTo(UPDATED_NATIONALITE);
         assertThat(testDepot.getTelephone()).isEqualTo(UPDATED_TELEPHONE);

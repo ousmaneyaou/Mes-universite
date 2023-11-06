@@ -13,5 +13,11 @@
                                  constraintName="fk_niveau__departement_id"
                                  referencedColumnNames="id"
                                  referencedTableName="departement"/>
+
+        <addForeignKeyConstraint baseColumnNames="session_id"
+                                 baseTableName="niveau"
+                                 constraintName="fk_niveau__session_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="session"/>
     </changeSet>
 </databaseChangeLog>

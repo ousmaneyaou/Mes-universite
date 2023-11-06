@@ -10,10 +10,8 @@ import { DepotService } from '../service/depot.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
-import { IBachelier } from 'app/entities/bachelier/bachelier.model';
-import { BachelierService } from 'app/entities/bachelier/service/bachelier.service';
-import { IDossier } from 'app/entities/dossier/dossier.model';
-import { DossierService } from 'app/entities/dossier/service/dossier.service';
+import { ISession } from 'app/entities/session/session.model';
+import { SessionService } from 'app/entities/session/service/session.service';
 import { EnumSexe } from 'app/entities/enumerations/enum-sexe.model';
 
 @Component({
@@ -25,8 +23,7 @@ export class DepotUpdateComponent implements OnInit {
   depot: IDepot | null = null;
   enumSexeValues = Object.keys(EnumSexe);
 
-  bacheliersSharedCollection: IBachelier[] = [];
-  dossiersSharedCollection: IDossier[] = [];
+  sessionsSharedCollection: ISession[] = [];
 
   editForm: DepotFormGroup = this.depotFormService.createDepotFormGroup();
 
@@ -35,15 +32,12 @@ export class DepotUpdateComponent implements OnInit {
     protected eventManager: EventManager,
     protected depotService: DepotService,
     protected depotFormService: DepotFormService,
-    protected bachelierService: BachelierService,
-    protected dossierService: DossierService,
+    protected sessionService: SessionService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute
   ) {}
 
-  compareBachelier = (o1: IBachelier | null, o2: IBachelier | null): boolean => this.bachelierService.compareBachelier(o1, o2);
-
-  compareDossier = (o1: IDossier | null, o2: IDossier | null): boolean => this.dossierService.compareDossier(o1, o2);
+  compareSession = (o1: ISession | null, o2: ISession | null): boolean => this.sessionService.compareSession(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ depot }) => {
@@ -118,31 +112,17 @@ export class DepotUpdateComponent implements OnInit {
     this.depot = depot;
     this.depotFormService.resetForm(this.editForm, depot);
 
-    this.bacheliersSharedCollection = this.bachelierService.addBachelierToCollectionIfMissing<IBachelier>(
-      this.bacheliersSharedCollection,
-      depot.bachelier
-    );
-    this.dossiersSharedCollection = this.dossierService.addDossierToCollectionIfMissing<IDossier>(
-      this.dossiersSharedCollection,
-      depot.dossier
+    this.sessionsSharedCollection = this.sessionService.addSessionToCollectionIfMissing<ISession>(
+      this.sessionsSharedCollection,
+      depot.session
     );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.bachelierService
+    this.sessionService
       .query()
-      .pipe(map((res: HttpResponse<IBachelier[]>) => res.body ?? []))
-      .pipe(
-        map((bacheliers: IBachelier[]) =>
-          this.bachelierService.addBachelierToCollectionIfMissing<IBachelier>(bacheliers, this.depot?.bachelier)
-        )
-      )
-      .subscribe((bacheliers: IBachelier[]) => (this.bacheliersSharedCollection = bacheliers));
-
-    this.dossierService
-      .query()
-      .pipe(map((res: HttpResponse<IDossier[]>) => res.body ?? []))
-      .pipe(map((dossiers: IDossier[]) => this.dossierService.addDossierToCollectionIfMissing<IDossier>(dossiers, this.depot?.dossier)))
-      .subscribe((dossiers: IDossier[]) => (this.dossiersSharedCollection = dossiers));
+      .pipe(map((res: HttpResponse<ISession[]>) => res.body ?? []))
+      .pipe(map((sessions: ISession[]) => this.sessionService.addSessionToCollectionIfMissing<ISession>(sessions, this.depot?.session)))
+      .subscribe((sessions: ISession[]) => (this.sessionsSharedCollection = sessions));
   }
 }

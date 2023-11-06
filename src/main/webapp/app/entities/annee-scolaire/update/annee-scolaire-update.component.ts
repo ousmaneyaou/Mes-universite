@@ -7,8 +7,8 @@ import { finalize, map } from 'rxjs/operators';
 import { AnneeScolaireFormService, AnneeScolaireFormGroup } from './annee-scolaire-form.service';
 import { IAnneeScolaire } from '../annee-scolaire.model';
 import { AnneeScolaireService } from '../service/annee-scolaire.service';
-import { ICampagne } from 'app/entities/campagne/campagne.model';
-import { CampagneService } from 'app/entities/campagne/service/campagne.service';
+import { ISession } from 'app/entities/session/session.model';
+import { SessionService } from 'app/entities/session/service/session.service';
 
 @Component({
   selector: 'jhi-annee-scolaire-update',
@@ -18,18 +18,18 @@ export class AnneeScolaireUpdateComponent implements OnInit {
   isSaving = false;
   anneeScolaire: IAnneeScolaire | null = null;
 
-  campagnesSharedCollection: ICampagne[] = [];
+  sessionsSharedCollection: ISession[] = [];
 
   editForm: AnneeScolaireFormGroup = this.anneeScolaireFormService.createAnneeScolaireFormGroup();
 
   constructor(
     protected anneeScolaireService: AnneeScolaireService,
     protected anneeScolaireFormService: AnneeScolaireFormService,
-    protected campagneService: CampagneService,
+    protected sessionService: SessionService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
-  compareCampagne = (o1: ICampagne | null, o2: ICampagne | null): boolean => this.campagneService.compareCampagne(o1, o2);
+  compareSession = (o1: ISession | null, o2: ISession | null): boolean => this.sessionService.compareSession(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ anneeScolaire }) => {
@@ -79,21 +79,19 @@ export class AnneeScolaireUpdateComponent implements OnInit {
     this.anneeScolaire = anneeScolaire;
     this.anneeScolaireFormService.resetForm(this.editForm, anneeScolaire);
 
-    this.campagnesSharedCollection = this.campagneService.addCampagneToCollectionIfMissing<ICampagne>(
-      this.campagnesSharedCollection,
-      anneeScolaire.campagne
+    this.sessionsSharedCollection = this.sessionService.addSessionToCollectionIfMissing<ISession>(
+      this.sessionsSharedCollection,
+      anneeScolaire.session
     );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.campagneService
+    this.sessionService
       .query()
-      .pipe(map((res: HttpResponse<ICampagne[]>) => res.body ?? []))
+      .pipe(map((res: HttpResponse<ISession[]>) => res.body ?? []))
       .pipe(
-        map((campagnes: ICampagne[]) =>
-          this.campagneService.addCampagneToCollectionIfMissing<ICampagne>(campagnes, this.anneeScolaire?.campagne)
-        )
+        map((sessions: ISession[]) => this.sessionService.addSessionToCollectionIfMissing<ISession>(sessions, this.anneeScolaire?.session))
       )
-      .subscribe((campagnes: ICampagne[]) => (this.campagnesSharedCollection = campagnes));
+      .subscribe((sessions: ISession[]) => (this.sessionsSharedCollection = sessions));
   }
 }

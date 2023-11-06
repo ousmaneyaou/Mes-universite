@@ -7,15 +7,16 @@ export const sampleWithRequiredData: IPaiement = {
 };
 
 export const sampleWithPartialData: IPaiement = {
-  id: 34485,
-  datePaie: dayjs('2023-09-05T05:58'),
+  id: 80929,
+  datePaie: dayjs('2023-09-05T08:59'),
   etat: true,
 };
 
 export const sampleWithFullData: IPaiement = {
-  id: 97812,
-  datePaie: dayjs('2023-09-06T00:22'),
-  etat: true,
+  id: 4235,
+  datePaie: dayjs('2023-09-05T03:03'),
+  etat: false,
+  montant: 70780,
 };
 
 export const sampleWithNewData: NewPaiement = {

@@ -25,13 +25,6 @@
       "otherEntityName": "campagne",
       "relationshipName": "campagne",
       "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "inscription",
-      "otherEntityRelationshipName": "dossiers",
-      "ownerSide": false,
-      "relationshipName": "inscriptions",
-      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceClass"

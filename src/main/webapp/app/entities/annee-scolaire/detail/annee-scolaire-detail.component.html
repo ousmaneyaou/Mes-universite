@@ -18,14 +18,14 @@
         <dd>
           <span>{{ anneeScolaire.libelle }}</span>
         </dd>
-        <dt><span>En Cour</span></dt>
+        <dt><span>En Cours</span></dt>
         <dd>
-          <span>{{ anneeScolaire.enCour }}</span>
+          <span>{{ anneeScolaire.enCours }}</span>
         </dd>
-        <dt><span>Campagne</span></dt>
+        <dt><span>Session</span></dt>
         <dd>
-          <div *ngIf="anneeScolaire.campagne">
-            <a [routerLink]="['/campagne', anneeScolaire.campagne.id, 'view']">{{ anneeScolaire.campagne.id }}</a>
+          <div *ngIf="anneeScolaire.session">
+            <a [routerLink]="['/session', anneeScolaire.session.id, 'view']">{{ anneeScolaire.session.id }}</a>
           </div>
         </dd>
       </dl>

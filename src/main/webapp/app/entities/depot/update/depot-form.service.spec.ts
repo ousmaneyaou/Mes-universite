@@ -23,7 +23,7 @@ describe('Depot Form Service', () => {
             nom: expect.any(Object),
             prenom: expect.any(Object),
             dateNaissance: expect.any(Object),
-            lieuDeNaissance: expect.any(Object),
+            lieuNaissance: expect.any(Object),
             email: expect.any(Object),
             nationalite: expect.any(Object),
             telephone: expect.any(Object),
@@ -41,8 +41,7 @@ describe('Depot Form Service', () => {
             choix2: expect.any(Object),
             choix3: expect.any(Object),
             photo: expect.any(Object),
-            bachelier: expect.any(Object),
-            dossier: expect.any(Object),
+            session: expect.any(Object),
           })
         );
       });
@@ -56,7 +55,7 @@ describe('Depot Form Service', () => {
             nom: expect.any(Object),
             prenom: expect.any(Object),
             dateNaissance: expect.any(Object),
-            lieuDeNaissance: expect.any(Object),
+            lieuNaissance: expect.any(Object),
             email: expect.any(Object),
             nationalite: expect.any(Object),
             telephone: expect.any(Object),
@@ -74,8 +73,7 @@ describe('Depot Form Service', () => {
             choix2: expect.any(Object),
             choix3: expect.any(Object),
             photo: expect.any(Object),
-            bachelier: expect.any(Object),
-            dossier: expect.any(Object),
+            session: expect.any(Object),
           })
         );
       });

@@ -1,7 +1,9 @@
 package nig.campus.com.service;
 
+import java.util.List;
 import java.util.Optional;
 import nig.campus.com.domain.Faculte;
+import nig.campus.com.domain.Universite;
 import nig.campus.com.repository.FaculteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +36,10 @@ public class FaculteService {
     public Faculte save(Faculte faculte) {
         log.debug("Request to save Faculte : {}", faculte);
         return faculteRepository.save(faculte);
+    }
+
+    public List<Faculte> findByUniversite(Universite uni) {
+        return faculteRepository.findAllByUniversite(uni);
     }
 
     /**

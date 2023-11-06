@@ -20,26 +20,12 @@
             <column name="regime" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="paiement_id" type="bigint">
+            <column name="session_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="inscription" columnName="date_inscription" columnDataType="${datetimeType}"/>
-    </changeSet>
-
-    <changeSet id="20230906012352-1-relations" author="jhipster">
-
-        <createTable tableName="rel_inscription__dossiers">
-            <column name="dossiers_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="inscription_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="inscription_id, dossiers_id" tableName="rel_inscription__dossiers"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

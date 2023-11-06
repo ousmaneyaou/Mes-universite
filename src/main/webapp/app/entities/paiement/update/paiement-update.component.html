@@ -30,6 +30,28 @@
           <label class="form-label" for="field_etat">Etat</label>
           <input type="checkbox" class="form-check" name="etat" id="field_etat" data-cy="etat" formControlName="etat" />
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_montant">Montant</label>
+          <input type="number" class="form-control" name="montant" id="field_montant" data-cy="montant" formControlName="montant" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_inscription">Inscription</label>
+          <select
+            class="form-control"
+            id="field_inscription"
+            data-cy="inscription"
+            name="inscription"
+            formControlName="inscription"
+            [compareWith]="compareInscription"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="inscriptionOption" *ngFor="let inscriptionOption of inscriptionsSharedCollection">
+              {{ inscriptionOption.id }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div>

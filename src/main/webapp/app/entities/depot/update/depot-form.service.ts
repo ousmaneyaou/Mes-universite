@@ -35,7 +35,7 @@ type DepotFormGroupContent = {
   nom: FormControl<DepotFormRawValue['nom']>;
   prenom: FormControl<DepotFormRawValue['prenom']>;
   dateNaissance: FormControl<DepotFormRawValue['dateNaissance']>;
-  lieuDeNaissance: FormControl<DepotFormRawValue['lieuDeNaissance']>;
+  lieuNaissance: FormControl<DepotFormRawValue['lieuNaissance']>;
   email: FormControl<DepotFormRawValue['email']>;
   nationalite: FormControl<DepotFormRawValue['nationalite']>;
   telephone: FormControl<DepotFormRawValue['telephone']>;
@@ -57,8 +57,7 @@ type DepotFormGroupContent = {
   choix3: FormControl<DepotFormRawValue['choix3']>;
   photo: FormControl<DepotFormRawValue['photo']>;
   photoContentType: FormControl<DepotFormRawValue['photoContentType']>;
-  bachelier: FormControl<DepotFormRawValue['bachelier']>;
-  dossier: FormControl<DepotFormRawValue['dossier']>;
+  session: FormControl<DepotFormRawValue['session']>;
 };
 
 export type DepotFormGroup = FormGroup<DepotFormGroupContent>;
@@ -81,7 +80,7 @@ export class DepotFormService {
       nom: new FormControl(depotRawValue.nom),
       prenom: new FormControl(depotRawValue.prenom),
       dateNaissance: new FormControl(depotRawValue.dateNaissance),
-      lieuDeNaissance: new FormControl(depotRawValue.lieuDeNaissance),
+      lieuNaissance: new FormControl(depotRawValue.lieuNaissance),
       email: new FormControl(depotRawValue.email),
       nationalite: new FormControl(depotRawValue.nationalite),
       telephone: new FormControl(depotRawValue.telephone),
@@ -103,8 +102,7 @@ export class DepotFormService {
       choix3: new FormControl(depotRawValue.choix3),
       photo: new FormControl(depotRawValue.photo),
       photoContentType: new FormControl(depotRawValue.photoContentType),
-      bachelier: new FormControl(depotRawValue.bachelier),
-      dossier: new FormControl(depotRawValue.dossier),
+      session: new FormControl(depotRawValue.session),
     });
   }
 

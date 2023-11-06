@@ -1,6 +1,9 @@
 package nig.campus.com.service;
 
+import java.util.List;
 import java.util.Optional;
+
+import nig.campus.com.domain.Faculte;
 import nig.campus.com.domain.Universite;
 import nig.campus.com.repository.UniversiteRepository;
 import org.slf4j.Logger;
@@ -35,6 +38,8 @@ public class UniversiteService {
         log.debug("Request to save Universite : {}", universite);
         return universiteRepository.save(universite);
     }
+
+
 
     /**
      * Update a universite.

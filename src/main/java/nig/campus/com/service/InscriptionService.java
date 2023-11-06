@@ -84,15 +84,6 @@ public class InscriptionService {
     }
 
     /**
-     * Get all the inscriptions with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
-    public Page<Inscription> findAllWithEagerRelationships(Pageable pageable) {
-        return inscriptionRepository.findAllWithEagerRelationships(pageable);
-    }
-
-    /**
      * Get one inscription by id.
      *
      * @param id the id of the entity.
@@ -101,7 +92,7 @@ public class InscriptionService {
     @Transactional(readOnly = true)
     public Optional<Inscription> findOne(Long id) {
         log.debug("Request to get Inscription : {}", id);
-        return inscriptionRepository.findOneWithEagerRelationships(id);
+        return inscriptionRepository.findById(id);
     }
 
     /**

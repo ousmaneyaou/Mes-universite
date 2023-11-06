@@ -26,6 +26,7 @@ describe('Bachelier Form Service', () => {
             nationalite: expect.any(Object),
             telephone: expect.any(Object),
             utilisateur: expect.any(Object),
+            depot: expect.any(Object),
           })
         );
       });
@@ -42,6 +43,7 @@ describe('Bachelier Form Service', () => {
             nationalite: expect.any(Object),
             telephone: expect.any(Object),
             utilisateur: expect.any(Object),
+            depot: expect.any(Object),
           })
         );
       });

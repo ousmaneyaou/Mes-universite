@@ -21,16 +21,9 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "paiement",
-      "relationshipName": "paiement",
+      "otherEntityName": "session",
+      "relationshipName": "session",
       "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "dossier",
-      "otherEntityRelationshipName": "inscriptions",
-      "ownerSide": true,
-      "relationshipName": "dossiers",
-      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceClass"

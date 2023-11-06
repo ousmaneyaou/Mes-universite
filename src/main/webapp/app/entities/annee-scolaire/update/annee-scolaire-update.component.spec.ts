@@ -9,8 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { AnneeScolaireFormService } from './annee-scolaire-form.service';
 import { AnneeScolaireService } from '../service/annee-scolaire.service';
 import { IAnneeScolaire } from '../annee-scolaire.model';
-import { ICampagne } from 'app/entities/campagne/campagne.model';
-import { CampagneService } from 'app/entities/campagne/service/campagne.service';
+import { ISession } from 'app/entities/session/session.model';
+import { SessionService } from 'app/entities/session/service/session.service';
 
 import { AnneeScolaireUpdateComponent } from './annee-scolaire-update.component';
 
@@ -20,7 +20,7 @@ describe('AnneeScolaire Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let anneeScolaireFormService: AnneeScolaireFormService;
   let anneeScolaireService: AnneeScolaireService;
-  let campagneService: CampagneService;
+  let sessionService: SessionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,43 +43,43 @@ describe('AnneeScolaire Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     anneeScolaireFormService = TestBed.inject(AnneeScolaireFormService);
     anneeScolaireService = TestBed.inject(AnneeScolaireService);
-    campagneService = TestBed.inject(CampagneService);
+    sessionService = TestBed.inject(SessionService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Campagne query and add missing value', () => {
+    it('Should call Session query and add missing value', () => {
       const anneeScolaire: IAnneeScolaire = { id: 456 };
-      const campagne: ICampagne = { id: 11841 };
-      anneeScolaire.campagne = campagne;
+      const session: ISession = { id: 12254 };
+      anneeScolaire.session = session;
 
-      const campagneCollection: ICampagne[] = [{ id: 84866 }];
-      jest.spyOn(campagneService, 'query').mockReturnValue(of(new HttpResponse({ body: campagneCollection })));
-      const additionalCampagnes = [campagne];
-      const expectedCollection: ICampagne[] = [...additionalCampagnes, ...campagneCollection];
-      jest.spyOn(campagneService, 'addCampagneToCollectionIfMissing').mockReturnValue(expectedCollection);
+      const sessionCollection: ISession[] = [{ id: 12441 }];
+      jest.spyOn(sessionService, 'query').mockReturnValue(of(new HttpResponse({ body: sessionCollection })));
+      const additionalSessions = [session];
+      const expectedCollection: ISession[] = [...additionalSessions, ...sessionCollection];
+      jest.spyOn(sessionService, 'addSessionToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ anneeScolaire });
       comp.ngOnInit();
 
-      expect(campagneService.query).toHaveBeenCalled();
-      expect(campagneService.addCampagneToCollectionIfMissing).toHaveBeenCalledWith(
-        campagneCollection,
-        ...additionalCampagnes.map(expect.objectContaining)
+      expect(sessionService.query).toHaveBeenCalled();
+      expect(sessionService.addSessionToCollectionIfMissing).toHaveBeenCalledWith(
+        sessionCollection,
+        ...additionalSessions.map(expect.objectContaining)
       );
-      expect(comp.campagnesSharedCollection).toEqual(expectedCollection);
+      expect(comp.sessionsSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should update editForm', () => {
       const anneeScolaire: IAnneeScolaire = { id: 456 };
-      const campagne: ICampagne = { id: 72180 };
-      anneeScolaire.campagne = campagne;
+      const session: ISession = { id: 4926 };
+      anneeScolaire.session = session;
 
       activatedRoute.data = of({ anneeScolaire });
       comp.ngOnInit();
 
-      expect(comp.campagnesSharedCollection).toContain(campagne);
+      expect(comp.sessionsSharedCollection).toContain(session);
       expect(comp.anneeScolaire).toEqual(anneeScolaire);
     });
   });
@@ -153,13 +153,13 @@ describe('AnneeScolaire Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
-    describe('compareCampagne', () => {
-      it('Should forward to campagneService', () => {
+    describe('compareSession', () => {
+      it('Should forward to sessionService', () => {
         const entity = { id: 123 };
         const entity2 = { id: 456 };
-        jest.spyOn(campagneService, 'compareCampagne');
-        comp.compareCampagne(entity, entity2);
-        expect(campagneService.compareCampagne).toHaveBeenCalledWith(entity, entity2);
+        jest.spyOn(sessionService, 'compareSession');
+        comp.compareSession(entity, entity2);
+        expect(sessionService.compareSession).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

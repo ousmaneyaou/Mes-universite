@@ -21,8 +21,8 @@ describe('AnneeScolaire Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             libelle: expect.any(Object),
-            enCour: expect.any(Object),
-            campagne: expect.any(Object),
+            enCours: expect.any(Object),
+            session: expect.any(Object),
           })
         );
       });
@@ -34,8 +34,8 @@ describe('AnneeScolaire Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             libelle: expect.any(Object),
-            enCour: expect.any(Object),
-            campagne: expect.any(Object),
+            enCours: expect.any(Object),
+            session: expect.any(Object),
           })
         );
       });

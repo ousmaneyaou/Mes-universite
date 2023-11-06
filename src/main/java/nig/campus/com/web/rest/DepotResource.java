@@ -174,4 +174,11 @@ public class DepotResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    @GetMapping("/depots/{nom}")
+    public ResponseEntity<List<Depot>> search(@PathVariable String nom) {
+        List<Depot> depots = depotService.searchByNom(nom);
+        return ResponseEntity.ok(depots);
+    }
+
 }

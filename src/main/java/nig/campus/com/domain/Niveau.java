@@ -27,6 +27,9 @@ public class Niveau implements Serializable {
     @JsonIgnoreProperties(value = { "faculte" }, allowSetters = true)
     private Departement departement;
 
+    @ManyToOne
+    private Session session;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -65,6 +68,19 @@ public class Niveau implements Serializable {
 
     public Niveau departement(Departement departement) {
         this.setDepartement(departement);
+        return this;
+    }
+
+    public Session getSession() {
+        return this.session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Niveau session(Session session) {
+        this.setSession(session);
         return this;
     }
 

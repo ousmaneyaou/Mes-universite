@@ -32,32 +32,17 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_paiement">Paiement</label>
+          <label class="form-label" for="field_session">Session</label>
           <select
             class="form-control"
-            id="field_paiement"
-            data-cy="paiement"
-            name="paiement"
-            formControlName="paiement"
-            [compareWith]="comparePaiement"
+            id="field_session"
+            data-cy="session"
+            name="session"
+            formControlName="session"
+            [compareWith]="compareSession"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="paiementOption" *ngFor="let paiementOption of paiementsSharedCollection">{{ paiementOption.id }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label for="field_dossiers">Dossiers</label>
-          <select
-            class="form-control"
-            id="field_dossiers"
-            data-cy="dossiers"
-            multiple
-            name="dossiers"
-            formControlName="dossiers"
-            [compareWith]="compareDossier"
-          >
-            <option [ngValue]="dossierOption" *ngFor="let dossierOption of dossiersSharedCollection">{{ dossierOption.id }}</option>
+            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.id }}</option>
           </select>
         </div>
       </div>

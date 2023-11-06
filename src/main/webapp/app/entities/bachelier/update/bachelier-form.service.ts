@@ -37,6 +37,7 @@ type BachelierFormGroupContent = {
   nationalite: FormControl<BachelierFormRawValue['nationalite']>;
   telephone: FormControl<BachelierFormRawValue['telephone']>;
   utilisateur: FormControl<BachelierFormRawValue['utilisateur']>;
+  depot: FormControl<BachelierFormRawValue['depot']>;
 };
 
 export type BachelierFormGroup = FormGroup<BachelierFormGroupContent>;
@@ -62,6 +63,7 @@ export class BachelierFormService {
       nationalite: new FormControl(bachelierRawValue.nationalite),
       telephone: new FormControl(bachelierRawValue.telephone),
       utilisateur: new FormControl(bachelierRawValue.utilisateur),
+      depot: new FormControl(bachelierRawValue.depot),
     });
   }
 

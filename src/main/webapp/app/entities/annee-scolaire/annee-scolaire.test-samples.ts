@@ -11,7 +11,7 @@ export const sampleWithPartialData: IAnneeScolaire = {
 export const sampleWithFullData: IAnneeScolaire = {
   id: 76422,
   libelle: 'Jewelery e-business',
-  enCour: false,
+  enCours: false,
 };
 
 export const sampleWithNewData: NewAnneeScolaire = {

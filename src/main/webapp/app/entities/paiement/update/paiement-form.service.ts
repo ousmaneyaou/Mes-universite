@@ -33,6 +33,8 @@ type PaiementFormGroupContent = {
   id: FormControl<PaiementFormRawValue['id'] | NewPaiement['id']>;
   datePaie: FormControl<PaiementFormRawValue['datePaie']>;
   etat: FormControl<PaiementFormRawValue['etat']>;
+  montant: FormControl<PaiementFormRawValue['montant']>;
+  inscription: FormControl<PaiementFormRawValue['inscription']>;
 };
 
 export type PaiementFormGroup = FormGroup<PaiementFormGroupContent>;
@@ -54,6 +56,8 @@ export class PaiementFormService {
       ),
       datePaie: new FormControl(paiementRawValue.datePaie),
       etat: new FormControl(paiementRawValue.etat),
+      montant: new FormControl(paiementRawValue.montant),
+      inscription: new FormControl(paiementRawValue.inscription),
     });
   }
 

@@ -29,7 +29,7 @@ export const sampleWithFullData: IDepot = {
   nom: 'niches',
   prenom: 'Licensed Toys SDD',
   dateNaissance: dayjs('2023-09-05T09:10'),
-  lieuDeNaissance: 'Islands',
+  lieuNaissance: 'Islands',
   email: 'Tremayne89@gmail.com',
   nationalite: 'Stand-alone systems Gorgeous',
   telephone: '843.772.0465 x1906',

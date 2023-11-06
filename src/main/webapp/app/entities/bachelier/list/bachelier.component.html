@@ -74,6 +74,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="depot.id">
+            <div class="d-flex">
+              <span>Depot</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -89,6 +95,11 @@
           <td>{{ bachelier.telephone }}</td>
           <td>
             {{ bachelier.utilisateur?.id }}
+          </td>
+          <td>
+            <div *ngIf="bachelier.depot">
+              <a [routerLink]="['/depot', bachelier.depot.id, 'view']">{{ bachelier.depot.id }}</a>
+            </div>
           </td>
           <td class="text-end">
             <div class="btn-group">

@@ -26,9 +26,9 @@
         <dd>
           <span>{{ depot.dateNaissance | formatMediumDatetime }}</span>
         </dd>
-        <dt><span>Lieu De Naissance</span></dt>
+        <dt><span>Lieu Naissance</span></dt>
         <dd>
-          <span>{{ depot.lieuDeNaissance }}</span>
+          <span>{{ depot.lieuNaissance }}</span>
         </dd>
         <dt><span>Email</span></dt>
         <dd>
@@ -126,16 +126,10 @@
             {{ depot.photoContentType }}, {{ byteSize(depot.photo) }}
           </div>
         </dd>
-        <dt><span>Bachelier</span></dt>
+        <dt><span>Session</span></dt>
         <dd>
-          <div *ngIf="depot.bachelier">
-            <a [routerLink]="['/bachelier', depot.bachelier.id, 'view']">{{ depot.bachelier.id }}</a>
-          </div>
-        </dd>
-        <dt><span>Dossier</span></dt>
-        <dd>
-          <div *ngIf="depot.dossier">
-            <a [routerLink]="['/dossier', depot.dossier.id, 'view']">{{ depot.dossier.id }}</a>
+          <div *ngIf="depot.session">
+            <a [routerLink]="['/session', depot.session.id, 'view']">{{ depot.session.id }}</a>
           </div>
         </dd>
       </dl>

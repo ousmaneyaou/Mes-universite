@@ -38,6 +38,11 @@
       "ownerSide": true,
       "relationshipName": "utilisateur",
       "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "depot",
+      "relationshipName": "depot",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceClass"

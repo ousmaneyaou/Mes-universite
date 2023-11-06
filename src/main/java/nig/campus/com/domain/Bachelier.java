@@ -1,5 +1,6 @@
 package nig.campus.com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
 import javax.persistence.*;
@@ -40,6 +41,10 @@ public class Bachelier implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private User utilisateur;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "session" }, allowSetters = true)
+    private Depot depot;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -131,6 +136,19 @@ public class Bachelier implements Serializable {
 
     public Bachelier utilisateur(User user) {
         this.setUtilisateur(user);
+        return this;
+    }
+
+    public Depot getDepot() {
+        return this.depot;
+    }
+
+    public void setDepot(Depot depot) {
+        this.depot = depot;
+    }
+
+    public Bachelier depot(Depot depot) {
+        this.setDepot(depot);
         return this;
     }
 

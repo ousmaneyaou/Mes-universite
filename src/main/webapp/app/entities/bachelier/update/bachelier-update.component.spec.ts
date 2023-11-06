@@ -12,6 +12,8 @@ import { IBachelier } from '../bachelier.model';
 
 import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
+import { IDepot } from 'app/entities/depot/depot.model';
+import { DepotService } from 'app/entities/depot/service/depot.service';
 
 import { BachelierUpdateComponent } from './bachelier-update.component';
 
@@ -22,6 +24,7 @@ describe('Bachelier Management Update Component', () => {
   let bachelierFormService: BachelierFormService;
   let bachelierService: BachelierService;
   let userService: UserService;
+  let depotService: DepotService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -45,6 +48,7 @@ describe('Bachelier Management Update Component', () => {
     bachelierFormService = TestBed.inject(BachelierFormService);
     bachelierService = TestBed.inject(BachelierService);
     userService = TestBed.inject(UserService);
+    depotService = TestBed.inject(DepotService);
 
     comp = fixture.componentInstance;
   });
@@ -72,15 +76,40 @@ describe('Bachelier Management Update Component', () => {
       expect(comp.usersSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Depot query and add missing value', () => {
+      const bachelier: IBachelier = { id: 456 };
+      const depot: IDepot = { id: 35122 };
+      bachelier.depot = depot;
+
+      const depotCollection: IDepot[] = [{ id: 82293 }];
+      jest.spyOn(depotService, 'query').mockReturnValue(of(new HttpResponse({ body: depotCollection })));
+      const additionalDepots = [depot];
+      const expectedCollection: IDepot[] = [...additionalDepots, ...depotCollection];
+      jest.spyOn(depotService, 'addDepotToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ bachelier });
+      comp.ngOnInit();
+
+      expect(depotService.query).toHaveBeenCalled();
+      expect(depotService.addDepotToCollectionIfMissing).toHaveBeenCalledWith(
+        depotCollection,
+        ...additionalDepots.map(expect.objectContaining)
+      );
+      expect(comp.depotsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const bachelier: IBachelier = { id: 456 };
       const utilisateur: IUser = { id: 19051 };
       bachelier.utilisateur = utilisateur;
+      const depot: IDepot = { id: 71836 };
+      bachelier.depot = depot;
 
       activatedRoute.data = of({ bachelier });
       comp.ngOnInit();
 
       expect(comp.usersSharedCollection).toContain(utilisateur);
+      expect(comp.depotsSharedCollection).toContain(depot);
       expect(comp.bachelier).toEqual(bachelier);
     });
   });
@@ -161,6 +190,16 @@ describe('Bachelier Management Update Component', () => {
         jest.spyOn(userService, 'compareUser');
         comp.compareUser(entity, entity2);
         expect(userService.compareUser).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('compareDepot', () => {
+      it('Should forward to depotService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(depotService, 'compareDepot');
+        comp.compareDepot(entity, entity2);
+        expect(depotService.compareDepot).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

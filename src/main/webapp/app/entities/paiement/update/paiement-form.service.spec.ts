@@ -22,6 +22,8 @@ describe('Paiement Form Service', () => {
             id: expect.any(Object),
             datePaie: expect.any(Object),
             etat: expect.any(Object),
+            montant: expect.any(Object),
+            inscription: expect.any(Object),
           })
         );
       });
@@ -34,6 +36,8 @@ describe('Paiement Form Service', () => {
             id: expect.any(Object),
             datePaie: expect.any(Object),
             etat: expect.any(Object),
+            montant: expect.any(Object),
+            inscription: expect.any(Object),
           })
         );
       });

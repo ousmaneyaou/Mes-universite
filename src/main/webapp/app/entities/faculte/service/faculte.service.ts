@@ -19,7 +19,12 @@ export class FaculteService {
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   create(faculte: NewFaculte): Observable<EntityResponseType> {
-    return this.http.post<IFaculte>(this.resourceUrl, faculte, { observe: 'response' });
+    return this.http.post<IFaculte>(this.resourceUrl+'/universite', faculte, { observe: 'response' });
+  }
+
+  //la methode dans le service
+  FindByUniversite(faculte: IFaculte): Observable<EntityArrayResponseType> {
+    return this.http.post<IFaculte[]>(this.resourceUrl, faculte, { observe: 'response' });
   }
 
   update(faculte: IFaculte): Observable<EntityResponseType> {

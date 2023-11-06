@@ -12,6 +12,10 @@
     {
       "fieldName": "etat",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "montant",
+      "fieldType": "Long"
     }
   ],
   "fluentMethods": true,
@@ -19,6 +23,12 @@
   "name": "Paiement",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "inscription",
+      "relationshipName": "inscription",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "service": "serviceClass"
 }

@@ -9,6 +9,8 @@ import { INiveau } from '../niveau.model';
 import { NiveauService } from '../service/niveau.service';
 import { IDepartement } from 'app/entities/departement/departement.model';
 import { DepartementService } from 'app/entities/departement/service/departement.service';
+import { ISession } from 'app/entities/session/session.model';
+import { SessionService } from 'app/entities/session/service/session.service';
 
 @Component({
   selector: 'jhi-niveau-update',
@@ -19,6 +21,7 @@ export class NiveauUpdateComponent implements OnInit {
   niveau: INiveau | null = null;
 
   departementsSharedCollection: IDepartement[] = [];
+  sessionsSharedCollection: ISession[] = [];
 
   editForm: NiveauFormGroup = this.niveauFormService.createNiveauFormGroup();
 
@@ -26,10 +29,13 @@ export class NiveauUpdateComponent implements OnInit {
     protected niveauService: NiveauService,
     protected niveauFormService: NiveauFormService,
     protected departementService: DepartementService,
+    protected sessionService: SessionService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   compareDepartement = (o1: IDepartement | null, o2: IDepartement | null): boolean => this.departementService.compareDepartement(o1, o2);
+
+  compareSession = (o1: ISession | null, o2: ISession | null): boolean => this.sessionService.compareSession(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ niveau }) => {
@@ -83,6 +89,10 @@ export class NiveauUpdateComponent implements OnInit {
       this.departementsSharedCollection,
       niveau.departement
     );
+    this.sessionsSharedCollection = this.sessionService.addSessionToCollectionIfMissing<ISession>(
+      this.sessionsSharedCollection,
+      niveau.session
+    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -95,5 +105,11 @@ export class NiveauUpdateComponent implements OnInit {
         )
       )
       .subscribe((departements: IDepartement[]) => (this.departementsSharedCollection = departements));
+
+    this.sessionService
+      .query()
+      .pipe(map((res: HttpResponse<ISession[]>) => res.body ?? []))
+      .pipe(map((sessions: ISession[]) => this.sessionService.addSessionToCollectionIfMissing<ISession>(sessions, this.niveau?.session)))
+      .subscribe((sessions: ISession[]) => (this.sessionsSharedCollection = sessions));
   }
 }

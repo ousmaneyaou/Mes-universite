@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px, rgba(0, 0, 0, 0.22) 0px 5px 5px; margin: 50px 50px;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-depot-heading" data-cy="DepotCreateUpdateHeading">Create or edit a Depot</h2>
+      <h3 id="jhi-depot-heading" data-cy="DepotCreateUpdateHeading" style="text-align: center; ">Faire un Dépot</h3>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -12,18 +12,16 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_nom">Nom</label>
-          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_prenom">Prenom</label>
-          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_dateNaissance">Date Naissance</label>
-          <div class="d-flex">
+          <div class="col">
+            <label class="form-label" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" style="width: 200px; height: 30px; font-size: 14px;" />
+          </div>
+          <div class="col">
+            <label class="form-label" for="field_prenom">Prénom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" style="width: 200px; height: 30px; font-size: 14px;" />
+          </div>
+          <div class="col">
+            <label class="form-label" for="field_dateNaissance">Date de Naissance</label>
             <input
               id="field_dateNaissance"
               data-cy="dateNaissance"
@@ -32,314 +30,279 @@
               name="dateNaissance"
               formControlName="dateNaissance"
               placeholder="YYYY-MM-DD HH:mm"
+              style="width: 200px; height: 30px; font-size: 14px;"
             />
           </div>
         </div>
+        
 
         <div class="row mb-3">
-          <label class="form-label" for="field_lieuDeNaissance">Lieu De Naissance</label>
-          <input
-            type="text"
-            class="form-control"
-            name="lieuDeNaissance"
-            id="field_lieuDeNaissance"
-            data-cy="lieuDeNaissance"
-            formControlName="lieuDeNaissance"
-          />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_email">Email</label>
-          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_nationalite">Nationalite</label>
-          <input
-            type="text"
-            class="form-control"
-            name="nationalite"
-            id="field_nationalite"
-            data-cy="nationalite"
-            formControlName="nationalite"
-          />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_telephone">Telephone</label>
-          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_sexe">Sexe</label>
-          <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
-            <option [ngValue]="null"></option>
-            <option *ngFor="let enumSexe of enumSexeValues" [value]="enumSexe">enumSexe</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_dateDepot">Date Depot</label>
-          <div class="d-flex">
+          <div class="col">
+            <label class="form-label" for="field_lieuNaissance">Lieu Naissance</label>
             <input
-              id="field_dateDepot"
-              data-cy="dateDepot"
-              type="datetime-local"
+              type="text"
               class="form-control"
-              name="dateDepot"
-              formControlName="dateDepot"
-              placeholder="YYYY-MM-DD HH:mm"
+              name="lieuNaissance"
+              id="field_lieuNaissance"
+              data-cy="lieuNaissance"
+              formControlName="lieuNaissance"
+              style="width: 200px; height: 30px; font-size: 14px;"
             />
           </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_numeroDeTable">Numero De Table</label>
-          <input
-            type="text"
-            class="form-control"
-            name="numeroDeTable"
-            id="field_numeroDeTable"
-            data-cy="numeroDeTable"
-            formControlName="numeroDeTable"
-          />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_serie">Serie</label>
-          <input type="text" class="form-control" name="serie" id="field_serie" data-cy="serie" formControlName="serie" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_diplome">Diplome</label>
-          <div>
-            <img
-              [src]="'data:' + editForm.get('diplomeContentType')!.value + ';base64,' + editForm.get('diplome')!.value"
-              style="max-height: 100px"
-              *ngIf="editForm.get('diplome')!.value"
-              alt="depot image"
-            />
-            <div *ngIf="editForm.get('diplome')!.value" class="form-text text-danger clearfix">
-              <span class="pull-start"
-                >{{ editForm.get('diplomeContentType')!.value }}, {{ byteSize(editForm.get('diplome')!.value!) }}</span
-              >
-              <button
-                type="button"
-                (click)="clearInputImage('diplome', 'diplomeContentType', 'file_diplome')"
-                class="btn btn-secondary btn-xs pull-end"
-              >
-                <fa-icon icon="times"></fa-icon>
-              </button>
-            </div>
-            <input type="file" id="file_diplome" data-cy="diplome" (change)="setFileData($event, 'diplome', true)" accept="image/*" />
+        
+          <div class="col">
+            <label class="form-label" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" style="width: 200px; height: 30px; font-size: 14px;" />
           </div>
-          <input type="hidden" class="form-control" name="diplome" id="field_diplome" data-cy="diplome" formControlName="diplome" />
-          <input
-            type="hidden"
-            class="form-control"
-            name="diplomeContentType"
-            id="field_diplomeContentType"
-            formControlName="diplomeContentType"
-          />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_releveDeNote">Releve De Note</label>
-          <div>
-            <img
-              [src]="'data:' + editForm.get('releveDeNoteContentType')!.value + ';base64,' + editForm.get('releveDeNote')!.value"
-              style="max-height: 100px"
-              *ngIf="editForm.get('releveDeNote')!.value"
-              alt="depot image"
-            />
-            <div *ngIf="editForm.get('releveDeNote')!.value" class="form-text text-danger clearfix">
-              <span class="pull-start"
-                >{{ editForm.get('releveDeNoteContentType')!.value }}, {{ byteSize(editForm.get('releveDeNote')!.value!) }}</span
-              >
-              <button
-                type="button"
-                (click)="clearInputImage('releveDeNote', 'releveDeNoteContentType', 'file_releveDeNote')"
-                class="btn btn-secondary btn-xs pull-end"
-              >
-                <fa-icon icon="times"></fa-icon>
-              </button>
-            </div>
+        
+          <div class="col">
+            <label class="form-label" for="field_nationalite">Nationalite</label>
             <input
-              type="file"
-              id="file_releveDeNote"
-              data-cy="releveDeNote"
-              (change)="setFileData($event, 'releveDeNote', true)"
-              accept="image/*"
+              type="text"
+              class="form-control"
+              name="nationalite"
+              id="field_nationalite"
+              data-cy="nationalite"
+              formControlName="nationalite"
+              style="width: 200px; height: 30px; font-size: 14px;"
             />
           </div>
-          <input
-            type="hidden"
-            class="form-control"
-            name="releveDeNote"
-            id="field_releveDeNote"
-            data-cy="releveDeNote"
-            formControlName="releveDeNote"
-          />
-          <input
-            type="hidden"
-            class="form-control"
-            name="releveDeNoteContentType"
-            id="field_releveDeNoteContentType"
-            formControlName="releveDeNoteContentType"
-          />
         </div>
+        
 
         <div class="row mb-3">
-          <label class="form-label" for="field_anneeObtention">Annee Obtention</label>
-          <input
-            type="text"
-            class="form-control"
-            name="anneeObtention"
-            id="field_anneeObtention"
-            data-cy="anneeObtention"
-            formControlName="anneeObtention"
-          />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_lieuObtention">Lieu Obtention</label>
-          <input
-            type="text"
-            class="form-control"
-            name="lieuObtention"
-            id="field_lieuObtention"
-            data-cy="lieuObtention"
-            formControlName="lieuObtention"
-          />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_mention">Mention</label>
-          <input type="text" class="form-control" name="mention" id="field_mention" data-cy="mention" formControlName="mention" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_lettreDeMotivation">Lettre De Motivation</label>
-          <div>
-            <img
-              [src]="
-                'data:' + editForm.get('lettreDeMotivationContentType')!.value + ';base64,' + editForm.get('lettreDeMotivation')!.value
-              "
-              style="max-height: 100px"
-              *ngIf="editForm.get('lettreDeMotivation')!.value"
-              alt="depot image"
-            />
-            <div *ngIf="editForm.get('lettreDeMotivation')!.value" class="form-text text-danger clearfix">
-              <span class="pull-start"
-                >{{ editForm.get('lettreDeMotivationContentType')!.value }},
-                {{ byteSize(editForm.get('lettreDeMotivation')!.value!) }}</span
-              >
-              <button
-                type="button"
-                (click)="clearInputImage('lettreDeMotivation', 'lettreDeMotivationContentType', 'file_lettreDeMotivation')"
-                class="btn btn-secondary btn-xs pull-end"
-              >
-                <fa-icon icon="times"></fa-icon>
-              </button>
+          <div class="col">
+            <label class="form-label" for="field_telephone">Telephone</label>
+            <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" style="width: 200px; height: 30px; font-size: 14px;"/>
+          </div>
+        
+          <div class="col">
+            <label class="form-label" for="field_sexe">Sexe</label>
+            <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe" style="width: 200px; height: 30px; font-size: 14px;">
+              <option [ngValue]="null"></option>
+              <option *ngFor="let enumSexe of enumSexeValues" [value]="enumSexe">{{enumSexe}}</option>
+            </select>
+          </div>
+        
+          <div class="col">
+            <label class="form-label" for="field_dateDepot">Date Depot</label>
+            <div class="d-flex">
+              <input
+                id="field_dateDepot"
+                data-cy="dateDepot"
+                type="datetime-local"
+                class="form-control"
+                name="dateDepot"
+                formControlName="dateDepot"
+                placeholder="YYYY-MM-DD HH:mm"
+                style="width: 200px; height: 30px; font-size: 14px;"
+              />
             </div>
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="col">
+            <label class="form-label" for="field_numeroDeTable">Numero De Table</label>
             <input
-              type="file"
-              id="file_lettreDeMotivation"
-              data-cy="lettreDeMotivation"
-              (change)="setFileData($event, 'lettreDeMotivation', true)"
-              accept="image/*"
+              type="text"
+              class="form-control"
+              name="numeroDeTable"
+              id="field_numeroDeTable"
+              data-cy="numeroDeTable"
+              formControlName="numeroDeTable"
+              style="width: 200px; height: 30px; font-size: 14px;"
             />
           </div>
-          <input
-            type="hidden"
-            class="form-control"
-            name="lettreDeMotivation"
-            id="field_lettreDeMotivation"
-            data-cy="lettreDeMotivation"
-            formControlName="lettreDeMotivation"
-          />
-          <input
-            type="hidden"
-            class="form-control"
-            name="lettreDeMotivationContentType"
-            id="field_lettreDeMotivationContentType"
-            formControlName="lettreDeMotivationContentType"
-          />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_choix1">Choix 1</label>
-          <input type="text" class="form-control" name="choix1" id="field_choix1" data-cy="choix1" formControlName="choix1" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_choix2">Choix 2</label>
-          <input type="text" class="form-control" name="choix2" id="field_choix2" data-cy="choix2" formControlName="choix2" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_choix3">Choix 3</label>
-          <input type="text" class="form-control" name="choix3" id="field_choix3" data-cy="choix3" formControlName="choix3" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_photo">Photo</label>
-          <div>
-            <img
-              [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value"
-              style="max-height: 100px"
-              *ngIf="editForm.get('photo')!.value"
-              alt="depot image"
+        
+          <div class="col">
+            <label class="form-label" for="field_serie">Serie</label>
+            <input
+              type="text"
+              class="form-control"
+              name="serie"
+              id="field_serie"
+              data-cy="serie"
+              formControlName="serie"
+              style="width: 200px; height: 30px; font-size: 14px;"
             />
-            <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
-              <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value!) }}</span>
-              <button
-                type="button"
-                (click)="clearInputImage('photo', 'photoContentType', 'file_photo')"
-                class="btn btn-secondary btn-xs pull-end"
-              >
-                <fa-icon icon="times"></fa-icon>
-              </button>
+          </div>
+        
+          <div class="col">
+            <label class="form-label" for="field_diplome">Diplome</label>
+            <div>
+              <img
+                [src]="'data:' + editForm.get('diplomeContentType')!.value + ';base64,' + editForm.get('diplome')!.value"
+                style="max-height: 50px"
+                *ngIf="editForm.get('diplome')!.value"
+                alt="depot image"
+              />
+              <div *ngIf="editForm.get('diplome')!.value" class="form-text text-danger clearfix">
+                <small class="pull-start"
+                  >{{ editForm.get('diplomeContentType')!.value }}, {{ byteSize(editForm.get('diplome')!.value!) }}</small
+                >
+                <button
+                  type="button"
+                  (click)="clearInputImage('diplome', 'diplomeContentType', 'file_diplome')"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+              <input type="file" id="file_diplome" data-cy="diplome" (change)="setFileData($event, 'diplome', true)" accept="image/*" style="width: 200px; height: 30px; font-size: 14px;"/>
             </div>
-            <input type="file" id="file_photo" data-cy="photo" (change)="setFileData($event, 'photo', true)" accept="image/*" />
           </div>
-          <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
-          <input
-            type="hidden"
-            class="form-control"
-            name="photoContentType"
-            id="field_photoContentType"
-            formControlName="photoContentType"
-          />
         </div>
+        
+        
 
         <div class="row mb-3">
-          <label class="form-label" for="field_bachelier">Bachelier</label>
+  <div class="col">
+    <label class="form-label" for="field_releveDeNote">Releve De Note</label>
+    <div>
+      <img
+        [src]="'data:' + editForm.get('releveDeNoteContentType')!.value + ';base64,' + editForm.get('releveDeNote')!.value"
+        style="max-height: 50px"
+        *ngIf="editForm.get('releveDeNote')!.value"
+        alt="depot image"
+      />
+      <div *ngIf="editForm.get('releveDeNote')!.value" class="form-text text-danger clearfix">
+        <span class="pull-start"
+          >{{ editForm.get('releveDeNoteContentType')!.value }}, {{ byteSize(editForm.get('releveDeNote')!.value!) }}</span
+        >
+        <button
+          type="button"
+          (click)="clearInputImage('releveDeNote', 'releveDeNoteContentType', 'file_releveDeNote')"
+          class="btn btn-secondary btn-xs pull-end"
+        >
+          <fa-icon icon="times"></fa-icon>
+        </button>
+      </div>
+      <input
+        type="file"
+        id="file_releveDeNote"
+        data-cy="releveDeNote"
+        (change)="setFileData($event, 'releveDeNote', true)"
+        accept="image/*"
+        style="width: 200px; height: 30px; font-size: 14px;"
+      />
+    </div>
+    <input
+      type="hidden"
+      class="form-control"
+      name="releveDeNote"
+      id="field_releveDeNote"
+      data-cy="releveDeNote"
+      formControlName="releveDeNote"
+      style="width: 200px; height: 30px; font-size: 14px;"
+    />
+    <input
+      type="hidden"
+      class="form-control"
+      name="releveDeNoteContentType"
+      id="field_releveDeNoteContentType"
+      formControlName="releveDeNoteContentType"
+      style="width: 200px; height: 30px; font-size: 14px;"
+    />
+  </div>
+
+  <div class="col">
+    <label class="form-label" for="field_anneeObtention">Annee Obtention</label>
+    <input
+      type="text"
+      class="form-control"
+      name="anneeObtention"
+      id="field_anneeObtention"
+      data-cy="anneeObtention"
+      formControlName="anneeObtention"
+      style="width: 200px; height: 30px; font-size: 14px;"
+    />
+  </div>
+
+  <div class="col">
+    <label class="form-label" for="field_lieuObtention">Lieu Obtention</label>
+    <input
+      type="text"
+      class="form-control"
+      name="lieuObtention"
+      id="field_lieuObtention"
+      data-cy="lieuObtention"
+      formControlName="lieuObtention"
+      style="width: 200px; height: 30px; font-size: 14px;"
+    />
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col">
+    <label class="form-label" for="field_mention">Mention</label>
+    <input type="text" class="form-control" name="mention" id="field_mention" data-cy="mention" formControlName="mention" style="width: 200px; height: 30px; font-size: 14px;" />
+  </div>
+
+  <div class="col">
+    <label class="form-label" for="field_lettreDeMotivation">Lettre De Motivation</label>
+    <div>
+      <img [src]="'data:' + editForm.get('lettreDeMotivationContentType')!.value + ';base64,' + editForm.get('lettreDeMotivation')!.value" style="max-height: 50px" *ngIf="editForm.get('lettreDeMotivation')!.value" alt="depot image" />
+      <div *ngIf="editForm.get('lettreDeMotivation')!.value" class="form-text text-danger clearfix">
+        <span class="pull-start">{{ editForm.get('lettreDeMotivationContentType')!.value }}, {{ byteSize(editForm.get('lettreDeMotivation')!.value!) }}</span>
+        <button type="button" (click)="clearInputImage('lettreDeMotivation', 'lettreDeMotivationContentType', 'file_lettreDeMotivation')" class="btn btn-secondary btn-xs pull-end">
+          <fa-icon icon="times"></fa-icon>
+        </button>
+      </div>
+      <input type="file" id="file_lettreDeMotivation" data-cy="lettreDeMotivation" (change)="setFileData($event, 'lettreDeMotivation', true)" accept="image/*" style="width: 200px; height: 30px; font-size: 14px;" />
+    </div>
+    <input type="hidden" class="form-control" name="lettreDeMotivation" id="field_lettreDeMotivation" data-cy="lettreDeMotivation" formControlName="lettreDeMotivation" style="width: 200px; height: 30px; font-size: 14px;" />
+    <input type="hidden" class="form-control" name="lettreDeMotivationContentType" id="field_lettreDeMotivationContentType" formControlName="lettreDeMotivationContentType" style="width: 200px; height: 30px; font-size: 14px;" />
+  </div>
+
+  <div class="col">
+    <label class="form-label" for="field_choix1">Choix 1</label>
+    <input type="text" class="form-control" name="choix1" id="field_choix1" data-cy="choix1" formControlName="choix1" style="width: 200px; height: 30px; font-size: 14px;" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <label class="form-label" for="field_choix2">Choix 2</label>
+    <input type="text" class="form-control" name="choix2" id="field_choix2" data-cy="choix2" formControlName="choix2" style="width: 200px; height: 30px; font-size: 14px;" />
+  </div>
+
+  <div class="col">
+    <label class="form-label" for="field_choix3">Choix 3</label>
+    <input type="text" class="form-control" name="choix3" id="field_choix3" data-cy="choix3" formControlName="choix3" style="width: 200px; height: 30px; font-size: 14px;" />
+  </div>
+
+  <div class="col">
+    <label class="form-label" for="field_photo">Photo</label>
+    <div>
+      <img [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value" style="max-height: 50px" *ngIf="editForm.get('photo')!.value" alt="depot image" />
+      <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+        <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value!) }}</span>
+        <button type="button" (click)="clearInputImage('photo', 'photoContentType', 'file_photo')" class="btn btn-secondary btn-xs pull-end">
+          <fa-icon icon="times"></fa-icon>
+        </button>
+      </div>
+      <input type="file" id="file_photo" data-cy="photo" (change)="setFileData($event, 'photo', true)" accept="image/*" style="width: 200px; height: 30px; font-size: 14px;" />
+    </div>
+    <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" style="width: 200px; height: 30px; font-size: 14px;" />
+    <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType" formControlName="photoContentType" style="width: 200px; height: 30px; font-size: 14px;" />
+  </div>
+</div>
+
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_session">Session</label>
           <select
             class="form-control"
-            id="field_bachelier"
-            data-cy="bachelier"
-            name="bachelier"
-            formControlName="bachelier"
-            [compareWith]="compareBachelier"
+            id="field_session"
+            data-cy="session"
+            name="session"
+            formControlName="session"
+            [compareWith]="compareSession"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="bachelierOption" *ngFor="let bachelierOption of bacheliersSharedCollection">{{ bachelierOption.id }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_dossier">Dossier</label>
-          <select
-            class="form-control"
-            id="field_dossier"
-            data-cy="dossier"
-            name="dossier"
-            formControlName="dossier"
-            [compareWith]="compareDossier"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="dossierOption" *ngFor="let dossierOption of dossiersSharedCollection">{{ dossierOption.id }}</option>
+            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.id }}</option>
           </select>
         </div>
       </div>

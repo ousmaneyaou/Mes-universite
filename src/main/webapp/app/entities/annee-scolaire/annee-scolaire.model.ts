@@ -1,10 +1,10 @@
-import { ICampagne } from 'app/entities/campagne/campagne.model';
+import { ISession } from 'app/entities/session/session.model';
 
 export interface IAnneeScolaire {
   id: number;
   libelle?: string | null;
-  enCour?: boolean | null;
-  campagne?: Pick<ICampagne, 'id'> | null;
+  enCours?: boolean | null;
+  session?: Pick<ISession, 'id'> | null;
 }
 
 export type NewAnneeScolaire = Omit<IAnneeScolaire, 'id'> & { id: null };

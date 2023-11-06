@@ -9,6 +9,8 @@ import { IBachelier } from '../bachelier.model';
 import { BachelierService } from '../service/bachelier.service';
 import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
+import { IDepot } from 'app/entities/depot/depot.model';
+import { DepotService } from 'app/entities/depot/service/depot.service';
 import { EnumSexe } from 'app/entities/enumerations/enum-sexe.model';
 
 @Component({
@@ -21,6 +23,7 @@ export class BachelierUpdateComponent implements OnInit {
   enumSexeValues = Object.keys(EnumSexe);
 
   usersSharedCollection: IUser[] = [];
+  depotsSharedCollection: IDepot[] = [];
 
   editForm: BachelierFormGroup = this.bachelierFormService.createBachelierFormGroup();
 
@@ -28,10 +31,13 @@ export class BachelierUpdateComponent implements OnInit {
     protected bachelierService: BachelierService,
     protected bachelierFormService: BachelierFormService,
     protected userService: UserService,
+    protected depotService: DepotService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
+
+  compareDepot = (o1: IDepot | null, o2: IDepot | null): boolean => this.depotService.compareDepot(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ bachelier }) => {
@@ -82,6 +88,7 @@ export class BachelierUpdateComponent implements OnInit {
     this.bachelierFormService.resetForm(this.editForm, bachelier);
 
     this.usersSharedCollection = this.userService.addUserToCollectionIfMissing<IUser>(this.usersSharedCollection, bachelier.utilisateur);
+    this.depotsSharedCollection = this.depotService.addDepotToCollectionIfMissing<IDepot>(this.depotsSharedCollection, bachelier.depot);
   }
 
   protected loadRelationshipsOptions(): void {
@@ -90,5 +97,11 @@ export class BachelierUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<IUser[]>) => res.body ?? []))
       .pipe(map((users: IUser[]) => this.userService.addUserToCollectionIfMissing<IUser>(users, this.bachelier?.utilisateur)))
       .subscribe((users: IUser[]) => (this.usersSharedCollection = users));
+
+    this.depotService
+      .query()
+      .pipe(map((res: HttpResponse<IDepot[]>) => res.body ?? []))
+      .pipe(map((depots: IDepot[]) => this.depotService.addDepotToCollectionIfMissing<IDepot>(depots, this.bachelier?.depot)))
+      .subscribe((depots: IDepot[]) => (this.depotsSharedCollection = depots));
   }
 }

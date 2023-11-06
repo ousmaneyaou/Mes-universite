@@ -61,8 +61,8 @@ public class AnneeScolaireService {
                 if (anneeScolaire.getLibelle() != null) {
                     existingAnneeScolaire.setLibelle(anneeScolaire.getLibelle());
                 }
-                if (anneeScolaire.getEnCour() != null) {
-                    existingAnneeScolaire.setEnCour(anneeScolaire.getEnCour());
+                if (anneeScolaire.getEnCours() != null) {
+                    existingAnneeScolaire.setEnCours(anneeScolaire.getEnCours());
                 }
 
                 return existingAnneeScolaire;

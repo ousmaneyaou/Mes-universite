@@ -23,7 +23,7 @@
             <column name="date_naissance" type="${datetimeType}">
                 <constraints nullable="true" />
             </column>
-            <column name="lieu_de_naissance" type="varchar(255)">
+            <column name="lieu_naissance" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="email" type="varchar(255)">
@@ -89,10 +89,7 @@
             <column name="photo_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="bachelier_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="dossier_id" type="bigint">
+            <column name="session_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -121,7 +118,7 @@
             <column name="nom" type="string"/>
             <column name="prenom" type="string"/>
             <column name="date_naissance" type="date"/>
-            <column name="lieu_de_naissance" type="string"/>
+            <column name="lieu_naissance" type="string"/>
             <column name="email" type="string"/>
             <column name="nationalite" type="string"/>
             <column name="telephone" type="string"/>

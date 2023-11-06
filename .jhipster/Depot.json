@@ -18,7 +18,7 @@
       "fieldType": "ZonedDateTime"
     },
     {
-      "fieldName": "lieuDeNaissance",
+      "fieldName": "lieuNaissance",
       "fieldType": "String"
     },
     {
@@ -102,13 +102,8 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "bachelier",
-      "relationshipName": "bachelier",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "dossier",
-      "relationshipName": "dossier",
+      "otherEntityName": "session",
+      "relationshipName": "session",
       "relationshipType": "many-to-one"
     }
   ],

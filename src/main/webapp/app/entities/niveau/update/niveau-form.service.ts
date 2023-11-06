@@ -20,6 +20,7 @@ type NiveauFormGroupContent = {
   id: FormControl<INiveau['id'] | NewNiveau['id']>;
   libelle: FormControl<INiveau['libelle']>;
   departement: FormControl<INiveau['departement']>;
+  session: FormControl<INiveau['session']>;
 };
 
 export type NiveauFormGroup = FormGroup<NiveauFormGroupContent>;
@@ -41,6 +42,7 @@ export class NiveauFormService {
       ),
       libelle: new FormControl(niveauRawValue.libelle),
       departement: new FormControl(niveauRawValue.departement),
+      session: new FormControl(niveauRawValue.session),
     });
   }
 

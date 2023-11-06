@@ -9,10 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { InscriptionFormService } from './inscription-form.service';
 import { InscriptionService } from '../service/inscription.service';
 import { IInscription } from '../inscription.model';
-import { IPaiement } from 'app/entities/paiement/paiement.model';
-import { PaiementService } from 'app/entities/paiement/service/paiement.service';
-import { IDossier } from 'app/entities/dossier/dossier.model';
-import { DossierService } from 'app/entities/dossier/service/dossier.service';
+import { ISession } from 'app/entities/session/session.model';
+import { SessionService } from 'app/entities/session/service/session.service';
 
 import { InscriptionUpdateComponent } from './inscription-update.component';
 
@@ -22,8 +20,7 @@ describe('Inscription Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let inscriptionFormService: InscriptionFormService;
   let inscriptionService: InscriptionService;
-  let paiementService: PaiementService;
-  let dossierService: DossierService;
+  let sessionService: SessionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,69 +43,43 @@ describe('Inscription Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     inscriptionFormService = TestBed.inject(InscriptionFormService);
     inscriptionService = TestBed.inject(InscriptionService);
-    paiementService = TestBed.inject(PaiementService);
-    dossierService = TestBed.inject(DossierService);
+    sessionService = TestBed.inject(SessionService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Paiement query and add missing value', () => {
+    it('Should call Session query and add missing value', () => {
       const inscription: IInscription = { id: 456 };
-      const paiement: IPaiement = { id: 55621 };
-      inscription.paiement = paiement;
+      const session: ISession = { id: 80403 };
+      inscription.session = session;
 
-      const paiementCollection: IPaiement[] = [{ id: 60866 }];
-      jest.spyOn(paiementService, 'query').mockReturnValue(of(new HttpResponse({ body: paiementCollection })));
-      const additionalPaiements = [paiement];
-      const expectedCollection: IPaiement[] = [...additionalPaiements, ...paiementCollection];
-      jest.spyOn(paiementService, 'addPaiementToCollectionIfMissing').mockReturnValue(expectedCollection);
+      const sessionCollection: ISession[] = [{ id: 75091 }];
+      jest.spyOn(sessionService, 'query').mockReturnValue(of(new HttpResponse({ body: sessionCollection })));
+      const additionalSessions = [session];
+      const expectedCollection: ISession[] = [...additionalSessions, ...sessionCollection];
+      jest.spyOn(sessionService, 'addSessionToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ inscription });
       comp.ngOnInit();
 
-      expect(paiementService.query).toHaveBeenCalled();
-      expect(paiementService.addPaiementToCollectionIfMissing).toHaveBeenCalledWith(
-        paiementCollection,
-        ...additionalPaiements.map(expect.objectContaining)
+      expect(sessionService.query).toHaveBeenCalled();
+      expect(sessionService.addSessionToCollectionIfMissing).toHaveBeenCalledWith(
+        sessionCollection,
+        ...additionalSessions.map(expect.objectContaining)
       );
-      expect(comp.paiementsSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call Dossier query and add missing value', () => {
-      const inscription: IInscription = { id: 456 };
-      const dossiers: IDossier[] = [{ id: 57218 }];
-      inscription.dossiers = dossiers;
-
-      const dossierCollection: IDossier[] = [{ id: 78935 }];
-      jest.spyOn(dossierService, 'query').mockReturnValue(of(new HttpResponse({ body: dossierCollection })));
-      const additionalDossiers = [...dossiers];
-      const expectedCollection: IDossier[] = [...additionalDossiers, ...dossierCollection];
-      jest.spyOn(dossierService, 'addDossierToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ inscription });
-      comp.ngOnInit();
-
-      expect(dossierService.query).toHaveBeenCalled();
-      expect(dossierService.addDossierToCollectionIfMissing).toHaveBeenCalledWith(
-        dossierCollection,
-        ...additionalDossiers.map(expect.objectContaining)
-      );
-      expect(comp.dossiersSharedCollection).toEqual(expectedCollection);
+      expect(comp.sessionsSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should update editForm', () => {
       const inscription: IInscription = { id: 456 };
-      const paiement: IPaiement = { id: 94622 };
-      inscription.paiement = paiement;
-      const dossiers: IDossier = { id: 93469 };
-      inscription.dossiers = [dossiers];
+      const session: ISession = { id: 80142 };
+      inscription.session = session;
 
       activatedRoute.data = of({ inscription });
       comp.ngOnInit();
 
-      expect(comp.paiementsSharedCollection).toContain(paiement);
-      expect(comp.dossiersSharedCollection).toContain(dossiers);
+      expect(comp.sessionsSharedCollection).toContain(session);
       expect(comp.inscription).toEqual(inscription);
     });
   });
@@ -182,23 +153,13 @@ describe('Inscription Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
-    describe('comparePaiement', () => {
-      it('Should forward to paiementService', () => {
+    describe('compareSession', () => {
+      it('Should forward to sessionService', () => {
         const entity = { id: 123 };
         const entity2 = { id: 456 };
-        jest.spyOn(paiementService, 'comparePaiement');
-        comp.comparePaiement(entity, entity2);
-        expect(paiementService.comparePaiement).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
-    describe('compareDossier', () => {
-      it('Should forward to dossierService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(dossierService, 'compareDossier');
-        comp.compareDossier(entity, entity2);
-        expect(dossierService.compareDossier).toHaveBeenCalledWith(entity, entity2);
+        jest.spyOn(sessionService, 'compareSession');
+        comp.compareSession(entity, entity2);
+        expect(sessionService.compareSession).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

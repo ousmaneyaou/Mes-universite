@@ -1,5 +1,6 @@
 package nig.campus.com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import javax.persistence.*;
@@ -25,6 +26,13 @@ public class Paiement implements Serializable {
 
     @Column(name = "etat")
     private Boolean etat;
+
+    @Column(name = "montant")
+    private Long montant;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "session" }, allowSetters = true)
+    private Inscription inscription;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -67,6 +75,32 @@ public class Paiement implements Serializable {
         this.etat = etat;
     }
 
+    public Long getMontant() {
+        return this.montant;
+    }
+
+    public Paiement montant(Long montant) {
+        this.setMontant(montant);
+        return this;
+    }
+
+    public void setMontant(Long montant) {
+        this.montant = montant;
+    }
+
+    public Inscription getInscription() {
+        return this.inscription;
+    }
+
+    public void setInscription(Inscription inscription) {
+        this.inscription = inscription;
+    }
+
+    public Paiement inscription(Inscription inscription) {
+        this.setInscription(inscription);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -93,6 +127,7 @@ public class Paiement implements Serializable {
             "id=" + getId() +
             ", datePaie='" + getDatePaie() + "'" +
             ", etat='" + getEtat() + "'" +
+            ", montant=" + getMontant() +
             "}";
     }
 }

@@ -32,6 +32,9 @@
             <column name="utilisateur_id" type="bigint">
                 <constraints nullable="true" unique="true" uniqueConstraintName="ux_bachelier__utilisateur_id" />
             </column>
+            <column name="depot_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="bachelier" columnName="date_naissance" columnDataType="${datetimeType}"/>

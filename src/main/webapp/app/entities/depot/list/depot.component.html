@@ -1,4 +1,4 @@
-<div>
+<div style="margin-top: 45px;">
   <h2 id="page-heading" data-cy="DepotHeading">
     <span>Depots</span>
 
@@ -19,6 +19,17 @@
       </button>
     </div>
   </h2>
+
+
+  <div class="container">
+    <div class="col-md-6">
+      <div class="search">
+        <i class="fa fa-search"></i>
+        <input type="text" [(ngModel)]="searchResults" placeholder="Search...">
+        <button (click)="searchParNom()">Search</button>
+      </div>    
+    </div>    
+</div>
 
   <jhi-alert-error></jhi-alert-error>
 
@@ -56,9 +67,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="lieuDeNaissance">
+          <th scope="col" jhiSortBy="lieuNaissance">
             <div class="d-flex">
-              <span>Lieu De Naissance</span>
+              <span>Lieu Naissance</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -164,15 +175,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="bachelier.id">
+          <th scope="col" jhiSortBy="session.id">
             <div class="d-flex">
-              <span>Bachelier</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="dossier.id">
-            <div class="d-flex">
-              <span>Dossier</span>
+              <span>Session</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -187,7 +192,7 @@
           <td>{{ depot.nom }}</td>
           <td>{{ depot.prenom }}</td>
           <td>{{ depot.dateNaissance | formatMediumDatetime }}</td>
-          <td>{{ depot.lieuDeNaissance }}</td>
+          <td>{{ depot.lieuNaissance }}</td>
           <td>{{ depot.email }}</td>
           <td>{{ depot.nationalite }}</td>
           <td>{{ depot.telephone }}</td>
@@ -236,13 +241,8 @@
             <span *ngIf="depot.photo">{{ depot.photoContentType }}, {{ byteSize(depot.photo) }}</span>
           </td>
           <td>
-            <div *ngIf="depot.bachelier">
-              <a [routerLink]="['/bachelier', depot.bachelier.id, 'view']">{{ depot.bachelier.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="depot.dossier">
-              <a [routerLink]="['/dossier', depot.dossier.id, 'view']">{{ depot.dossier.id }}</a>
+            <div *ngIf="depot.session">
+              <a [routerLink]="['/session', depot.session.id, 'view']">{{ depot.session.id }}</a>
             </div>
           </td>
           <td class="text-end">

@@ -44,15 +44,15 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="enCour">
+          <th scope="col" jhiSortBy="enCours">
             <div class="d-flex">
-              <span>En Cour</span>
+              <span>En Cours</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="campagne.id">
+          <th scope="col" jhiSortBy="session.id">
             <div class="d-flex">
-              <span>Campagne</span>
+              <span>Session</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -65,10 +65,10 @@
             <a [routerLink]="['/annee-scolaire', anneeScolaire.id, 'view']">{{ anneeScolaire.id }}</a>
           </td>
           <td>{{ anneeScolaire.libelle }}</td>
-          <td>{{ anneeScolaire.enCour }}</td>
+          <td>{{ anneeScolaire.enCours }}</td>
           <td>
-            <div *ngIf="anneeScolaire.campagne">
-              <a [routerLink]="['/campagne', anneeScolaire.campagne.id, 'view']">{{ anneeScolaire.campagne.id }}</a>
+            <div *ngIf="anneeScolaire.session">
+              <a [routerLink]="['/session', anneeScolaire.session.id, 'view']">{{ anneeScolaire.session.id }}</a>
             </div>
           </td>
           <td class="text-end">

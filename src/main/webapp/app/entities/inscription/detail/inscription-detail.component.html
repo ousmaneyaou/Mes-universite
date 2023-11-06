@@ -22,18 +22,11 @@
         <dd>
           <span>{{ inscription.regime }}</span>
         </dd>
-        <dt><span>Paiement</span></dt>
+        <dt><span>Session</span></dt>
         <dd>
-          <div *ngIf="inscription.paiement">
-            <a [routerLink]="['/paiement', inscription.paiement.id, 'view']">{{ inscription.paiement.id }}</a>
+          <div *ngIf="inscription.session">
+            <a [routerLink]="['/session', inscription.session.id, 'view']">{{ inscription.session.id }}</a>
           </div>
-        </dd>
-        <dt><span>Dossiers</span></dt>
-        <dd>
-          <span *ngFor="let dossiers of inscription.dossiers; let last = last">
-            <a [routerLink]="['/dossier', dossiers.id, 'view']">{{ dossiers.id }}</a
-            >{{ last ? '' : ', ' }}
-          </span>
         </dd>
       </dl>
 

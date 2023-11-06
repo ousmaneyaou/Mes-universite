@@ -22,6 +22,16 @@
         <dd>
           <span>{{ paiement.etat }}</span>
         </dd>
+        <dt><span>Montant</span></dt>
+        <dd>
+          <span>{{ paiement.montant }}</span>
+        </dd>
+        <dt><span>Inscription</span></dt>
+        <dd>
+          <div *ngIf="paiement.inscription">
+            <a [routerLink]="['/inscription', paiement.inscription.id, 'view']">{{ paiement.inscription.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

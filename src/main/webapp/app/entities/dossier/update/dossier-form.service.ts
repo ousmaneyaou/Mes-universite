@@ -14,14 +14,13 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type DossierFormGroupInput = IDossier | PartialWithRequiredKeyOf<NewDossier>;
 
-type DossierFormDefaults = Pick<NewDossier, 'id' | 'valider' | 'inscriptions'>;
+type DossierFormDefaults = Pick<NewDossier, 'id' | 'valider'>;
 
 type DossierFormGroupContent = {
   id: FormControl<IDossier['id'] | NewDossier['id']>;
   valider: FormControl<IDossier['valider']>;
   niveau: FormControl<IDossier['niveau']>;
   campagne: FormControl<IDossier['campagne']>;
-  inscriptions: FormControl<IDossier['inscriptions']>;
 };
 
 export type DossierFormGroup = FormGroup<DossierFormGroupContent>;
@@ -44,7 +43,6 @@ export class DossierFormService {
       valider: new FormControl(dossierRawValue.valider),
       niveau: new FormControl(dossierRawValue.niveau),
       campagne: new FormControl(dossierRawValue.campagne),
-      inscriptions: new FormControl(dossierRawValue.inscriptions ?? []),
     });
   }
 
@@ -66,7 +64,6 @@ export class DossierFormService {
     return {
       id: null,
       valider: false,
-      inscriptions: [],
     };
   }
 }

@@ -8,16 +8,10 @@
     -->
     <changeSet id="20230906012351-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="bachelier_id"
+        <addForeignKeyConstraint baseColumnNames="session_id"
                                  baseTableName="depot"
-                                 constraintName="fk_depot__bachelier_id"
+                                 constraintName="fk_depot__session_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="bachelier"/>
-
-        <addForeignKeyConstraint baseColumnNames="dossier_id"
-                                 baseTableName="depot"
-                                 constraintName="fk_depot__dossier_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="dossier"/>
+                                 referencedTableName="session"/>
     </changeSet>
 </databaseChangeLog>

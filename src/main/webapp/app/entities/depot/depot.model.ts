@@ -1,6 +1,5 @@
 import dayjs from 'dayjs/esm';
-import { IBachelier } from 'app/entities/bachelier/bachelier.model';
-import { IDossier } from 'app/entities/dossier/dossier.model';
+import { ISession } from 'app/entities/session/session.model';
 import { EnumSexe } from 'app/entities/enumerations/enum-sexe.model';
 
 export interface IDepot {
@@ -8,7 +7,7 @@ export interface IDepot {
   nom?: string | null;
   prenom?: string | null;
   dateNaissance?: dayjs.Dayjs | null;
-  lieuDeNaissance?: string | null;
+  lieuNaissance?: string | null;
   email?: string | null;
   nationalite?: string | null;
   telephone?: string | null;
@@ -30,8 +29,7 @@ export interface IDepot {
   choix3?: string | null;
   photo?: string | null;
   photoContentType?: string | null;
-  bachelier?: Pick<IBachelier, 'id'> | null;
-  dossier?: Pick<IDossier, 'id'> | null;
+  session?: Pick<ISession, 'id'> | null;
 }
 
 export type NewDepot = Omit<IDepot, 'id'> & { id: null };

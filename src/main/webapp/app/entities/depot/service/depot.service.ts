@@ -28,6 +28,7 @@ export type EntityArrayResponseType = HttpResponse<IDepot[]>;
 @Injectable({ providedIn: 'root' })
 export class DepotService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/depots');
+  resourceUrl2: any;
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -121,5 +122,11 @@ export class DepotService {
     return res.clone({
       body: res.body ? res.body.map(item => this.convertDateFromServer(item)) : null,
     });
+  }
+
+
+  findByNom(nom: string): Observable<HttpResponse<IDepot[]>> {
+    return this.http.get<IDepot[]>(`${this.resourceUrl2}/${nom}`, { observe: 'response' });
+    
   }
 }

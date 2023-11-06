@@ -140,21 +140,12 @@ public class InscriptionResource {
      * {@code GET  /inscriptions} : get all the inscriptions.
      *
      * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of inscriptions in body.
      */
     @GetMapping("/inscriptions")
-    public ResponseEntity<List<Inscription>> getAllInscriptions(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
-        @RequestParam(required = false, defaultValue = "false") boolean eagerload
-    ) {
+    public ResponseEntity<List<Inscription>> getAllInscriptions(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Inscriptions");
-        Page<Inscription> page;
-        if (eagerload) {
-            page = inscriptionService.findAllWithEagerRelationships(pageable);
-        } else {
-            page = inscriptionService.findAll(pageable);
-        }
+        Page<Inscription> page = inscriptionService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

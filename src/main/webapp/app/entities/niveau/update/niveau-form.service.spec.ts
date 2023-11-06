@@ -22,6 +22,7 @@ describe('Niveau Form Service', () => {
             id: expect.any(Object),
             libelle: expect.any(Object),
             departement: expect.any(Object),
+            session: expect.any(Object),
           })
         );
       });
@@ -34,6 +35,7 @@ describe('Niveau Form Service', () => {
             id: expect.any(Object),
             libelle: expect.any(Object),
             departement: expect.any(Object),
+            session: expect.any(Object),
           })
         );
       });

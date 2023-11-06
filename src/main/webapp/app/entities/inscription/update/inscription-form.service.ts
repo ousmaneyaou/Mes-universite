@@ -27,14 +27,13 @@ type InscriptionFormRawValue = FormValueOf<IInscription>;
 
 type NewInscriptionFormRawValue = FormValueOf<NewInscription>;
 
-type InscriptionFormDefaults = Pick<NewInscription, 'id' | 'dateInscription' | 'regime' | 'dossiers'>;
+type InscriptionFormDefaults = Pick<NewInscription, 'id' | 'dateInscription' | 'regime'>;
 
 type InscriptionFormGroupContent = {
   id: FormControl<InscriptionFormRawValue['id'] | NewInscription['id']>;
   dateInscription: FormControl<InscriptionFormRawValue['dateInscription']>;
   regime: FormControl<InscriptionFormRawValue['regime']>;
-  paiement: FormControl<InscriptionFormRawValue['paiement']>;
-  dossiers: FormControl<InscriptionFormRawValue['dossiers']>;
+  session: FormControl<InscriptionFormRawValue['session']>;
 };
 
 export type InscriptionFormGroup = FormGroup<InscriptionFormGroupContent>;
@@ -56,8 +55,7 @@ export class InscriptionFormService {
       ),
       dateInscription: new FormControl(inscriptionRawValue.dateInscription),
       regime: new FormControl(inscriptionRawValue.regime),
-      paiement: new FormControl(inscriptionRawValue.paiement),
-      dossiers: new FormControl(inscriptionRawValue.dossiers ?? []),
+      session: new FormControl(inscriptionRawValue.session),
     });
   }
 
@@ -82,7 +80,6 @@ export class InscriptionFormService {
       id: null,
       dateInscription: currentTime,
       regime: false,
-      dossiers: [],
     };
   }
 
@@ -101,7 +98,6 @@ export class InscriptionFormService {
     return {
       ...inscription,
       dateInscription: inscription.dateInscription ? inscription.dateInscription.format(DATE_TIME_FORMAT) : undefined,
-      dossiers: inscription.dossiers ?? [],
     };
   }
 }
