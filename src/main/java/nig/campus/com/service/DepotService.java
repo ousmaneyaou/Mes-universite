@@ -3,6 +3,8 @@ package nig.campus.com.service;
 import java.util.List;
 import java.util.Optional;
 import nig.campus.com.domain.Depot;
+import nig.campus.com.domain.Faculte;
+import nig.campus.com.domain.Universite;
 import nig.campus.com.repository.DepotRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -178,4 +180,8 @@ public class DepotService {
     public List<Depot> searchByNom(String nom) {
         return depotRepository.findByNom(nom);
     }
+
+   // public List<Depot> findByFaculte(Faculte fac) {
+        //return depotRepository.findAllByFaculte(fac);
+    //}
 }

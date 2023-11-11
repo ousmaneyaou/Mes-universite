@@ -83,8 +83,8 @@ public class SecurityConfiguration {
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/api/universite/**").hasAuthority(AuthoritiesConstants.UNIVERSITE)
-            .antMatchers("/api/faculte/**").hasAuthority(AuthoritiesConstants.FACULTE)
+            .antMatchers("/api/universite/**").hasAuthority(AuthoritiesConstants.UNIVERSITE)//role uniersite
+            .antMatchers("/api/faculte/**").hasAuthority(AuthoritiesConstants.FACULTE) // role faculte
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/health/**").permitAll()

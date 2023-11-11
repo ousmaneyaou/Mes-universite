@@ -43,142 +43,142 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
+          <th scope="col" jhiSortBy="id" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="d-flex">
               <span>ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+
             </div>
           </th>
           <th scope="col" jhiSortBy="nom">
             <div class="d-flex">
               <span>Nom</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+        
             </div>
           </th>
           <th scope="col" jhiSortBy="prenom">
             <div class="d-flex">
               <span>Prenom</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+       
             </div>
           </th>
           <th scope="col" jhiSortBy="dateNaissance">
             <div class="d-flex">
-              <span>Date Naissance</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>DateNaissance</span>
+      
             </div>
           </th>
           <th scope="col" jhiSortBy="lieuNaissance">
             <div class="d-flex">
-              <span>Lieu Naissance</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>LieuNaissance</span>
+             
             </div>
           </th>
           <th scope="col" jhiSortBy="email">
             <div class="d-flex">
               <span>Email</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+             
             </div>
           </th>
           <th scope="col" jhiSortBy="nationalite">
             <div class="d-flex">
               <span>Nationalite</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+           
             </div>
           </th>
           <th scope="col" jhiSortBy="telephone">
             <div class="d-flex">
               <span>Telephone</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+      
             </div>
           </th>
           <th scope="col" jhiSortBy="sexe">
             <div class="d-flex">
               <span>Sexe</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+          
             </div>
           </th>
           <th scope="col" jhiSortBy="dateDepot">
             <div class="d-flex">
-              <span>Date Depot</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>DateDepot</span>
+          
             </div>
           </th>
           <th scope="col" jhiSortBy="numeroDeTable">
             <div class="d-flex">
-              <span>Numero De Table</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>NumeroDeTable</span>
+             
             </div>
           </th>
           <th scope="col" jhiSortBy="serie">
             <div class="d-flex">
               <span>Serie</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+       
             </div>
           </th>
-          <th scope="col" jhiSortBy="diplome">
+          <th scope="col" jhiSortBy="diplome" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="d-flex">
               <span>Diplome</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+            
             </div>
           </th>
-          <th scope="col" jhiSortBy="releveDeNote">
+          <th scope="col" jhiSortBy="releveDeNote" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="d-flex">
-              <span>Releve De Note</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>ReleveDeNote</span>
+            
             </div>
           </th>
           <th scope="col" jhiSortBy="anneeObtention">
             <div class="d-flex">
-              <span>Annee Obtention</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>AnneeObtention</span>
+       
             </div>
           </th>
           <th scope="col" jhiSortBy="lieuObtention">
             <div class="d-flex">
-              <span>Lieu Obtention</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>LieuObtention</span>
+              
             </div>
           </th>
           <th scope="col" jhiSortBy="mention">
             <div class="d-flex">
               <span>Mention</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+            
             </div>
           </th>
-          <th scope="col" jhiSortBy="lettreDeMotivation">
+          <th scope="col" jhiSortBy="lettreDeMotivation" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="d-flex">
-              <span>Lettre De Motivation</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>LettreDeMotivation</span>
+             
             </div>
           </th>
           <th scope="col" jhiSortBy="choix1">
             <div class="d-flex">
-              <span>Choix 1</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>Choix1</span>
+            
             </div>
           </th>
           <th scope="col" jhiSortBy="choix2">
             <div class="d-flex">
-              <span>Choix 2</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>Choix2</span>
+             
             </div>
           </th>
           <th scope="col" jhiSortBy="choix3">
             <div class="d-flex">
-              <span>Choix 3</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+              <span>Choix3</span>
+         
             </div>
           </th>
-          <th scope="col" jhiSortBy="photo">
+          <th scope="col" jhiSortBy="photo" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="d-flex">
               <span>Photo</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+      
             </div>
           </th>
           <th scope="col" jhiSortBy="session.id">
             <div class="d-flex">
               <span>Session</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+             
             </div>
           </th>
           <th scope="col"></th>
@@ -186,7 +186,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let depot of depots; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a [routerLink]="['/depot', depot.id, 'view']">{{ depot.id }}</a>
           </td>
           <td>{{ depot.nom }}</td>
@@ -200,13 +200,13 @@
           <td>{{ depot.dateDepot | formatMediumDatetime }}</td>
           <td>{{ depot.numeroDeTable }}</td>
           <td>{{ depot.serie }}</td>
-          <td>
+          <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a *ngIf="depot.diplome" (click)="openFile(depot.diplome, depot.diplomeContentType)">
               <img [src]="'data:' + depot.diplomeContentType + ';base64,' + depot.diplome" style="max-height: 30px" alt="depot image" />
             </a>
             <span *ngIf="depot.diplome">{{ depot.diplomeContentType }}, {{ byteSize(depot.diplome) }}</span>
           </td>
-          <td>
+          <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a *ngIf="depot.releveDeNote" (click)="openFile(depot.releveDeNote, depot.releveDeNoteContentType)">
               <img
                 [src]="'data:' + depot.releveDeNoteContentType + ';base64,' + depot.releveDeNote"
@@ -219,7 +219,7 @@
           <td>{{ depot.anneeObtention }}</td>
           <td>{{ depot.lieuObtention }}</td>
           <td>{{ depot.mention }}</td>
-          <td>
+          <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a *ngIf="depot.lettreDeMotivation" (click)="openFile(depot.lettreDeMotivation, depot.lettreDeMotivationContentType)">
               <img
                 [src]="'data:' + depot.lettreDeMotivationContentType + ';base64,' + depot.lettreDeMotivation"
@@ -234,7 +234,7 @@
           <td>{{ depot.choix1 }}</td>
           <td>{{ depot.choix2 }}</td>
           <td>{{ depot.choix3 }}</td>
-          <td>
+          <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a *ngIf="depot.photo" (click)="openFile(depot.photo, depot.photoContentType)">
               <img [src]="'data:' + depot.photoContentType + ';base64,' + depot.photo" style="max-height: 30px" alt="depot image" />
             </a>
@@ -245,7 +245,7 @@
               <a [routerLink]="['/session', depot.session.id, 'view']">{{ depot.session.id }}</a>
             </div>
           </td>
-          <td class="text-end">
+          <td class="text-end" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/depot', depot.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>

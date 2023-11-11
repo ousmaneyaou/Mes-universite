@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import nig.campus.com.domain.Depot;
+import nig.campus.com.domain.Faculte;
+import nig.campus.com.domain.Universite;
 import nig.campus.com.repository.DepotRepository;
 import nig.campus.com.service.DepotService;
 import nig.campus.com.web.rest.errors.BadRequestAlertException;
@@ -174,11 +176,20 @@ public class DepotResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
-
+    /**
+     pour la recherche
+     */
     @GetMapping("/depots/{nom}")
     public ResponseEntity<List<Depot>> search(@PathVariable String nom) {
         List<Depot> depots = depotService.searchByNom(nom);
         return ResponseEntity.ok(depots);
     }
+
+    //@PostMapping("/depots/faculte")            /**la methode poste mapping*/
+    //public ResponseEntity<List<Depot>> getDepot(@RequestBody Faculte fac) {
+        //log.debug("REST request to get Faculte : {}", fac);
+       // List<Depot> depot = depotService.findByFaculte(fac);
+       // return ResponseEntity.ok().body(depot);
+    //}
 
 }

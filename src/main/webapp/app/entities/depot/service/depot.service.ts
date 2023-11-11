@@ -129,4 +129,9 @@ export class DepotService {
     return this.http.get<IDepot[]>(`${this.resourceUrl2}/${nom}`, { observe: 'response' });
     
   }
+
+  //la methode dans le service
+  //FindByFaculte(depot: IDepot): Observable<EntityArrayResponseType> {
+    //return this.http.post<IDepot[]>(this.resourceUrl, depot, { observe: 'response' });
+  //}
 }

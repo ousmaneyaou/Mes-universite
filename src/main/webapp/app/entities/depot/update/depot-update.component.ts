@@ -13,6 +13,7 @@ import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 import { ISession } from 'app/entities/session/session.model';
 import { SessionService } from 'app/entities/session/service/session.service';
 import { EnumSexe } from 'app/entities/enumerations/enum-sexe.model';
+import { FaculteService } from 'app/entities/faculte/service/faculte.service';
 
 @Component({
   selector: 'jhi-depot-update',
@@ -34,7 +35,8 @@ export class DepotUpdateComponent implements OnInit {
     protected depotFormService: DepotFormService,
     protected sessionService: SessionService,
     protected elementRef: ElementRef,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    protected faculteService: FaculteService
   ) {}
 
   compareSession = (o1: ISession | null, o2: ISession | null): boolean => this.sessionService.compareSession(o1, o2);
@@ -48,6 +50,10 @@ export class DepotUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
+
+    //this.faculteService.query().subscribe(/* la condition */
+      //res=>this.facultes = res.body,
+    //);
   }
 
   byteSize(base64String: string): string {
