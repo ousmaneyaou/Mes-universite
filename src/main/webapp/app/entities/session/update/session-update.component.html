@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="margin-top: 45px; font-family: 'Cambria', sans-serif;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-session-heading" data-cy="SessionCreateUpdateHeading">Create or edit a Session</h2>
@@ -57,7 +57,7 @@
             [compareWith]="compareNiveau"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="niveauOption" *ngFor="let niveauOption of niveausSharedCollection">{{ niveauOption.id }}</option>
+            <option [ngValue]="niveauOption" *ngFor="let niveauOption of niveausSharedCollection">{{ niveauOption.libelle }}</option>
           </select>
         </div>
       </div>

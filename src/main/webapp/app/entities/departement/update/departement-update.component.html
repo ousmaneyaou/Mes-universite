@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="margin-top: 45px; font-family: 'Cambria', sans-serif;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-departement-heading" data-cy="DepartementCreateUpdateHeading">Create or edit a Departement</h2>
@@ -27,7 +27,7 @@
             [compareWith]="compareFaculte"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="faculteOption" *ngFor="let faculteOption of facultesSharedCollection">{{ faculteOption.id }}</option>
+            <option [ngValue]="faculteOption" *ngFor="let faculteOption of facultesSharedCollection">{{ faculteOption.libelle }}</option>
           </select>
         </div>
       </div>

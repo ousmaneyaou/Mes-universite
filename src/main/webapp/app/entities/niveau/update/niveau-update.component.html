@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="margin-top: 45px; font-family: 'Cambria', sans-serif;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-niveau-heading" data-cy="NiveauCreateUpdateHeading">Create or edit a Niveau</h2>
@@ -28,7 +28,7 @@
           >
             <option [ngValue]="null"></option>
             <option [ngValue]="departementOption" *ngFor="let departementOption of departementsSharedCollection">
-              {{ departementOption.id }}
+              {{ departementOption.libelle }}
             </option>
           </select>
         </div>

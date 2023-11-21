@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="margin-top: 45px; font-family: 'Cambria', sans-serif;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-bachelier-heading" data-cy="BachelierCreateUpdateHeading">Create or edit a Bachelier</h2>
@@ -12,71 +12,80 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_sexe">Sexe</label>
-          <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
-            <option [ngValue]="null"></option>
-            <option *ngFor="let enumSexe of enumSexeValues" [value]="enumSexe">enumSexe</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_dateNaissance">Date Naissance</label>
-          <div class="d-flex">
-            <input
-              id="field_dateNaissance"
-              data-cy="dateNaissance"
-              type="datetime-local"
-              class="form-control"
-              name="dateNaissance"
-              formControlName="dateNaissance"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
+          <div class="col-md-6">
+              <label class="form-label" for="field_sexe">Sexe</label>
+              <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
+                  <option [ngValue]="null"></option>
+                  <option *ngFor="let enumSexe of enumSexeValues" [value]="enumSexe">{{enumSexe}}</option>
+              </select>
           </div>
-        </div>
+      
+          <div class="col-md-6">
+              <label class="form-label" for="field_dateNaissance">Date Naissance</label>
+              <div class="d-flex">
+                  <input
+                      id="field_dateNaissance"
+                      data-cy="dateNaissance"
+                      type="datetime-local"
+                      class="form-control"
+                      name="dateNaissance"
+                      formControlName="dateNaissance"
+                      placeholder="YYYY-MM-DD HH:mm"
+                  />
+              </div>
+          </div>
+      </div>
+      
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_lieuNaissance">Lieu Naissance</label>
-          <input
-            type="text"
-            class="form-control"
-            name="lieuNaissance"
-            id="field_lieuNaissance"
-            data-cy="lieuNaissance"
-            formControlName="lieuNaissance"
-          />
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="form-label" for="field_lieuNaissance">Lieu Naissance</label>
+            <input
+                type="text"
+                class="form-control"
+                name="lieuNaissance"
+                id="field_lieuNaissance"
+                data-cy="lieuNaissance"
+                formControlName="lieuNaissance"
+            />
         </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_nationalite">Nationalite</label>
-          <input
-            type="text"
-            class="form-control"
-            name="nationalite"
-            id="field_nationalite"
-            data-cy="nationalite"
-            formControlName="nationalite"
-          />
+    
+        <div class="col-md-6">
+            <label class="form-label" for="field_nationalite">Nationalite</label>
+            <input
+                type="text"
+                class="form-control"
+                name="nationalite"
+                id="field_nationalite"
+                data-cy="nationalite"
+                formControlName="nationalite"
+            />
         </div>
+    </div>
+    
 
-        <div class="row mb-3">
+    <div class="row mb-3">
+      <div class="col-md-6">
           <label class="form-label" for="field_telephone">Telephone</label>
           <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
-        </div>
-
-        <div class="row mb-3">
+      </div>
+  
+      <div class="col-md-6">
           <label class="form-label" for="field_utilisateur">Utilisateur</label>
           <select
-            class="form-control"
-            id="field_utilisateur"
-            data-cy="utilisateur"
-            name="utilisateur"
-            formControlName="utilisateur"
-            [compareWith]="compareUser"
+              class="form-control"
+              id="field_utilisateur"
+              data-cy="utilisateur"
+              name="utilisateur"
+              formControlName="utilisateur"
+              [compareWith]="compareUser"
           >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.id }}</option>
+              <option [ngValue]="null"></option>
+              <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.id }}</option>
           </select>
-        </div>
+      </div>
+  </div>
+  
 
         <div class="row mb-3">
           <label class="form-label" for="field_depot">Depot</label>
