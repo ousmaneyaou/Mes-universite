@@ -16,7 +16,7 @@ import { FaculteDeleteDialogComponent } from '../delete/faculte-delete-dialog.co
   templateUrl: './faculte.component.html',
 })
 export class FaculteComponent implements OnInit {
-  facultes?: IFaculte[];
+  facultes?: IFaculte[] | null;
   isLoading = false;
 
   predicate = 'id';
@@ -36,7 +36,8 @@ export class FaculteComponent implements OnInit {
   trackId = (_index: number, item: IFaculte): number => this.faculteService.getFaculteIdentifier(item);
 
   ngOnInit(): void {
-    this.load();
+    //this.load();
+    this.faculteService.query().subscribe(res => this.facultes= res.body);
   }
 
   delete(faculte: IFaculte): void {

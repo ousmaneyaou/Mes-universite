@@ -35,6 +35,7 @@ type SessionFormGroupContent = {
   intitule: FormControl<SessionFormRawValue['intitule']>;
   dateDebut: FormControl<SessionFormRawValue['dateDebut']>;
   dateFin: FormControl<SessionFormRawValue['dateFin']>;
+  niveau: FormControl<SessionFormRawValue['niveau']>;
 };
 
 export type SessionFormGroup = FormGroup<SessionFormGroupContent>;
@@ -57,6 +58,7 @@ export class SessionFormService {
       intitule: new FormControl(sessionRawValue.intitule),
       dateDebut: new FormControl(sessionRawValue.dateDebut),
       dateFin: new FormControl(sessionRawValue.dateFin),
+      niveau: new FormControl(sessionRawValue.niveau),
     });
   }
 

@@ -1,5 +1,5 @@
 <div>
-  <h2 id="page-heading" data-cy="SessionHeading" style="margin-top: 45px;">
+  <h2 id="page-heading" data-cy="SessionHeading">
     <span>Sessions</span>
 
     <div class="d-flex justify-content-end">
@@ -56,6 +56,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="niveau.id">
+            <div class="d-flex">
+              <span>Niveau</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -67,6 +73,11 @@
           <td>{{ session.intitule }}</td>
           <td>{{ session.dateDebut | formatMediumDatetime }}</td>
           <td>{{ session.dateFin | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="session.niveau">
+              <a [routerLink]="['/niveau', session.niveau.id, 'view']">{{ session.niveau.id }}</a>
+            </div>
+          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

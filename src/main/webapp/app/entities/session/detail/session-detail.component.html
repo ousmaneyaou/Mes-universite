@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center" style="margin-top: 45px;">
+<div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="session">
       <h2 data-cy="sessionDetailsHeading"><span>Session</span></h2>
@@ -25,6 +25,12 @@
         <dt><span>Date Fin</span></dt>
         <dd>
           <span>{{ session.dateFin | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Niveau</span></dt>
+        <dd>
+          <div *ngIf="session.niveau">
+            <a [routerLink]="['/niveau', session.niveau.id, 'view']">{{ session.niveau.id }}</a>
+          </div>
         </dd>
       </dl>
 

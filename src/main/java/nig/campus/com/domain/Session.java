@@ -1,5 +1,6 @@
 package nig.campus.com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -33,6 +34,10 @@ public class Session implements Serializable {
 
     @Column(name = "date_fin")
     private ZonedDateTime dateFin;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "departement" }, allowSetters = true)
+    private Niveau niveau;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -86,6 +91,19 @@ public class Session implements Serializable {
 
     public void setDateFin(ZonedDateTime dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public Niveau getNiveau() {
+        return this.niveau;
+    }
+
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
+    }
+
+    public Session niveau(Niveau niveau) {
+        this.setNiveau(niveau);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

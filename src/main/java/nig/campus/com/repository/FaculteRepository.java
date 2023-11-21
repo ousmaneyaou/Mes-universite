@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 public interface FaculteRepository extends JpaRepository<Faculte, Long> {
 
-    List<Faculte> findAllByUniversite(Universite uni);
+   // List<Faculte> findAllByUniversite(Universite uni);
 }

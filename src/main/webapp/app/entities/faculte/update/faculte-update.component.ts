@@ -55,6 +55,7 @@ export class FaculteUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const faculte = this.faculteFormService.getFaculte(this.editForm);
+    console.log(faculte);
     if (faculte.id !== null) {
       this.subscribeToSaveResponse(this.faculteService.update(faculte));
     } else {

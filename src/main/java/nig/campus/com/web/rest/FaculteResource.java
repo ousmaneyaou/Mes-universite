@@ -163,10 +163,12 @@ public class FaculteResource {
     }
 
     @PostMapping("/facultes/universite")            /**la methode poste mapping*/
-    public ResponseEntity<List<Faculte>> getFaculte(@RequestBody Universite uni) {
-        log.debug("REST request to get Faculte : {}", uni);
-        List<Faculte> faculte = faculteService.findByUniversite(uni);
-        return ResponseEntity.ok().body(faculte);
+    public ResponseEntity<Faculte> getFaculte(@RequestBody Faculte fac) {
+        log.debug("REST request to get Faculte : {}", fac);
+        //Faculte faculte= new Faculte();
+        //faculte.setUniversite(uni);
+       // List<Faculte> faculte = faculteService.findByUniversite(uni);
+        return ResponseEntity.ok().body(faculteService.save(fac));
     }
 
     /**

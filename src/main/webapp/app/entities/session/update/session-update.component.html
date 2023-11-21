@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center" style="margin-top: 45px;">
+<div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-session-heading" data-cy="SessionCreateUpdateHeading">Create or edit a Session</h2>
@@ -44,6 +44,21 @@
               placeholder="YYYY-MM-DD HH:mm"
             />
           </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_niveau">Niveau</label>
+          <select
+            class="form-control"
+            id="field_niveau"
+            data-cy="niveau"
+            name="niveau"
+            formControlName="niveau"
+            [compareWith]="compareNiveau"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="niveauOption" *ngFor="let niveauOption of niveausSharedCollection">{{ niveauOption.id }}</option>
+          </select>
         </div>
       </div>
 

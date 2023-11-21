@@ -17,6 +17,6 @@ public interface DepotRepository extends JpaRepository<Depot, Long> {
 
     //List<Depot> findAllByFaculte(Faculte fac);
 
-    List<Depot> findByNom(String nom);
+    List<Depot> findByNomIgnoreCase(String nom);
 
 }

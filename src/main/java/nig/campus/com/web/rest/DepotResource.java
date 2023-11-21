@@ -179,7 +179,7 @@ public class DepotResource {
     /**
      pour la recherche
      */
-    @GetMapping("/depots/{nom}")
+    @GetMapping("/depots/search/{nom}")
     public ResponseEntity<List<Depot>> search(@PathVariable String nom) {
         List<Depot> depots = depotService.searchByNom(nom);
         return ResponseEntity.ok(depots);
@@ -191,5 +191,13 @@ public class DepotResource {
        // List<Depot> depot = depotService.findByFaculte(fac);
        // return ResponseEntity.ok().body(depot);
     //}
+
+    @PostMapping("/depot/departement")            /**la methode poste mapping*/
+    public ResponseEntity<Depot> getFaculte(@RequestBody Depot dep) {
+      //Faculte faculte= new Faculte();
+        //faculte.setUniversite(uni);
+        // List<Faculte> faculte = faculteService.findByUniversite(uni);
+        return ResponseEntity.ok().body(depotService.save(dep));
+    }
 
 }

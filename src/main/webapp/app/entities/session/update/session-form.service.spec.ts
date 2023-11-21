@@ -23,6 +23,7 @@ describe('Session Form Service', () => {
             intitule: expect.any(Object),
             dateDebut: expect.any(Object),
             dateFin: expect.any(Object),
+            niveau: expect.any(Object),
           })
         );
       });
@@ -36,6 +37,7 @@ describe('Session Form Service', () => {
             intitule: expect.any(Object),
             dateDebut: expect.any(Object),
             dateFin: expect.any(Object),
+            niveau: expect.any(Object),
           })
         );
       });

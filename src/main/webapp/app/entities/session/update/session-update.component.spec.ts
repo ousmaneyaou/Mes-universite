@@ -9,6 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { SessionFormService } from './session-form.service';
 import { SessionService } from '../service/session.service';
 import { ISession } from '../session.model';
+import { INiveau } from 'app/entities/niveau/niveau.model';
+import { NiveauService } from 'app/entities/niveau/service/niveau.service';
 
 import { SessionUpdateComponent } from './session-update.component';
 
@@ -18,6 +20,7 @@ describe('Session Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let sessionFormService: SessionFormService;
   let sessionService: SessionService;
+  let niveauService: NiveauService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,17 +43,43 @@ describe('Session Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     sessionFormService = TestBed.inject(SessionFormService);
     sessionService = TestBed.inject(SessionService);
+    niveauService = TestBed.inject(NiveauService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call Niveau query and add missing value', () => {
       const session: ISession = { id: 456 };
+      const niveau: INiveau = { id: 63440 };
+      session.niveau = niveau;
+
+      const niveauCollection: INiveau[] = [{ id: 81232 }];
+      jest.spyOn(niveauService, 'query').mockReturnValue(of(new HttpResponse({ body: niveauCollection })));
+      const additionalNiveaus = [niveau];
+      const expectedCollection: INiveau[] = [...additionalNiveaus, ...niveauCollection];
+      jest.spyOn(niveauService, 'addNiveauToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ session });
       comp.ngOnInit();
 
+      expect(niveauService.query).toHaveBeenCalled();
+      expect(niveauService.addNiveauToCollectionIfMissing).toHaveBeenCalledWith(
+        niveauCollection,
+        ...additionalNiveaus.map(expect.objectContaining)
+      );
+      expect(comp.niveausSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const session: ISession = { id: 456 };
+      const niveau: INiveau = { id: 18488 };
+      session.niveau = niveau;
+
+      activatedRoute.data = of({ session });
+      comp.ngOnInit();
+
+      expect(comp.niveausSharedCollection).toContain(niveau);
       expect(comp.session).toEqual(session);
     });
   });
@@ -120,6 +149,18 @@ describe('Session Management Update Component', () => {
       expect(sessionService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Compare relationships', () => {
+    describe('compareNiveau', () => {
+      it('Should forward to niveauService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(niveauService, 'compareNiveau');
+        comp.compareNiveau(entity, entity2);
+        expect(niveauService.compareNiveau).toHaveBeenCalledWith(entity, entity2);
+      });
     });
   });
 });

@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-5">
+        <addColumn tableName="session">
+            <column name="niveau_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-6">
+        <addForeignKeyConstraint baseColumnNames="niveau_id" baseTableName="session" constraintName="FK9muk992931f3jxa7mtytxk43n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="niveau" validate="true"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-7">
+        <dropForeignKeyConstraint baseTableName="niveau" constraintName="fk_niveau__session_id"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-8">
+        <dropColumn columnName="bachelier_id" tableName="depot"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-9">
+        <dropColumn columnName="campagne_id" tableName="annee_scolaire"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-10">
+        <dropColumn columnName="session_id" tableName="niveau"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-1">
+        <setColumnRemarks columnDataType="varchar(255)" columnName="intitule" tableName="campagne"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-2">
+        <setColumnRemarks columnDataType="varchar(255)" columnName="intitule" tableName="session"/>
+    </changeSet>
+    <changeSet author="YaouSouleyOusmane (generated)" id="1699799499982-4">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

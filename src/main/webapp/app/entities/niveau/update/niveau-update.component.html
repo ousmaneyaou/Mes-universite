@@ -32,21 +32,6 @@
             </option>
           </select>
         </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_session">Session</label>
-          <select
-            class="form-control"
-            id="field_session"
-            data-cy="session"
-            name="session"
-            formControlName="session"
-            [compareWith]="compareSession"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.id }}</option>
-          </select>
-        </div>
       </div>
 
       <div>

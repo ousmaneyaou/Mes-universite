@@ -18,9 +18,9 @@
   "relationships": [
     {
       "otherEntityName": "universite",
+      "ownerSide": true,
       "relationshipName": "universite",
-      "relationshipType": "many-to-one",
-      "ownerSide": true
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceClass"

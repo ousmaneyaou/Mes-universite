@@ -178,7 +178,7 @@ public class DepotService {
     }
 
     public List<Depot> searchByNom(String nom) {
-        return depotRepository.findByNom(nom);
+        return depotRepository.findByNomIgnoreCase(nom);
     }
 
    // public List<Depot> findByFaculte(Faculte fac) {

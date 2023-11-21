@@ -1,21 +1,22 @@
-<div>
-  <h2 id="page-heading" data-cy="PaiementHeading">
-    <span>Paiements</span>
+<div style="margin-top: 45px;">
+  <h2 id="page-heading" data-cy="PaiementHeading" style="font-family: 'Cambria', sans-serif; text-align: center;">
+    <span>Fenêtres de Paiements</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading" *jhiHasAnyAuthority="'ROLE_ADMIN'">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh list</span>
       </button>
 
       <button
+      style="font-family: 'Cambria', sans-serif; text-align: center; border-radius: 5px;"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-paiement"
         [routerLink]="['/paiement/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Paiement </span>
+        <span> Je paie </span>
       </button>
     </div>
   </h2>
@@ -35,31 +36,31 @@
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
               <span>ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+            
             </div>
           </th>
           <th scope="col" jhiSortBy="datePaie">
             <div class="d-flex">
               <span>Date Paie</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+             
             </div>
           </th>
           <th scope="col" jhiSortBy="etat">
             <div class="d-flex">
               <span>Etat</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+             
             </div>
           </th>
           <th scope="col" jhiSortBy="montant">
             <div class="d-flex">
               <span>Montant</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+         
             </div>
           </th>
           <th scope="col" jhiSortBy="inscription.id">
             <div class="d-flex">
               <span>Inscription</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+         
             </div>
           </th>
           <th scope="col"></th>
@@ -79,7 +80,7 @@
             </div>
           </td>
           <td class="text-end">
-            <div class="btn-group">
+            <div class="btn-group" *jhiHasAnyAuthority="'ROLE_ADMIN'">
               <button
                 type="submit"
                 [routerLink]="['/paiement', paiement.id, 'view']"

@@ -24,6 +24,12 @@
   "name": "Session",
   "pagination": "pagination",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "niveau",
+      "relationshipName": "niveau",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "service": "serviceClass"
 }

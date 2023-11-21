@@ -16,7 +16,7 @@ import { UniversiteDeleteDialogComponent } from '../delete/universite-delete-dia
   templateUrl: './universite.component.html',
 })
 export class UniversiteComponent implements OnInit {
-  universites?: IUniversite[];
+  universites?: IUniversite[] | null;
   isLoading = false;
 
   predicate = 'id';
@@ -36,7 +36,8 @@ export class UniversiteComponent implements OnInit {
   trackId = (_index: number, item: IUniversite): number => this.universiteService.getUniversiteIdentifier(item);
 
   ngOnInit(): void {
-    this.load();
+    //this.load();
+    this.universiteService.query().subscribe(res => this.universites= res.body);
   }
 
   delete(universite: IUniversite): void {

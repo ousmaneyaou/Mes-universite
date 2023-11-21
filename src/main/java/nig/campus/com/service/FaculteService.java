@@ -38,8 +38,9 @@ public class FaculteService {
         return faculteRepository.save(faculte);
     }
 
-    public List<Faculte> findByUniversite(Universite uni) {
-        return faculteRepository.findAllByUniversite(uni);
+    public Faculte findByUniversite(Faculte fac) {
+        return fac;
+        //return faculteRepository.findAllByUniversite(uni);
     }
 
     /**
