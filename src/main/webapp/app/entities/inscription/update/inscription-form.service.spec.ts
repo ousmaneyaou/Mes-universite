@@ -22,6 +22,10 @@ describe('Inscription Form Service', () => {
             id: expect.any(Object),
             dateInscription: expect.any(Object),
             regime: expect.any(Object),
+            anneeAcademique: expect.any(Object),
+            montantInscription: expect.any(Object),
+            niveau: expect.any(Object),
+            observation: expect.any(Object),
             session: expect.any(Object),
           })
         );
@@ -35,6 +39,10 @@ describe('Inscription Form Service', () => {
             id: expect.any(Object),
             dateInscription: expect.any(Object),
             regime: expect.any(Object),
+            anneeAcademique: expect.any(Object),
+            montantInscription: expect.any(Object),
+            niveau: expect.any(Object),
+            observation: expect.any(Object),
             session: expect.any(Object),
           })
         );

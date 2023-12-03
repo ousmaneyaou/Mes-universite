@@ -7,15 +7,22 @@ export const sampleWithRequiredData: IInscription = {
 };
 
 export const sampleWithPartialData: IInscription = {
-  id: 70873,
-  dateInscription: dayjs('2023-09-05T23:55'),
-  regime: true,
+  id: 4846,
+  dateInscription: dayjs('2023-09-05T07:58'),
+  regime: false,
+  anneeAcademique: 'plum Dynamic architecture',
+  niveau: 'Movies',
+  observation: 'Iranian',
 };
 
 export const sampleWithFullData: IInscription = {
-  id: 53761,
-  dateInscription: dayjs('2023-09-06T00:14'),
+  id: 92320,
+  dateInscription: dayjs('2023-09-05T18:27'),
   regime: true,
+  anneeAcademique: 'invoice',
+  montantInscription: 59336,
+  niveau: 'Executive Grenadines',
+  observation: 'Mobility Reverse-engineered',
 };
 
 export const sampleWithNewData: NewInscription = {

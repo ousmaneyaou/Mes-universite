@@ -12,6 +12,22 @@
     {
       "fieldName": "regime",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "anneeAcademique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "montantInscription",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "niveau",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observation",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

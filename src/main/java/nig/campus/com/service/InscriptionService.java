@@ -65,6 +65,18 @@ public class InscriptionService {
                 if (inscription.getRegime() != null) {
                     existingInscription.setRegime(inscription.getRegime());
                 }
+                if (inscription.getAnneeAcademique() != null) {
+                    existingInscription.setAnneeAcademique(inscription.getAnneeAcademique());
+                }
+                if (inscription.getMontantInscription() != null) {
+                    existingInscription.setMontantInscription(inscription.getMontantInscription());
+                }
+                if (inscription.getNiveau() != null) {
+                    existingInscription.setNiveau(inscription.getNiveau());
+                }
+                if (inscription.getObservation() != null) {
+                    existingInscription.setObservation(inscription.getObservation());
+                }
 
                 return existingInscription;
             })

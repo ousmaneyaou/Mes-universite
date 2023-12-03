@@ -1,5 +1,6 @@
 package nig.campus.com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import javax.persistence.*;
@@ -26,7 +27,20 @@ public class Inscription implements Serializable {
     @Column(name = "regime")
     private Boolean regime;
 
+    @Column(name = "annee_academique")
+    private String anneeAcademique;
+
+    @Column(name = "montant_inscription")
+    private Integer montantInscription;
+
+    @Column(name = "niveau")
+    private String niveau;
+
+    @Column(name = "observation")
+    private String observation;
+
     @ManyToOne
+    @JsonIgnoreProperties(value = { "niveau" }, allowSetters = true)
     private Session session;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -70,6 +84,58 @@ public class Inscription implements Serializable {
         this.regime = regime;
     }
 
+    public String getAnneeAcademique() {
+        return this.anneeAcademique;
+    }
+
+    public Inscription anneeAcademique(String anneeAcademique) {
+        this.setAnneeAcademique(anneeAcademique);
+        return this;
+    }
+
+    public void setAnneeAcademique(String anneeAcademique) {
+        this.anneeAcademique = anneeAcademique;
+    }
+
+    public Integer getMontantInscription() {
+        return this.montantInscription;
+    }
+
+    public Inscription montantInscription(Integer montantInscription) {
+        this.setMontantInscription(montantInscription);
+        return this;
+    }
+
+    public void setMontantInscription(Integer montantInscription) {
+        this.montantInscription = montantInscription;
+    }
+
+    public String getNiveau() {
+        return this.niveau;
+    }
+
+    public Inscription niveau(String niveau) {
+        this.setNiveau(niveau);
+        return this;
+    }
+
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
+    }
+
+    public String getObservation() {
+        return this.observation;
+    }
+
+    public Inscription observation(String observation) {
+        this.setObservation(observation);
+        return this;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
     public Session getSession() {
         return this.session;
     }
@@ -109,6 +175,10 @@ public class Inscription implements Serializable {
             "id=" + getId() +
             ", dateInscription='" + getDateInscription() + "'" +
             ", regime='" + getRegime() + "'" +
+            ", anneeAcademique='" + getAnneeAcademique() + "'" +
+            ", montantInscription=" + getMontantInscription() +
+            ", niveau='" + getNiveau() + "'" +
+            ", observation='" + getObservation() + "'" +
             "}";
     }
 }

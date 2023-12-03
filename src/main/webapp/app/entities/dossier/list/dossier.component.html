@@ -1,4 +1,4 @@
-<div>
+<div style="margin-top: 45px; font-family: 'Cambria', sans-serif;">
   <h2 id="page-heading" data-cy="DossierHeading">
     <span>Dossiers</span>
 
@@ -35,25 +35,25 @@
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
               <span>ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+    
             </div>
           </th>
           <th scope="col" jhiSortBy="valider">
             <div class="d-flex">
               <span>Valider</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+            
             </div>
           </th>
           <th scope="col" jhiSortBy="niveau.id">
             <div class="d-flex">
               <span>Niveau</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+         
             </div>
           </th>
           <th scope="col" jhiSortBy="campagne.id">
             <div class="d-flex">
               <span>Campagne</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
+         
             </div>
           </th>
           <th scope="col"></th>
@@ -67,7 +67,7 @@
           <td>{{ dossier.valider }}</td>
           <td>
             <div *ngIf="dossier.niveau">
-              <a [routerLink]="['/niveau', dossier.niveau.id, 'view']">{{ dossier.niveau.id }}</a>
+              <a [routerLink]="['/niveau', dossier.niveau.id]">{{ dossier.niveau.id }}</a>
             </div>
           </td>
           <td>

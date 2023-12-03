@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="margin-top: 45px; font-family: 'Cambria', sans-serif;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-annee-scolaire-heading" data-cy="AnneeScolaireCreateUpdateHeading">Create or edit a Annee Scolaire</h2>
@@ -32,7 +32,7 @@
             [compareWith]="compareSession"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.id }}</option>
+            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.intitule }}</option>
           </select>
         </div>
       </div>

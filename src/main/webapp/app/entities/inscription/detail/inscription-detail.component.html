@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center" style="margin-top: 45px;">
+<div class="d-flex justify-content-center" style="margin-top: 45px;text-align: center; font-family: 'Cambria', sans-serif;">
   <div class="col-8">
     <div *ngIf="inscription">
       <h2 data-cy="inscriptionDetailsHeading"><span>Inscription</span></h2>
@@ -21,6 +21,22 @@
         <dt><span>Regime</span></dt>
         <dd>
           <span>{{ inscription.regime }}</span>
+        </dd>
+        <dt><span>Annee Academique</span></dt>
+        <dd>
+          <span>{{ inscription.anneeAcademique }}</span>
+        </dd>
+        <dt><span>Montant Inscription</span></dt>
+        <dd>
+          <span>{{ inscription.montantInscription }}</span>
+        </dd>
+        <dt><span>Niveau</span></dt>
+        <dd>
+          <span>{{ inscription.niveau }}</span>
+        </dd>
+        <dt><span>Observation</span></dt>
+        <dd>
+          <span>{{ inscription.observation }}</span>
         </dd>
         <dt><span>Session</span></dt>
         <dd>

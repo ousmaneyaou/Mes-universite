@@ -16,7 +16,8 @@ import { DossierDeleteDialogComponent } from '../delete/dossier-delete-dialog.co
   templateUrl: './dossier.component.html',
 })
 export class DossierComponent implements OnInit {
-  dossiers?: IDossier[];
+  dossiers?: IDossier[] | null;
+
   isLoading = false;
 
   predicate = 'id';
@@ -37,6 +38,7 @@ export class DossierComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
+    //this.dossierService.query().subscribe(res => this.dossiers= res.body);
   }
 
   delete(dossier: IDossier): void {

@@ -33,6 +33,10 @@ type InscriptionFormGroupContent = {
   id: FormControl<InscriptionFormRawValue['id'] | NewInscription['id']>;
   dateInscription: FormControl<InscriptionFormRawValue['dateInscription']>;
   regime: FormControl<InscriptionFormRawValue['regime']>;
+  anneeAcademique: FormControl<InscriptionFormRawValue['anneeAcademique']>;
+  montantInscription: FormControl<InscriptionFormRawValue['montantInscription']>;
+  niveau: FormControl<InscriptionFormRawValue['niveau']>;
+  observation: FormControl<InscriptionFormRawValue['observation']>;
   session: FormControl<InscriptionFormRawValue['session']>;
 };
 
@@ -55,6 +59,10 @@ export class InscriptionFormService {
       ),
       dateInscription: new FormControl(inscriptionRawValue.dateInscription),
       regime: new FormControl(inscriptionRawValue.regime),
+      anneeAcademique: new FormControl(inscriptionRawValue.anneeAcademique),
+      montantInscription: new FormControl(inscriptionRawValue.montantInscription),
+      niveau: new FormControl(inscriptionRawValue.niveau),
+      observation: new FormControl(inscriptionRawValue.observation),
       session: new FormControl(inscriptionRawValue.session),
     });
   }
@@ -79,7 +87,7 @@ export class InscriptionFormService {
     return {
       id: null,
       dateInscription: currentTime,
-      regime: false,
+      regime: null,
     };
   }
 

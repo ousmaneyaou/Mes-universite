@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center" style="margin-top: 45px; font-family: 'Cambria', sans-serif; text-align: center;">
+<div class="d-flex justify-content-center" style="margin-top: 45px;text-align: center; font-family: 'Cambria', sans-serif;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-inscription-heading" data-cy="InscriptionCreateUpdateHeading">Prendre une Inscription</h2>
+      <h2 id="jhi-inscription-heading" data-cy="InscriptionCreateUpdateHeading">Create or edit a Inscription</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -12,32 +12,69 @@
         </div>
 
         <div class="row mb-3">
-          <div class="col-md-6">
-              <label class="form-label" for="field_dateInscription">Date Inscription</label>
-              <div class="d-flex">
-                  <input
-                      id="field_dateInscription"
-                      data-cy="dateInscription"
-                      type="date"
-                      class="form-control"
-                      name="dateInscription"
-                      formControlName="dateInscription"
-                      placeholder="YYYY-MM-DD"
-                  />
-              </div>
+          <label class="form-label" for="field_dateInscription">Date Inscription</label>
+          <div class="d-flex">
+            <input
+              id="field_dateInscription"
+              data-cy="dateInscription"
+              type="datetime-local"
+              class="form-control"
+              name="dateInscription"
+              formControlName="dateInscription"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
           </div>
-      
-          <div class="col-md-6">
-              <label class="form-label" for="field_regime">Regime</label>
-              <select class="form-select" id="field_regime" name="regime" data-cy="regime" formControlName="regime">
-                  <!-- Ajoutez des options selon vos besoins -->
-                  <option value="option1">Boursier</option>
-                  <option value="option2">Non Boursier</option>
-              </select>
-          </div>
+        </div>
+
+        <div class="ms-3">
+          <label class="form-label" for="field_regime">Regime</label>
+          <select class="form-select" id="field_regime" name="regime" data-cy="regime" formControlName="regime">
+              <!-- Ajoutez des options selon vos besoins -->
+              <option value="true">Boursier</option>
+              <option value="false">Non Boursier</option>
+          </select>
       </div>
-      
-      
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_anneeAcademique">Annee Academique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="anneeAcademique"
+            id="field_anneeAcademique"
+            data-cy="anneeAcademique"
+            formControlName="anneeAcademique"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_montantInscription">Montant Inscription</label>
+          <input
+            type="number"
+            class="form-control"
+            name="montantInscription"
+            id="field_montantInscription"
+            data-cy="montantInscription"
+            formControlName="montantInscription"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_niveau">Niveau</label>
+          <input type="text" class="form-control" name="niveau" id="field_niveau" data-cy="niveau" formControlName="niveau" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_observation">Observation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="observation"
+            id="field_observation"
+            data-cy="observation"
+            formControlName="observation"
+          />
+        </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_session">Session</label>
@@ -50,7 +87,7 @@
             [compareWith]="compareSession"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.intitule }}</option>
+            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.id }}</option>
           </select>
         </div>
       </div>

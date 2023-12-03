@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="margin-top: 45px; font-family: 'Cambria', sans-serif;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-paiement-heading" data-cy="PaiementCreateUpdateHeading">Create or edit a Paiement</h2>
@@ -12,7 +12,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_datePaie">Date Paie</label>
+          <label class="form-label" for="field_datePaie">Date Paiement</label>
           <div class="d-flex">
             <input
               id="field_datePaie"
@@ -48,7 +48,7 @@
           >
             <option [ngValue]="null"></option>
             <option [ngValue]="inscriptionOption" *ngFor="let inscriptionOption of inscriptionsSharedCollection">
-              {{ inscriptionOption.id }}
+              {{ inscriptionOption.session }}
             </option>
           </select>
         </div>

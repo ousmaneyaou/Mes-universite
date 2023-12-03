@@ -5,6 +5,10 @@ export interface IInscription {
   id: number;
   dateInscription?: dayjs.Dayjs | null;
   regime?: boolean | null;
+  anneeAcademique?: string | null;
+  montantInscription?: number | null;
+  niveau?: string | null;
+  observation?: string | null;
   session?: Pick<ISession, 'id'> | null;
 }
 

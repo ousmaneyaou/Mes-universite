@@ -40,6 +40,18 @@ class InscriptionResourceIT {
     private static final Boolean DEFAULT_REGIME = false;
     private static final Boolean UPDATED_REGIME = true;
 
+    private static final String DEFAULT_ANNEE_ACADEMIQUE = "AAAAAAAAAA";
+    private static final String UPDATED_ANNEE_ACADEMIQUE = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_MONTANT_INSCRIPTION = 1;
+    private static final Integer UPDATED_MONTANT_INSCRIPTION = 2;
+
+    private static final String DEFAULT_NIVEAU = "AAAAAAAAAA";
+    private static final String UPDATED_NIVEAU = "BBBBBBBBBB";
+
+    private static final String DEFAULT_OBSERVATION = "AAAAAAAAAA";
+    private static final String UPDATED_OBSERVATION = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/inscriptions";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -64,7 +76,13 @@ class InscriptionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Inscription createEntity(EntityManager em) {
-        Inscription inscription = new Inscription().dateInscription(DEFAULT_DATE_INSCRIPTION).regime(DEFAULT_REGIME);
+        Inscription inscription = new Inscription()
+            .dateInscription(DEFAULT_DATE_INSCRIPTION)
+            .regime(DEFAULT_REGIME)
+            .anneeAcademique(DEFAULT_ANNEE_ACADEMIQUE)
+            .montantInscription(DEFAULT_MONTANT_INSCRIPTION)
+            .niveau(DEFAULT_NIVEAU)
+            .observation(DEFAULT_OBSERVATION);
         return inscription;
     }
 
@@ -75,7 +93,13 @@ class InscriptionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Inscription createUpdatedEntity(EntityManager em) {
-        Inscription inscription = new Inscription().dateInscription(UPDATED_DATE_INSCRIPTION).regime(UPDATED_REGIME);
+        Inscription inscription = new Inscription()
+            .dateInscription(UPDATED_DATE_INSCRIPTION)
+            .regime(UPDATED_REGIME)
+            .anneeAcademique(UPDATED_ANNEE_ACADEMIQUE)
+            .montantInscription(UPDATED_MONTANT_INSCRIPTION)
+            .niveau(UPDATED_NIVEAU)
+            .observation(UPDATED_OBSERVATION);
         return inscription;
     }
 
@@ -99,6 +123,10 @@ class InscriptionResourceIT {
         Inscription testInscription = inscriptionList.get(inscriptionList.size() - 1);
         assertThat(testInscription.getDateInscription()).isEqualTo(DEFAULT_DATE_INSCRIPTION);
         assertThat(testInscription.getRegime()).isEqualTo(DEFAULT_REGIME);
+        assertThat(testInscription.getAnneeAcademique()).isEqualTo(DEFAULT_ANNEE_ACADEMIQUE);
+        assertThat(testInscription.getMontantInscription()).isEqualTo(DEFAULT_MONTANT_INSCRIPTION);
+        assertThat(testInscription.getNiveau()).isEqualTo(DEFAULT_NIVEAU);
+        assertThat(testInscription.getObservation()).isEqualTo(DEFAULT_OBSERVATION);
     }
 
     @Test
@@ -132,7 +160,11 @@ class InscriptionResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(inscription.getId().intValue())))
             .andExpect(jsonPath("$.[*].dateInscription").value(hasItem(sameInstant(DEFAULT_DATE_INSCRIPTION))))
-            .andExpect(jsonPath("$.[*].regime").value(hasItem(DEFAULT_REGIME.booleanValue())));
+            .andExpect(jsonPath("$.[*].regime").value(hasItem(DEFAULT_REGIME.booleanValue())))
+            .andExpect(jsonPath("$.[*].anneeAcademique").value(hasItem(DEFAULT_ANNEE_ACADEMIQUE)))
+            .andExpect(jsonPath("$.[*].montantInscription").value(hasItem(DEFAULT_MONTANT_INSCRIPTION)))
+            .andExpect(jsonPath("$.[*].niveau").value(hasItem(DEFAULT_NIVEAU)))
+            .andExpect(jsonPath("$.[*].observation").value(hasItem(DEFAULT_OBSERVATION)));
     }
 
     @Test
@@ -148,7 +180,11 @@ class InscriptionResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(inscription.getId().intValue()))
             .andExpect(jsonPath("$.dateInscription").value(sameInstant(DEFAULT_DATE_INSCRIPTION)))
-            .andExpect(jsonPath("$.regime").value(DEFAULT_REGIME.booleanValue()));
+            .andExpect(jsonPath("$.regime").value(DEFAULT_REGIME.booleanValue()))
+            .andExpect(jsonPath("$.anneeAcademique").value(DEFAULT_ANNEE_ACADEMIQUE))
+            .andExpect(jsonPath("$.montantInscription").value(DEFAULT_MONTANT_INSCRIPTION))
+            .andExpect(jsonPath("$.niveau").value(DEFAULT_NIVEAU))
+            .andExpect(jsonPath("$.observation").value(DEFAULT_OBSERVATION));
     }
 
     @Test
@@ -170,7 +206,13 @@ class InscriptionResourceIT {
         Inscription updatedInscription = inscriptionRepository.findById(inscription.getId()).get();
         // Disconnect from session so that the updates on updatedInscription are not directly saved in db
         em.detach(updatedInscription);
-        updatedInscription.dateInscription(UPDATED_DATE_INSCRIPTION).regime(UPDATED_REGIME);
+        updatedInscription
+            .dateInscription(UPDATED_DATE_INSCRIPTION)
+            .regime(UPDATED_REGIME)
+            .anneeAcademique(UPDATED_ANNEE_ACADEMIQUE)
+            .montantInscription(UPDATED_MONTANT_INSCRIPTION)
+            .niveau(UPDATED_NIVEAU)
+            .observation(UPDATED_OBSERVATION);
 
         restInscriptionMockMvc
             .perform(
@@ -186,6 +228,10 @@ class InscriptionResourceIT {
         Inscription testInscription = inscriptionList.get(inscriptionList.size() - 1);
         assertThat(testInscription.getDateInscription()).isEqualTo(UPDATED_DATE_INSCRIPTION);
         assertThat(testInscription.getRegime()).isEqualTo(UPDATED_REGIME);
+        assertThat(testInscription.getAnneeAcademique()).isEqualTo(UPDATED_ANNEE_ACADEMIQUE);
+        assertThat(testInscription.getMontantInscription()).isEqualTo(UPDATED_MONTANT_INSCRIPTION);
+        assertThat(testInscription.getNiveau()).isEqualTo(UPDATED_NIVEAU);
+        assertThat(testInscription.getObservation()).isEqualTo(UPDATED_OBSERVATION);
     }
 
     @Test
@@ -256,7 +302,11 @@ class InscriptionResourceIT {
         Inscription partialUpdatedInscription = new Inscription();
         partialUpdatedInscription.setId(inscription.getId());
 
-        partialUpdatedInscription.dateInscription(UPDATED_DATE_INSCRIPTION);
+        partialUpdatedInscription
+            .dateInscription(UPDATED_DATE_INSCRIPTION)
+            .anneeAcademique(UPDATED_ANNEE_ACADEMIQUE)
+            .montantInscription(UPDATED_MONTANT_INSCRIPTION)
+            .niveau(UPDATED_NIVEAU);
 
         restInscriptionMockMvc
             .perform(
@@ -272,6 +322,10 @@ class InscriptionResourceIT {
         Inscription testInscription = inscriptionList.get(inscriptionList.size() - 1);
         assertThat(testInscription.getDateInscription()).isEqualTo(UPDATED_DATE_INSCRIPTION);
         assertThat(testInscription.getRegime()).isEqualTo(DEFAULT_REGIME);
+        assertThat(testInscription.getAnneeAcademique()).isEqualTo(UPDATED_ANNEE_ACADEMIQUE);
+        assertThat(testInscription.getMontantInscription()).isEqualTo(UPDATED_MONTANT_INSCRIPTION);
+        assertThat(testInscription.getNiveau()).isEqualTo(UPDATED_NIVEAU);
+        assertThat(testInscription.getObservation()).isEqualTo(DEFAULT_OBSERVATION);
     }
 
     @Test
@@ -286,7 +340,13 @@ class InscriptionResourceIT {
         Inscription partialUpdatedInscription = new Inscription();
         partialUpdatedInscription.setId(inscription.getId());
 
-        partialUpdatedInscription.dateInscription(UPDATED_DATE_INSCRIPTION).regime(UPDATED_REGIME);
+        partialUpdatedInscription
+            .dateInscription(UPDATED_DATE_INSCRIPTION)
+            .regime(UPDATED_REGIME)
+            .anneeAcademique(UPDATED_ANNEE_ACADEMIQUE)
+            .montantInscription(UPDATED_MONTANT_INSCRIPTION)
+            .niveau(UPDATED_NIVEAU)
+            .observation(UPDATED_OBSERVATION);
 
         restInscriptionMockMvc
             .perform(
@@ -302,6 +362,10 @@ class InscriptionResourceIT {
         Inscription testInscription = inscriptionList.get(inscriptionList.size() - 1);
         assertThat(testInscription.getDateInscription()).isEqualTo(UPDATED_DATE_INSCRIPTION);
         assertThat(testInscription.getRegime()).isEqualTo(UPDATED_REGIME);
+        assertThat(testInscription.getAnneeAcademique()).isEqualTo(UPDATED_ANNEE_ACADEMIQUE);
+        assertThat(testInscription.getMontantInscription()).isEqualTo(UPDATED_MONTANT_INSCRIPTION);
+        assertThat(testInscription.getNiveau()).isEqualTo(UPDATED_NIVEAU);
+        assertThat(testInscription.getObservation()).isEqualTo(UPDATED_OBSERVATION);
     }
 
     @Test
