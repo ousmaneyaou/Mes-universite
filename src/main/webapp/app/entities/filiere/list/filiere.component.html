@@ -1,0 +1,117 @@
+<div style="margin-top: 45px; font-family: 'Cambria', sans-serif;">
+  <h2 id="page-heading" data-cy="FiliereHeading">
+    <span>Filieres</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-filiere"
+        [routerLink]="['/filiere/new']"
+      >
+     
+        <span> Create a new Filiere </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="filieres?.length === 0">
+    <span>No Filieres found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="filieres && filieres.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+             
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="libelle">
+            <div class="d-flex">
+              <span>Libelle</span>
+          
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="departement">
+            <div class="d-flex">
+              <span>Departement</span>
+         
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let filiere of filieres; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/filiere', filiere.id, 'view']">{{ filiere.id }}</a>
+          </td>
+          <td>{{ filiere.libelle }}</td>
+          <td>
+            <div *ngIf="filiere.departement">
+              <a [routerLink]="['/departement', filiere.departement.id, 'view']">{{ filiere.departement.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/filiere', filiere.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+               
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/filiere', filiere.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+          
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(filiere)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="filieres && filieres.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

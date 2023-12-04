@@ -1,0 +1,22 @@
+{
+  "changelogDate": "20231203172855",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Filiere",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "departement",
+      "relationshipName": "departement",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

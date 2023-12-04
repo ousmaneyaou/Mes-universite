@@ -21,6 +21,7 @@
     <include file="config/liquibase/changelog/20230906012352_added_entity_Inscription.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230906012353_added_entity_Paiement.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20231105175414_added_entity_Session.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231203172855_added_entity_Filiere.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20230906012343_added_entity_constraints_Bachelier.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230906012347_added_entity_constraints_Niveau.xml" relativeToChangelogFile="false"/>
@@ -31,8 +32,11 @@
     <include file="config/liquibase/changelog/20230906012353_added_entity_constraints_Paiement.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230906012346_added_entity_constraints_AnneeScolaire.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230906012351_added_entity_constraints_Depot.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231203172855_added_entity_constraints_Filiere.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20231112143120_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20231126180806_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231203174750_changelog.xml" relativeToChangelogFile="false"/>
+
     <!-- <include file="config/liquibase/changelog/20231029180048_changelog.xml" relativeToChangelogFile="false"/> -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->

@@ -31,14 +31,15 @@
       "Depot",
       "Inscription",
       "Paiement",
-      "Session"
+      "Session",
+      "Filiere"
     ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.3",
     "jwtSecretKey": "OTc5NTVkMjU5Mzg2ZmJiOGI4NDA4YzIxYWU2ZDRhMjkwMTlmYTIyNDRlYTdhMjVhNDNiNzY0NmEwOTI5MGQ1M2ViMjhkNGQ3NWU5ZmEyMGZkY2E2YjlhZjMwYmRhNjQ4YTg5MjE0MTc4NTliNWE3NDBjYTM1MmU5MDNmNmM2MTI=",
     "languages": ["en", "fr"],
-    "lastLiquibaseTimestamp": 1699206854000,
+    "lastLiquibaseTimestamp": 1701624535000,
     "messageBroker": false,
     "microfrontend": false,
     "microfrontends": [],

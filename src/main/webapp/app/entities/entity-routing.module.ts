@@ -60,6 +60,11 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./paiement/paiement.module').then(m => m.PaiementModule),
       },
       {
+        path: 'filiere',
+        data: { pageTitle: 'filiere' },
+        loadChildren: () => import('./filiere/filiere.module').then(m => m.FiliereModule),
+      },
+      {
         path: 'session',
         data: { pageTitle: 'Sessions' },
         loadChildren: () => import('./session/session.module').then(m => m.SessionModule),
