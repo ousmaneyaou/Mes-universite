@@ -154,4 +154,8 @@ export class DepotComponent implements OnInit {
       }
     })
   }
+
+  
+  
+
 }

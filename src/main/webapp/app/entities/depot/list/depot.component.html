@@ -233,9 +233,33 @@
               >{{ depot.lettreDeMotivationContentType }}, {{ byteSize(depot.lettreDeMotivation) }}</span
             >
           </td>
-          <td>{{ depot.choix1 }}</td>
-          <td>{{ depot.choix2 }}</td>
-          <td>{{ depot.choix3 }}</td>
+          <td>
+            {{ depot.choix1 }}
+            <div class="d-flex align-items-center ml-4" style="margin-left: 35px;">
+              <label class="lns-checkbox">
+                <input type="checkbox" [checked]="depot.choix1">
+              </label>
+            </div>
+          </td>
+          
+          <td>
+            {{ depot.choix2 }}
+            <div class="d-flex align-items-center ml-4" style="margin-left: 20px;">
+              <label class="lns-checkbox">
+                <input type="checkbox" [checked]="depot.choix2">
+              </label>
+            </div>
+          </td>
+
+          <td>
+            {{ depot.choix3 }}
+            <div class="d-flex align-items-center ml-4" style="margin-left: 40px;">
+              <label class="lns-checkbox larger-checkbox">
+                <input type="checkbox" [checked]="depot.choix3">
+              </label>
+            </div>
+          </td>
+
           <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a *ngIf="depot.photo" (click)="openFile(depot.photo, depot.photoContentType)">
               <img [src]="'data:' + depot.photoContentType + ';base64,' + depot.photo" style="max-height: 30px" alt="depot image" />
