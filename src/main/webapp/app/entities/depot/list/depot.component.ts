@@ -3,6 +3,9 @@ import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+//import { IDepot } from 'app/entities/depot/depot.model';
+
+
 
 import { IDepot } from '../depot.model';
 
@@ -155,7 +158,39 @@ export class DepotComponent implements OnInit {
     })
   }
 
+  // Supposons que depots est votre tableau de données
   
+
+// Méthode pour gérer le changement de la checkbox
+handleCheckboxChange(depot: IDepot, choix: string) {
+  // Désactive les autres checkboxes
+  if (choix === 'choix1') {
+    depot.disabledChoix2 = true;
+    depot.disabledChoix3 = true;
+  } else if (choix === 'choix2') {
+    depot.disabledChoix1 = true;
+    depot.disabledChoix3 = true;
+  } else if (choix === 'choix3') {
+    depot.disabledChoix1 = true;
+    depot.disabledChoix2 = true;
+  }
+
+  // Réinitialise les valeurs des autres checkboxes
+  if (choix !== 'choix1') {
+    depot.choix1 = false;
+  }
+  if (choix !== 'choix2') {
+    depot.choix2 = false;
+  }
+  if (choix !== 'choix3') {
+    depot.choix3 = false;
+  }
+
+  // Fait disparaître le résultat
+  depot.resultat = '';
+}
+
+
   
 
 }

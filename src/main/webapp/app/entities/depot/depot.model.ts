@@ -3,6 +3,11 @@ import { ISession } from 'app/entities/session/session.model';
 import { EnumSexe } from 'app/entities/enumerations/enum-sexe.model';
 
 export interface IDepot {
+
+  // ... autres propriétés
+  disabledChoix1?: boolean | undefined;
+  disabledChoix2?: boolean | undefined;
+  disabledChoix3?: boolean | null | undefined; 
   id: number;
   nom?: string | null;
   prenom?: string | null;
@@ -24,9 +29,10 @@ export interface IDepot {
   mention?: string | null;
   lettreDeMotivation?: string | null;
   lettreDeMotivationContentType?: string | null;
-  choix1?: string | null;
-  choix2?: string | null;
-  choix3?: string | null;
+  choix1?: boolean | null; // Mettez à jour le type ici
+  choix2?: boolean | null;
+  choix3?: boolean | null; 
+  resultat?: string | null;
   photo?: string | null;
   photoContentType?: string | null;
   session?: Pick<ISession, 'id'> | null;

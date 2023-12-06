@@ -237,7 +237,7 @@
             {{ depot.choix1 }}
             <div class="d-flex align-items-center ml-4" style="margin-left: 35px;">
               <label class="lns-checkbox">
-                <input type="checkbox" [checked]="depot.choix1">
+                <input type="checkbox" [checked]="depot.choix1" [disabled]="depot.disabledChoix1" (change)="handleCheckboxChange(depot, 'choix1')">
               </label>
             </div>
           </td>
@@ -246,19 +246,20 @@
             {{ depot.choix2 }}
             <div class="d-flex align-items-center ml-4" style="margin-left: 20px;">
               <label class="lns-checkbox">
-                <input type="checkbox" [checked]="depot.choix2">
+                <input type="checkbox" [checked]="depot.choix2" [disabled]="depot.disabledChoix2" (change)="handleCheckboxChange(depot, 'choix2')">
               </label>
             </div>
           </td>
-
+          
           <td>
             {{ depot.choix3 }}
             <div class="d-flex align-items-center ml-4" style="margin-left: 40px;">
               <label class="lns-checkbox larger-checkbox">
-                <input type="checkbox" [checked]="depot.choix3">
+                <input type="checkbox" [checked]="depot.choix3" [disabled]="depot.disabledChoix3" (change)="handleCheckboxChange(depot, 'choix3')">
               </label>
             </div>
           </td>
+          
 
           <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a *ngIf="depot.photo" (click)="openFile(depot.photo, depot.photoContentType)">
