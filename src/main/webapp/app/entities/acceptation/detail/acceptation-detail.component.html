@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="acceptation">
+      <h2 data-cy="acceptationDetailsHeading"><span>Acceptation</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ acceptation.id }}</span>
+        </dd>
+        <dt><span>Filiere</span></dt>
+        <dd>
+          <span>{{ acceptation.filiere }}</span>
+        </dd>
+        <dt><span>Date Acceptation</span></dt>
+        <dd>
+          <span>{{ acceptation.dateAcceptation | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Inscription</span></dt>
+        <dd>
+          <div *ngIf="acceptation.inscription">
+            <a [routerLink]="['/inscription', acceptation.inscription.id, 'view']">{{ acceptation.inscription.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Depot</span></dt>
+        <dd>
+          <div *ngIf="acceptation.depot">
+            <a [routerLink]="['/depot', acceptation.depot.id, 'view']">{{ acceptation.depot.id }}</a>
+          </div>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ acceptation.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/acceptation', acceptation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

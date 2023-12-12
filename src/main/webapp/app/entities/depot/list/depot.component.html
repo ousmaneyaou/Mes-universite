@@ -274,6 +274,12 @@
           </td>
           <td class="text-end" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="btn-group">
+
+              <button type="submit" (click)="acceptation(acceptation)" class="btn btn-success btn-sm" data-cy="entityAcceptationsButton">
+                <fa-icon icon="check"></fa-icon>
+                <span class="d-none d-md-inline">Selection</span>
+              </button>            
+
               <button type="submit" [routerLink]="['/depot', depot.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">View</span>

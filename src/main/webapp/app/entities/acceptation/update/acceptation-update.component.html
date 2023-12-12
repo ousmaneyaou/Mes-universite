@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-acceptation-heading" data-cy="AcceptationCreateUpdateHeading">Create or edit a Acceptation</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_filiere">Filiere</label>
+          <input type="text" class="form-control" name="filiere" id="field_filiere" data-cy="filiere" formControlName="filiere" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateAcceptation">Date Acceptation</label>
+          <div class="input-group">
+            <input
+              id="field_dateAcceptation"
+              data-cy="dateAcceptation"
+              type="text"
+              class="form-control"
+              name="dateAcceptation"
+              ngbDatepicker
+              #dateAcceptationDp="ngbDatepicker"
+              formControlName="dateAcceptation"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateAcceptationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_inscription">Inscription</label>
+          <select
+            class="form-control"
+            id="field_inscription"
+            data-cy="inscription"
+            name="inscription"
+            formControlName="inscription"
+            [compareWith]="compareInscription"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="inscriptionOption" *ngFor="let inscriptionOption of inscriptionsSharedCollection">
+              {{ inscriptionOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_depot">Depot</label>
+          <select class="form-control" id="field_depot" data-cy="depot" name="depot" formControlName="depot" [compareWith]="compareDepot">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="depotOption" *ngFor="let depotOption of depotsSharedCollection">{{ depotOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

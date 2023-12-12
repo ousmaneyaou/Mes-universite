@@ -1,0 +1,39 @@
+{
+  "changelogDate": "20231210174814",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "filiere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateAcceptation",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Acceptation",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "inscription",
+      "relationshipName": "inscription",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "depot",
+      "relationshipName": "depot",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

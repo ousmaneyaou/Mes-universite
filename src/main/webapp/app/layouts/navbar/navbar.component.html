@@ -61,7 +61,7 @@
             </span>
           </a>
         </li>
-        
+
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         <li
           *ngSwitchCase="true"
@@ -71,7 +71,14 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+          <a
+            class="nav-link dropdown-toggle"
+            ngbDropdownToggle
+            href="javascript:void(0);"
+            id="entity-menu"
+            data-cy="entity"
+            *jhiHasAnyAuthority="'ROLE_ADMIN'"
+          >
             <span>
               <fa-icon icon="th-list"></fa-icon>
               <strong style="color: black; font-size: 10px">Entities</strong>
@@ -170,7 +177,7 @@
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="collapseNavbar()"
               >
-              <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span>Filiere</span>
               </a>
             </li>
@@ -233,6 +240,18 @@
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span>Session</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="acceptation"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span>Acceptation</span>
               </a>
             </li>
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
