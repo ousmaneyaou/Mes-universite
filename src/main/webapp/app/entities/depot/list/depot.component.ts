@@ -167,24 +167,24 @@ export class DepotComponent implements OnInit {
   
 
 // Méthode pour gérer le changement de la checkbox
-handleCheckboxChange(depot: IDepot, choix: string) {
-  // Désactive les autres checkboxes
-  if (choix === 'choix1') {
-    depot.disabledChoix2 = true;
-    depot.disabledChoix3 = true;
-    depot.choix2=false;
-    depot.choix3=false;
-  } else if (choix === 'choix2') {
-    depot.disabledChoix1 = true;
-    depot.disabledChoix3 = true;
-    depot.choix1=false;
-    depot.choix3=false;
-  } else if (choix === 'choix3') {
-    depot.disabledChoix1 = true;
-    depot.disabledChoix2 = true;
-    depot.choix1=false;
-    depot.choix2=false;
-  }
+// handleCheckboxChange(depot: IDepot, choix: string) {
+//   // Désactive les autres checkboxes
+//   if (choix === 'choix1') {
+//     depot.disabledChoix2 = true;
+//     depot.disabledChoix3 = true;
+//     depot.choix2=false;
+//     depot.choix3=false;
+//   } else if (choix === 'choix2') {
+//     depot.disabledChoix1 = true;
+//     depot.disabledChoix3 = true;
+//     depot.choix1=false;
+//     depot.choix3=false;
+//   } else if (choix === 'choix3') {
+//     depot.disabledChoix1 = true;
+//     depot.disabledChoix2 = true;
+//     depot.choix1=false;
+//     depot.choix2=false;
+//   }
 
   // Réinitialise les valeurs des autres checkboxes
   // if (choix !== 'choix1') {
@@ -198,8 +198,8 @@ handleCheckboxChange(depot: IDepot, choix: string) {
   // }
 
   // Fait disparaître le résultat
-  depot.resultat = '';
-}
+//   depot.resultat = '';
+// }
 
 
   

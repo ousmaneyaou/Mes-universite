@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center" style="margin-top: 45px;text-align: center; font-family: 'Cambria', sans-serif;">
+<div class="d-flex justify-content-center" style="margin-top: 45px;text-align: center; font-family: 'Cambria', sans-serif; box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px, rgba(0, 0, 0, 0.22) 0px 5px 5px; margin: 50px 50px;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-inscription-heading" data-cy="InscriptionCreateUpdateHeading">Create or edit a Inscription</h2>
+      <h2 id="jhi-inscription-heading" data-cy="InscriptionCreateUpdateHeading">Inscription</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -12,59 +12,63 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_dateInscription">Date Inscription</label>
-          <div class="d-flex">
-            <input
-              id="field_dateInscription"
-              data-cy="dateInscription"
-              type="datetime-local"
-              class="form-control"
-              name="dateInscription"
-              formControlName="dateInscription"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
-        </div>
+  <div class="col">
+    <label class="form-label" for="field_dateInscription">Date Inscription</label>
+    <input
+      id="field_dateInscription"
+      data-cy="dateInscription"
+      type="datetime-local"
+      class="form-control"
+      name="dateInscription"
+      formControlName="dateInscription"
+      placeholder="YYYY-MM-DD HH:mm"
+    />
+  </div>
 
-        <div class="ms-3">
-          <label class="form-label" for="field_regime">Regime</label>
-          <select class="form-select" id="field_regime" name="regime" data-cy="regime" formControlName="regime">
-              <!-- Ajoutez des options selon vos besoins -->
-              <option value="true">Boursier</option>
-              <option value="false">Non Boursier</option>
-          </select>
-      </div>
+  <div class="col">
+    <label class="form-label" for="field_regime">Regime</label>
+    <select class="form-select" id="field_regime" name="regime" data-cy="regime" formControlName="regime">
+      <!-- Ajoutez des options selon vos besoins -->
+      <option value="true">Boursier</option>
+      <option value="false">Non Boursier</option>
+    </select>
+  </div>
+</div>
+
+
+<div class="row mb-3">
+  <div class="col">
+    <label class="form-label" for="field_anneeAcademique">Annee Academique</label>
+    <input
+      type="text"
+      class="form-control"
+      name="anneeAcademique"
+      id="field_anneeAcademique"
+      data-cy="anneeAcademique"
+      formControlName="anneeAcademique"
+    />
+  </div>
+
+  <div class="col">
+    <label class="form-label" for="field_montantInscription">Montant Inscription</label>
+    <input
+      type="number"
+      class="form-control"
+      name="montantInscription"
+      id="field_montantInscription"
+      data-cy="montantInscription"
+      formControlName="montantInscription"
+    />
+  </div>
+</div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_anneeAcademique">Annee Academique</label>
-          <input
-            type="text"
-            class="form-control"
-            name="anneeAcademique"
-            id="field_anneeAcademique"
-            data-cy="anneeAcademique"
-            formControlName="anneeAcademique"
-          />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" for="field_montantInscription">Montant Inscription</label>
-          <input
-            type="number"
-            class="form-control"
-            name="montantInscription"
-            id="field_montantInscription"
-            data-cy="montantInscription"
-            formControlName="montantInscription"
-          />
-        </div>
-
-        <div class="row mb-3">
+          <div class="col">
           <label class="form-label" for="field_niveau">Niveau</label>
           <input type="text" class="form-control" name="niveau" id="field_niveau" data-cy="niveau" formControlName="niveau" />
         </div>
 
-        <div class="row mb-3">
+        <div class="col">
           <label class="form-label" for="field_observation">Observation</label>
           <input
             type="text"
@@ -75,6 +79,7 @@
             formControlName="observation"
           />
         </div>
+      </div>
 
         <div class="row mb-3">
           <label class="form-label" for="field_session">Session</label>
@@ -104,7 +109,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Soumettre</span>
         </button>
       </div>
     </form>

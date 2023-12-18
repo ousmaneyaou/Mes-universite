@@ -14,8 +14,10 @@ import { AcceptationDeleteDialogComponent } from '../delete/acceptation-delete-d
 @Component({
   selector: 'jhi-acceptation',
   templateUrl: './acceptation.component.html',
+  styleUrls: ['./acceptation.component.css'],
 })
 export class AcceptationComponent implements OnInit {
+  //depot: any;
   acceptations?: IAcceptation[];
   isLoading = false;
 

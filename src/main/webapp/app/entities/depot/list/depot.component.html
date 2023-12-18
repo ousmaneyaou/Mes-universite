@@ -1,6 +1,6 @@
 <div style="margin-top: 45px; text-align: center; font-family: 'Cambria', sans-serif;">
   <h2 id="page-heading" data-cy="DepotHeading">
-    <span><strong>Fenêtres de dépôts</strong></span>
+    <span><strong>liste des dépôts valide</strong></span>
 
     <div class="d-flex justify-content-end" style="font-family: 'Cambria', sans-serif;">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading" *jhiHasAnyAuthority="'ROLE_ADMIN'">
@@ -236,27 +236,27 @@
           <td>
             {{ depot.choix1 }}
             <div class="d-flex align-items-center ml-4" style="margin-left: 35px;">
-              <label class="lns-checkbox">
+              <!-- <label class="lns-checkbox">
                 <input type="checkbox" [checked]="depot.choix1" [disabled]="depot.disabledChoix1" (change)="handleCheckboxChange(depot, 'choix1')">
-              </label>
+              </label> -->
             </div>
           </td>
           
           <td>
             {{ depot.choix2 }}
             <div class="d-flex align-items-center ml-4" style="margin-left: 20px;">
-              <label class="lns-checkbox">
+              <!-- <label class="lns-checkbox">
                 <input type="checkbox" [checked]="depot.choix2" [disabled]="depot.disabledChoix2" (change)="handleCheckboxChange(depot, 'choix2')">
-              </label>
+              </label> -->
             </div>
           </td>
           
           <td>
             {{ depot.choix3 }}
             <div class="d-flex align-items-center ml-4" style="margin-left: 40px;">
-              <label class="lns-checkbox larger-checkbox">
+              <!-- <label class="lns-checkbox larger-checkbox">
                 <input type="checkbox" [checked]="depot.choix3" [disabled]="depot.disabledChoix3" (change)="handleCheckboxChange(depot, 'choix3')">
-              </label>
+              </label> -->
             </div>
           </td>
           
@@ -275,7 +275,7 @@
           <td class="text-end" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="btn-group">
 
-              <button type="submit" (click)="acceptation(acceptation)" class="btn btn-success btn-sm" data-cy="entityAcceptationsButton">
+              <button type="submit" routerLink="/acceptation" class="btn btn-success btn-sm" data-cy="entityAcceptationsButton">
                 <fa-icon icon="check"></fa-icon>
                 <span class="d-none d-md-inline">Selection</span>
               </button>            

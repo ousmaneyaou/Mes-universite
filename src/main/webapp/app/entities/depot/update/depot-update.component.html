@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px, rgba(0, 0, 0, 0.22) 0px 5px 5px; margin: 50px 50px;">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h3 id="jhi-depot-heading" data-cy="DepotCreateUpdateHeading" style="text-align: center; ">Faire un Dépot</h3>
+      <h3 id="jhi-depot-heading" data-cy="DepotCreateUpdateHeading" style="text-align: center; ">Formulaire de Dépot</h3>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -319,7 +319,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Soumettre</span>
         </button>
       </div>
     </form>
